@@ -1,0 +1,227 @@
+{
+    "name": "PlayerInputAction",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "2977855a-ce93-4b34-a808-2d0676d6179b",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "72be8aa2-a1bd-4395-862c-0610064fbbe4",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "93eb6666-4391-4c7c-803e-950c750c6296",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "b2e7cdf9-fc1b-4b54-af9b-745e55ee688a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftMouse",
+                    "type": "Button",
+                    "id": "e03aff57-2db1-489c-92c3-bf4c3d15972b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "67862a50-df8f-460e-ae8b-396494dc915c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightMouse",
+                    "type": "Button",
+                    "id": "99a749ed-55d0-40bc-95d3-57d93fe164e4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TestKey",
+                    "type": "Button",
+                    "id": "ab0ee7f7-6afa-44c7-bb02-a049a877e792",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "InventoryOpen",
+                    "type": "Button",
+                    "id": "98dc150b-cd00-467e-a222-e1264e8a187e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "3bd63c3a-5f3d-466c-9bc8-7d1af9266dee",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "8b36220b-fa85-41e2-8627-9da5056ab9dd",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "808eee7f-1f42-4535-9758-94d30fa7387e",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "37b092b4-49a9-4d6a-9ea1-d0c691cf26b6",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "591d4c5c-05ee-4d7f-938e-5c5401631f30",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "107b62a7-ee37-44fb-a8b3-50c446ba7508",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1fe55ac4-6cec-4b51-a30e-2844e484f5b9",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "462c2a23-87ef-4b6c-ae55-24ef25786450",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold,Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "LeftMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45d03094-87de-452a-8d7e-c1bba0501d7d",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd0c3086-3397-427e-bf7f-06fce73f41dc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "RightMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7067f6d5-a436-4886-90aa-4b51ea0fb91e",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "TestKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32b738f6-594c-4f4c-9e60-16f22f4defa1",
+                    "path": "<Keyboard>/i",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "InventoryOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

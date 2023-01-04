@@ -1,0 +1,14 @@
+{
+  "monster": [
+    {
+      "id": "1000",
+      "level": "3",
+      "maxHp": "200",
+      "attack": "32",
+      "defense": "5",
+      "dropExp": "4",
+      "dropGold": "20",
+      "name": "푸른빛의 레기오로스"
+    }
+  ]
+}

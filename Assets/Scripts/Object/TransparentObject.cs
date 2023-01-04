@@ -41,7 +41,7 @@ public class TransparentObject : MonoBehaviour
         }
 
         SetMaterialTransparent();
-        Debug.Log("Rendering Mode : Fade");
+        Debug.Log("Rendering Mode : Transparent");
         IsTransparent = true;
         StartCoroutine(BecomeTransparentCoroutine());
     }

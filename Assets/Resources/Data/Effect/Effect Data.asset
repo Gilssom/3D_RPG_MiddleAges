@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f2d834a01ee7b4080f93ca196a29a7, type: 3}
+  m_Name: Effect Data
+  m_EditorClassIdentifier: 
+  m_EffectList:
+  - m_LocalPosition: {x: 0, y: 0.331, z: 0.501}
+    m_LocalRotation: {x: 0, y: 0, z: -151.174}
+    m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+    m_EffectPrefab: {fileID: 7689350543318680802, guid: 7b9ba69877b27cc44907c57dff9c7e95, type: 3}
+    m_Description: "\uCCAB\uBC88\uC9F8 \uACF5\uACA9 \uC2AC\uB798\uC26C"
+  - m_LocalPosition: {x: 0.04699989, y: 0.467, z: 0.222}
+    m_LocalRotation: {x: 19.067, y: -37.654, z: 22.946}
+    m_LocalScale: {x: 0.275, y: 0.275, z: 0.275}
+    m_EffectPrefab: {fileID: 7663166451579704120, guid: e8a7f1a5270b52346889d2b1e0cbb61a, type: 3}
+    m_Description: "\uB450\uBC88\uC9F8 \uACF5\uACA9 \uC2AC\uB798\uC26C"
+  - m_LocalPosition: {x: 0, y: 0.4026895, z: 0.3290388}
+    m_LocalRotation: {x: -47.802, y: -123.192, z: 28.778}
+    m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+    m_EffectPrefab: {fileID: 7796385982873301444, guid: 8b3799d8d6a39044d990012928526e31, type: 3}
+    m_Description: "\uB9C8\uC9C0\uB9C9\uBC88\uC9F8 \uACF5\uACA9 \uC2AC\uB798\uC26C"
+  - m_LocalPosition: {x: 0, y: 0.417, z: 0.306}
+    m_LocalRotation: {x: -45, y: 270, z: 0}
+    m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+    m_EffectPrefab: {fileID: 1628595047533165812, guid: f455a84aac0a1e44d87ee4ac053f3a26, type: 3}
+    m_Description: "\uCC28\uC9C0 \uACF5\uACA9 \uC2AC\uB798\uC26C"
