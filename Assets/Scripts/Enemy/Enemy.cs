@@ -11,6 +11,7 @@ public class Enemy : Base
     public EnemyInfo enemyInfo { get; private set; }
 
     private Transform m_Chracter;
+    [SerializeField]
     private GameObject m_Target;
 
     public override void Init()
@@ -18,7 +19,6 @@ public class Enemy : Base
         enemyInfo = GetComponent<EnemyInfo>();
         m_Chracter = GetComponent<Transform>();
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
-        enemyInfo.ReadyAttack = true;
 
         if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
             UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
@@ -74,6 +74,69 @@ public class Enemy : Base
 
 
     //------ AI 시스템 ---------
+    /// <summary>
+    /// 1. 플레이어를 감지하게 되면 EnemyInfo 의 CheckPlayer 를 true 로 변경
+    /// >> Target 이 Player 로 잡히게 된다.
+    /// => State 를 Move 로 전환
+    /// 
+    /// 2. 플레이어가 공격 범위 내에 들어오게 되면 EnemyInfo 의 ReadyAttack 을 true 로 변경
+    /// >> Target 은 그대로 Player .
+    /// => State 를 Attack 으로 전환
+    /// 
+    /// 3. 플레이어가 공격 범위 내를 벗어나면 ReadyAttack 을 false,
+    ///    => State 를 Move 로 전환 >> 1번 상태로 전환함
+    ///    플레이어가 감지 범위 내를 벗어나면 CheckPlayer 를 false.
+    ///    => State 를 Idle 로 전환
+    ///    
+    /// 공격을 하게 되면 ReadyAttack 을 끄고 4초간의 시간 이후 다시 true 로 하여 Attack
+    /// >> Attack 이후 ReadyAttack 을 false , 
+    ///    false 시간 동안 Idle 로 전환 >> 3번 상태로 전환
+    /// 
+    /// </summary>
+    public void PlayerCheck()
+    {
+        // 플레이어 체크
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            return;
+
+        float distance = (player.transform.position - transform.position).magnitude;
+
+        // 1번 공격 전환
+        if (distance <= enemyInfo.AttackRange)
+        {
+            //EnemyAttackState.isAttack == false && 
+            if (enemyInfo.CheckPlayer && enemyInfo.ReadyAttack)
+            {
+                Debug.LogWarning("공격 상태로 전환");
+                // Attack 로 변경
+                enemyInfo.stateMachine.ChangeState(StateName.ATTACK);
+                return;
+            }
+        }
+        // 2번 추적 전환
+        else if (distance <= enemyInfo.ScanRange)
+        {
+            Debug.LogWarning("추적 상태로 전환");
+            enemyInfo.CheckPlayer = true;
+            m_Target = player;
+            // Move 로 변경
+            enemyInfo.stateMachine.ChangeState(StateName.MOVE);
+            return;            
+        }
+        // 3번 기본 자세 전환
+        else
+        {
+            Debug.LogWarning("기본 상태로 전환");
+            enemyInfo.CheckPlayer = false;
+            enemyInfo.ReadyAttack = false;
+            m_Target = null;
+            // Idle 로 변경
+            enemyInfo.stateMachine.ChangeState(StateName.IDLE);
+            return;
+        }
+    }
+
     protected override void UpdateIdle()
     {
         // 플레이어 체크
@@ -83,6 +146,7 @@ public class Enemy : Base
 
         float distance = (player.transform.position - transform.position).magnitude;
 
+        // 공격 범위 내에 들어왔을 때
         if (distance <= enemyInfo.AttackRange)
         {
             //EnemyAttackState.isAttack == false && 
@@ -100,6 +164,7 @@ public class Enemy : Base
                 enemyInfo.stateMachine.ChangeState(StateName.IDLE);
             }
         }
+        // 플레이어 감지 범위 내에 들어왔을 때
         else if (distance <= enemyInfo.ScanRange)
         {
             if (!enemyInfo.CheckPlayer)
@@ -111,6 +176,7 @@ public class Enemy : Base
                 return;
             }
         }
+        // 공격 범위 내에도 , 감지 범위 내에도 플레이어가 없을 때
         else
         {
             if (enemyInfo.CheckPlayer)
@@ -127,7 +193,6 @@ public class Enemy : Base
     #region #몬스터 공격 시스템
     public IEnumerator AttackCoroutine()
     {
-        Debug.LogWarning("Start Coroutine");
         float curTime = 0f;
         while (true)
         {

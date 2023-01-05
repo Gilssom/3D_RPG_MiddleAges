@@ -41,7 +41,6 @@ public class TransparentObject : MonoBehaviour
         }
 
         SetMaterialTransparent();
-        Debug.Log("Rendering Mode : Transparent");
         IsTransparent = true;
         StartCoroutine(BecomeTransparentCoroutine());
     }
@@ -99,7 +98,6 @@ public class TransparentObject : MonoBehaviour
     public void ResetOriginalTransparent()
     {
         SetMaterialOpaque();
-        Debug.Log("Rendering Mode : Opaque");
         m_ResetCoroutine = StartCoroutine(ResetOriginalTransparentCoroutine());
     }
 

@@ -29,7 +29,7 @@ public class InventoryManager : MonoBehaviour
     private void Init()
     {
         GameObject weapon = Instantiate(m_NormalSword);
-        PlayerInfo.Instance.m_WeaponManager.RegisterWeapon(weapon);
-        PlayerInfo.Instance.m_WeaponManager.SetWeapon(weapon);
+        PlayerInfo.Instance.playerInfo.m_WeaponManager.RegisterWeapon(weapon);
+        PlayerInfo.Instance.playerInfo.m_WeaponManager.SetWeapon(weapon);
     }
 }

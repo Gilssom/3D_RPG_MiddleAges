@@ -48,10 +48,14 @@ public class EnemyInfo : BaseInfo
 
     protected override void Init()
     {
+        enemyInfo = this;
         m_DataManager = new DataManager();
         m_Rigid = GetComponent<Rigidbody>();
         m_Anim = GetComponent<Animator>();
         m_CapsuleCollider = GetComponent<CapsuleCollider>();
+
+        m_CheckPlayer = false;
+        m_ReadyAttack = true;
 
         InitStateMachine();
         m_DataManager.Init("MonsterStatData");

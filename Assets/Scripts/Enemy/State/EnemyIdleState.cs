@@ -13,12 +13,12 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
-            Debug.Log("Idle Enter State");
+            Debug.Log($"{m_EnemyController.enemyInfo.Name}의 현재 상태는 Idle !");
         }
 
         public override void OnUpdateState()
         {
-            Debug.Log($"{base.m_EnemyController.enemyInfo.Name}의 현재 상태는 Idle !");
+            m_EnemyController.PlayerCheck();
         }
 
         public override void OnFixedUpdateState()

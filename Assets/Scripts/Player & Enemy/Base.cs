@@ -34,7 +34,7 @@ public abstract class Base : MonoBehaviour
     private void Start() { Init(); }
     public abstract void Init();
 
-    void Update() { CtrlGravity(); UpdateIdle(); }
+    void Update() { CtrlGravity(); /*UpdateIdle();*/ }
     protected virtual void CtrlGravity() { }
     protected virtual void UpdateIdle() { }
 }

@@ -118,7 +118,7 @@ public class Player : Base
     {
         if (context.performed)
         {
-            PlayerInfo.Instance.Exp += 20;
+            playerInfo.Exp += 20;
         }
     }
     #endregion
@@ -177,15 +177,15 @@ public class Player : Base
     private IEnumerator DashCoroutine()
     {
         yield return Dash_Roll_Time;
-        if (PlayerInfo.Instance.DashCount > 1 && m_DashState.m_CurDashCount < PlayerInfo.Instance.DashCount)
+        if (playerInfo.DashCount > 1 && m_DashState.m_CurDashCount < playerInfo.DashCount)
         {
-            PlayerInfo.Instance.stateMachine.ChangeState(StateName.MOVE);
+            playerInfo.stateMachine.ChangeState(StateName.MOVE);
         }
         yield return Dash_ReInput_Time;
         m_DashState.OnExitState();
 
         yield return Dash_Tetany_Time;
-        PlayerInfo.Instance.stateMachine.ChangeState(StateName.MOVE);
+        playerInfo.stateMachine.ChangeState(StateName.MOVE);
 
         m_DashCoolTimeCoroutine = StartCoroutine(DashCoolTimeCoroutine());
 

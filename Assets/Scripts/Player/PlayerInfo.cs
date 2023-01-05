@@ -76,6 +76,7 @@ public class PlayerInfo : BaseInfo
 
     protected override void Init()
     {
+        playerInfo = this;
         m_DataManager = new DataManager();
         m_WeaponManager = new WeaponManager(m_RightHand);
         m_WeaponManager.m_UnRegisterWeapon = (weapon) => { Destroy(weapon); };

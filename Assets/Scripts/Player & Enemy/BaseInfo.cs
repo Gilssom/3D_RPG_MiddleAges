@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseInfo : SingletomManager<PlayerInfo>
+public class BaseInfo : SingletomManager<BaseInfo>
 {
     protected BaseInfo() { }
+    public PlayerInfo playerInfo;
+    public EnemyInfo enemyInfo;
 
     #region #╟Ь©К ╫╨ех
     [Header("╟Ь©К ╫╨ех")]

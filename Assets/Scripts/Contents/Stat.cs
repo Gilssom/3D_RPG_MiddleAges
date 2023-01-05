@@ -36,20 +36,20 @@ public class Stat : MonoBehaviour
         m_MoveSpeed = 1;
     }
 
-    public virtual void OnAttacked(Stat attacker)
-    {
-        int damage = Mathf.Max(0, attacker.Attack - PlayerInfo.Instance.Defense);
-        PlayerInfo.Instance.Hp -= damage;
+    //public virtual void OnAttacked(Stat attacker)
+    //{
+    //    int damage = Mathf.Max(0, attacker.Attack - playerInfo.Defense);
+    //    playerInfo.Hp -= damage;
 
-        if (PlayerInfo.Instance.Hp <= 0)
-        {
-            PlayerInfo.Instance.Hp = 0;
-            //OnDead();
-        }
-    }
+    //    if (playerInfo.Hp <= 0)
+    //    {
+    //        playerInfo.Hp = 0;
+    //        //OnDead();
+    //    }
+    //}
 
-    protected virtual void OnDead(Stat attacker)
-    {
-        PlayerInfo.Instance.Exp += 20;
-    }
+    //protected virtual void OnDead(Stat attacker)
+    //{
+    //    playerInfo.Exp += 20;
+    //}
 }

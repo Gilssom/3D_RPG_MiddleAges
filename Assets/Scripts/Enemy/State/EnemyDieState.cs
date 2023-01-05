@@ -15,13 +15,13 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
-            Debug.Log("Die Enter State");
+            Debug.Log($"{m_EnemyController.enemyInfo.Name}의 현재 상태는 Die !");
             m_EnemyController.enemyInfo.m_Anim.Play(IsDieAnimation);
         }
 
         public override void OnUpdateState()
         {
-            Debug.Log($"{base.m_EnemyController.enemyInfo.Name}의 현재 상태는 Die !");
+
         }
 
         public override void OnFixedUpdateState()
@@ -31,7 +31,7 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            Debug.Log("Attack Die State");
+
         }
     }
 }

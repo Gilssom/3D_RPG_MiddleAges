@@ -1,49 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CharacterController;
 
-public class EnemyAnimationEvent : BaseAnimEvent
+namespace CharacterController
 {
-    //public readonly int IsAttackAnimation = Animator.StringToHash("isAttack");
-
-    protected override void Init()
+    public class EnemyAnimationEvent : BaseAnimEvent
     {
-        m_CheckTime = new WaitForSeconds(m_HitCheckTime);
-    }
+        public EnemyInfo enemyInfo { get; private set; }
 
-    protected override void OnFinishedAttack()
-    {
-        Debug.LogWarning("OnFinished");
-        EnemyAttackState.isAttack = false;
-        EnemyInfo.Instance.m_Anim.SetBool("isAttack", false);
-        EnemyInfo.Instance.stateMachine.ChangeState(StateName.IDLE);
-    }
+        protected override void Init()
+        {
+            m_CheckTime = new WaitForSeconds(m_HitCheckTime);
+            enemyInfo = GetComponent<EnemyInfo>();
+        }
 
-    protected override void OnForwardAttack(float Power)
-    {
-        EnemyInfo.Instance.m_Rigid.velocity = EnemyInfo.Instance.transform.forward * Power;
-    }
+        protected override void OnFinishedAttack()
+        {
+            enemyInfo.stateMachine.ChangeState(StateName.IDLE);
+        }
 
-    protected override void OffForwardAttack()
-    {
-        EnemyInfo.Instance.m_Rigid.velocity = Vector3.zero;
-    }
+        protected override void OnForwardAttack(float Power)
+        {
+            enemyInfo.m_Rigid.velocity = enemyInfo.transform.forward * Power;
+        }
 
-    protected override IEnumerator AttackArea()
-    {
-        m_AttackArea.enabled = true;
-        Debug.Log(m_AttackArea.enabled);
-        yield return m_CheckTime;
-        m_AttackArea.enabled = false;
-        Debug.Log(m_AttackArea.enabled);
-    }
+        protected override void OffForwardAttack()
+        {
+            enemyInfo.m_Rigid.velocity = Vector3.zero;
+        }
 
-    protected override void TestAttackEffect(int AttackNumber)
-    {
-        GameObject Effect = ObjectPoolManager.Instance.m_ObjectPoolList[AttackNumber].Dequeue();
-        Effect.SetActive(true);
+        protected override IEnumerator AttackArea()
+        {
+            m_AttackArea.enabled = true;
+            yield return m_CheckTime;
+            m_AttackArea.enabled = false;
+        }
 
-        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(1.5f, AttackNumber, Effect));
+        protected override void TestAttackEffect(int AttackNumber)
+        {
+            GameObject Effect = ObjectPoolManager.Instance.m_ObjectPoolList[AttackNumber].Dequeue();
+            Effect.SetActive(true);
+
+            ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(1.5f, AttackNumber, Effect));
+        }
+
+        public void EnemyReadyAttackFalse()
+        {
+            enemyInfo.ReadyAttack = false;
+        }
     }
 }

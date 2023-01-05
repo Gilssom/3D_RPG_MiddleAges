@@ -16,19 +16,18 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
-            Debug.Log("Move Enter State");
+            Debug.Log($"{m_EnemyController.enemyInfo.Name}의 현재 상태는 Move !");
 
             m_EnemyController.enemyInfo.m_Anim.SetBool(IsWalkAnimation, true);
         }
 
         public override void OnUpdateState()
         {
-            Debug.Log($"{m_EnemyController.enemyInfo.Name}의 현재 상태는 Move !");
-
             float curMoveSpeed = m_EnemyController.enemyInfo.MoveSpeed;
 
             m_EnemyController.enemyInfo.m_Anim.SetFloat(IsMoveSpeed, curMoveSpeed);
             m_EnemyController.Move();
+            m_EnemyController.PlayerCheck();
         }
 
         public override void OnFixedUpdateState()
@@ -38,7 +37,6 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            Debug.Log("Move Exit State");
             m_EnemyController.enemyInfo.m_Anim.SetBool(IsWalkAnimation, false);
         }
     }

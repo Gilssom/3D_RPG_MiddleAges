@@ -16,22 +16,22 @@ public class NormalSword : BaseWeapon
     public override void Attack(BaseState state)
     {
         m_ComboCount++;
-        PlayerInfo.Instance.m_Anim.SetFloat(AttackSpeedAnimation, m_AttackSpeed);
-        PlayerInfo.Instance.m_Anim.SetBool(IsAttackAnimation, true);
-        PlayerInfo.Instance.m_Anim.SetInteger(AttackComboAnimation, m_ComboCount);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, m_AttackSpeed);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetBool(IsAttackAnimation, true);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetInteger(AttackComboAnimation, m_ComboCount);
         CheckAttackReInput(AttackState.m_CanReInputTime);
     }
 
     public override void ChargingAttack(BaseState state)
     {
-        PlayerInfo.Instance.m_Anim.SetFloat(AttackSpeedAnimation, m_AttackSpeed);
-        PlayerInfo.Instance.m_Anim.SetBool(IsChargeAnimation, true);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, m_AttackSpeed);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetBool(IsChargeAnimation, true);
     }
 
     public override void KickAttack(BaseState state)
     {
-        PlayerInfo.Instance.m_Anim.SetFloat(AttackSpeedAnimation, 1);
-        PlayerInfo.Instance.m_Anim.SetBool(IsKickAnimation, true);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 1);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetBool(IsKickAnimation, true);
     }
 
     public override void DashAttack(BaseState state)
@@ -70,6 +70,6 @@ public class NormalSword : BaseWeapon
         }
 
         m_ComboCount = 0;
-        PlayerInfo.Instance.m_Anim.SetInteger(AttackComboAnimation, 0);
+        PlayerInfo.Instance.playerInfo.m_Anim.SetInteger(AttackComboAnimation, 0);
     }
 }

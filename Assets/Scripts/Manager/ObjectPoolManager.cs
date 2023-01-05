@@ -14,8 +14,6 @@ public class ObjectsInfo
 
 public class ObjectPoolManager : SingletomManager<ObjectPoolManager>
 {
-    protected ObjectPoolManager() { }
-
     /// <summary>
     /// 0 :: First Slash Effect
     /// 1 :: Second Slash Effect
@@ -49,8 +47,7 @@ public class ObjectPoolManager : SingletomManager<ObjectPoolManager>
             GameObject objectClone = Instantiate(prefab_objectInfo.m_Prefab) as GameObject;
 
             objectClone.SetActive(false);
-            objectClone.transform.SetParent(prefab_objectInfo.m_PoolParent);
-            objectClone.transform.position = prefab_objectInfo.m_PoolParent.position + objectClone.transform.position;
+            objectClone.transform.SetParent(prefab_objectInfo.m_PoolParent, false);
 
             int index = objectClone.name.IndexOf("(Clone)");
             if (index > 0)

@@ -26,13 +26,13 @@ namespace CharacterController
             {
                 case AttackName.ATTACK:
                     isAttack = true;
-                    PlayerInfo.Instance.m_WeaponManager.m_Weapon?.Attack(this);
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.Attack(this);
                     break;
                 case AttackName.CHARGE:
-                    PlayerInfo.Instance.m_WeaponManager.m_Weapon?.ChargingAttack(this);
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.ChargingAttack(this);
                     break;
                 case AttackName.KICK:
-                    PlayerInfo.Instance.m_WeaponManager.m_Weapon?.KickAttack(this);
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.KickAttack(this);
                     break;
             }
         }
