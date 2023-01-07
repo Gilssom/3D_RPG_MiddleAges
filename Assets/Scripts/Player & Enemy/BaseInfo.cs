@@ -5,8 +5,8 @@ using UnityEngine;
 public class BaseInfo : SingletomManager<BaseInfo>
 {
     protected BaseInfo() { }
-    public PlayerInfo playerInfo;
-    public EnemyInfo enemyInfo;
+    public static PlayerInfo playerInfo;
+    public static EnemyInfo enemyInfo;
 
     #region #°ø¿ë ½ºÅÈ
     [Header("°ø¿ë ½ºÅÈ")]
@@ -31,9 +31,15 @@ public class BaseInfo : SingletomManager<BaseInfo>
     public float MoveSpeed { get { return m_Speed; } set { m_Speed = value; } }
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         Init();
+    }
+
+    private void Start()
+    {
+        Debug.Log($"Base Info - {enemyInfo}");
+        Debug.Log($"Base Info - {playerInfo}");
     }
 
     protected virtual void Init() { }

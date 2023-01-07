@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 using CharacterController;
 
 public class EnemyInfo : BaseInfo
@@ -10,8 +11,9 @@ public class EnemyInfo : BaseInfo
     public Rigidbody m_Rigid                    { get; private set; }
     public Animator m_Anim                      { get; private set; }
     public CapsuleCollider m_CapsuleCollider    { get; private set; }
+    public Material m_Material                  { get; private set; }
 
-    #region #캐릭터 부가 스탯
+    #region #몬스터 부가 스탯
     [Header("몬스터 부가 스탯")]
     [SerializeField]
     string m_name;
@@ -46,13 +48,20 @@ public class EnemyInfo : BaseInfo
     public float AttackCoolTime { get { return m_AttackCoolTime; } set { m_AttackCoolTime = value; } }
     #endregion
 
+    #region #이펙트
+    [Header("이펙트 리스트")]
+    public VisualEffect[] m_EffectList;
+    #endregion
+
     protected override void Init()
     {
         enemyInfo = this;
+        Debug.Log($"{name} - {enemyInfo}");
         m_DataManager = new DataManager();
         m_Rigid = GetComponent<Rigidbody>();
         m_Anim = GetComponent<Animator>();
         m_CapsuleCollider = GetComponent<CapsuleCollider>();
+        m_Material = GetComponentInChildren<SkinnedMeshRenderer>().material;
 
         m_CheckPlayer = false;
         m_ReadyAttack = true;

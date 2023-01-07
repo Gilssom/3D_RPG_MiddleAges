@@ -11,7 +11,6 @@ public class WeaponManager
     private Transform m_HandPos;                                 // 무기를 쥐는 손의 위치
     private GameObject m_WeaponObject;                           // 현재 무기 오브젝트
     private List<GameObject> m_Weapons = new List<GameObject>(); // 현재 매니저에 등록된 무기 리스트
-    PlayerInfo playerInfo;
 
     public WeaponManager(Transform hand)
     {
@@ -51,7 +50,7 @@ public class WeaponManager
             m_WeaponObject = weapon;
             m_Weapon = weapon.GetComponent<BaseWeapon>();
             m_WeaponObject.SetActive(true);
-            PlayerInfo.Instance.playerInfo.m_Anim.runtimeAnimatorController = m_Weapon.m_WeaponAnimator;
+            BaseInfo.playerInfo.m_Anim.runtimeAnimatorController = m_Weapon.m_WeaponAnimator;
             return;
         }
 
@@ -62,7 +61,7 @@ public class WeaponManager
                 m_WeaponObject = weapon;
                 m_WeaponObject.SetActive(true);
                 m_Weapon = weapon.GetComponent<BaseWeapon>();
-                PlayerInfo.Instance.playerInfo.m_Anim.runtimeAnimatorController = m_Weapon.m_WeaponAnimator;
+                BaseInfo.playerInfo.m_Anim.runtimeAnimatorController = m_Weapon.m_WeaponAnimator;
                 continue;
             }
 

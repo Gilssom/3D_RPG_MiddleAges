@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Defines
 {
+    public enum WorldObject
+    {
+        Unknown,
+        Player,
+        Monster
+    }
     public enum UIEvent
     {
         Click,

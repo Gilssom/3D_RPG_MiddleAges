@@ -72,14 +72,18 @@ public class PlayerInfo : BaseInfo
     #region #Sciprtable Object Data
     [Header("이펙트 데이터")]
     public EffectData m_EffectData;
+    [Header("이펙트 리스트")]
+    public VisualEffect[] m_EffectList;
     #endregion
 
     protected override void Init()
     {
         playerInfo = this;
+        Debug.Log($"{name} - {playerInfo}");
         m_DataManager = new DataManager();
         m_WeaponManager = new WeaponManager(m_RightHand);
         m_WeaponManager.m_UnRegisterWeapon = (weapon) => { Destroy(weapon); };
+
         m_Rigid = GetComponent<Rigidbody>();
         m_Anim = GetComponent<Animator>();
         m_CapsuleCollider = GetComponent<CapsuleCollider>();

@@ -16,4 +16,10 @@ public static class Extension
     {
         UI_Base.BindEvent(go, action, type);
     }
+
+    // 해당 게임오브젝트가 있고 , 활성화가 되있는지
+    public static bool IsValid(this GameObject go)
+    {
+        return go != null && go.activeSelf;
+    }
 }

@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem; // New Input System À» »ç¿ëÇÑ´Ù.
+using UnityEngine.InputSystem; // New Input System ì„ ì‚¬ìš©í•œë‹¤.
 using UnityEngine.InputSystem.Interactions;
 using CharacterController;
 using DG.Tweening;
 
-// Æ¯Á¤ ÄÄÆ÷³ÍÆ®¸¦ ÀÚµ¿ÀûÀ¸·Î Ãß°¡ÇØÁÜ. ÃßÈÄ ½ºÅÈ °ü¸® ½ºÅ©¸³Æ® Ãß°¡ ¿¹Á¤
+// íŠ¹ì • ì»´í¬ë„ŒíŠ¸ë¥¼ ìë™ì ìœ¼ë¡œ ì¶”ê°€í•´ì¤Œ. ì¶”í›„ ìŠ¤íƒ¯ ê´€ë¦¬ ìŠ¤í¬ë¦½íŠ¸ ì¶”ê°€ ì˜ˆì •
 [RequireComponent(typeof(PlayerInfo))]
 public class Player : Base
 {
@@ -22,9 +22,9 @@ public class Player : Base
     //------- New Input System --------
     public Vector3 m_LookForward    { get; private set; }
 
-    //------- Player Dash ±¸Çö -------
+    //------- Player Dash êµ¬í˜„ -------
 
-    #region #´ë½¬±â º¯¼ö
+    #region #ëŒ€ì‰¬ê¸° ë³€ìˆ˜
     private WaitForSeconds Dash_Roll_Time;
     private WaitForSeconds Dash_ReInput_Time;
     private WaitForSeconds Dash_Tetany_Time;
@@ -40,8 +40,10 @@ public class Player : Base
 
     public override void Init()
     {
+        WorldObjectType = Defines.WorldObject.Player;
         playerInfo = GetComponent<PlayerInfo>();
         m_Chracter = GetComponent<Transform>();
+        m_Camera = Camera.main.transform;
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
 
         Dash_Roll_Time = new WaitForSeconds(playerInfo.m_DashRollTime);
@@ -58,7 +60,7 @@ public class Player : Base
             UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
     }
 
-    #region #±âº» ½Ã½ºÅÛ
+    #region #ê¸°ë³¸ ì‹œìŠ¤í…œ
     protected Vector3 GetDirection(float curMoveSpeed)
     {
         Vector2 moveInput = new Vector2(HAxis, VAxis);
@@ -82,9 +84,10 @@ public class Player : Base
     {
         m_CulatedDirection = GetDirection(playerInfo.MoveSpeed);
 
-        if (m_InputDirection.magnitude == 0)
+        if (!DashState.m_IsDash)
         {
             playerInfo.m_Rigid.velocity = Vector3.zero;
+            playerInfo.m_Rigid.angularVelocity = Vector3.zero;
         }
 
         if (isGrounded && isOnSlope)
@@ -97,7 +100,7 @@ public class Player : Base
     }
     #endregion
 
-    #region #UI Å×½ºÆ®
+    #region #UI í…ŒìŠ¤íŠ¸
     public void InventoryUIOpen(InputAction.CallbackContext context)
     {
         if(context.performed)
@@ -123,7 +126,7 @@ public class Player : Base
     }
     #endregion
 
-    #region #ÇÃ·¹ÀÌ¾î ÀÌµ¿ ½Ã½ºÅÛ
+    #region #í”Œë ˆì´ì–´ ì´ë™ ì‹œìŠ¤í…œ
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
@@ -145,7 +148,7 @@ public class Player : Base
     }
     #endregion
 
-    #region #ÇÃ·¹ÀÌ¾î ´ë½¬±â ½Ã½ºÅÛ
+    #region #í”Œë ˆì´ì–´ ëŒ€ì‰¬ê¸° ì‹œìŠ¤í…œ
     public void OnDashInput(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -207,12 +210,12 @@ public class Player : Base
     }
     #endregion
 
-    #region #ÇÃ·¹ÀÌ¾î °ø°İ ½Ã½ºÅÛ
+    #region #í”Œë ˆì´ì–´ ê³µê²© ì‹œìŠ¤í…œ
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if(context.interaction is HoldInteraction)       // Â÷Áö °ø°İ
+            if(context.interaction is HoldInteraction)       // ì°¨ì§€ ê³µê²©
             {
                 if (DashState.m_IsDash)
                 {
@@ -223,7 +226,7 @@ public class Player : Base
                 playerInfo.stateMachine.ChangeState(StateName.ATTACK);
             }
 
-            else if(context.interaction is PressInteraction) // ÀÏ¹İ °ø°İ
+            else if(context.interaction is PressInteraction) // ì¼ë°˜ ê³µê²©
             {
                 AttackState.m_AttackName = AttackState.AttackName.ATTACK;
 
@@ -246,7 +249,7 @@ public class Player : Base
     {
         if (context.performed)
         {
-            if (context.interaction is PressInteraction)       // ¹ßÂ÷±â °ø°İ
+            if (context.interaction is PressInteraction)       // ë°œì°¨ê¸° ê³µê²©
             {
                 if (DashState.m_IsDash && AttackState.isAttack)
                 {
@@ -260,7 +263,7 @@ public class Player : Base
     }
     #endregion
 
-    #region #ÇÃ·¹ÀÌ¾î ¹æÇâ
+    #region #í”Œë ˆì´ì–´ ë°©í–¥
     public void LookAt(Vector3 lookForward)
     {
         if (m_InputDirection != Vector3.zero)
@@ -270,26 +273,30 @@ public class Player : Base
     }
     #endregion
 
-    #region #ÇÃ·¹ÀÌ¾î ÇÇ°İ ÀÌº¥Æ®
+    #region #í”Œë ˆì´ì–´ í”¼ê²© ì´ë²¤íŠ¸
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "EnemyHitBox")
-            OnHitEvent(other.transform.parent.gameObject.GetComponent<BaseInfo>());
+            OnHitEvent(other.transform.parent.gameObject.GetComponent<EnemyInfo>());
     }
 
-    void OnHitEvent(BaseInfo enemy)
+    void OnHitEvent(EnemyInfo enemy)
     {
-        if (BaseInfo.Instance.Hp > 0)
+        if (playerInfo.Hp > 0)
         {
-            BaseInfo playerStat = gameObject.GetComponent<BaseInfo>();
-            int damage = UnityEngine.Random.Range(enemy.Attack - playerStat.Defense, enemy.Attack + 1);
-            Debug.Log($"Àû¿¡°Ô ÀÔÀº ÇÇÇØ·® : {damage} !!");
-            playerStat.Hp -= damage;
+            int damage = UnityEngine.Random.Range(enemy.Attack - playerInfo.Defense, enemy.Attack + 1);
+            Debug.Log($"ì ì—ê²Œ ì…ì€ í”¼í•´ëŸ‰ : {damage} !!");
+            playerInfo.Hp -= damage;
+
+            // í”Œë ˆì´ì–´ ì‚¬ë§
+            if (playerInfo.Hp <= 0)
+                GameManager.Instance.Despawn(gameObject);
+                //playerInfo.stateMachine.ChangeState(StateName.DIE);
         }
     }
     #endregion
 
-    #region #ÇÃ·¹ÀÌ¾î °æ»çµµ ¹× ¹Ù´Ú Ã¼Å©
+    #region #í”Œë ˆì´ì–´ ê²½ì‚¬ë„ ë° ë°”ë‹¥ ì²´í¬
     protected bool IsOnSlope()
     {
         Ray ray = new Ray(transform.position, Vector3.down);

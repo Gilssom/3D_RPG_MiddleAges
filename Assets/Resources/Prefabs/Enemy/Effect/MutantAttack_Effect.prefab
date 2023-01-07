@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4354968227809598513}
-  m_LocalRotation: {x: -0.15816404, y: -0.20693478, z: -0.3620537, w: 0.8950303}
+  m_LocalRotation: {x: -0.15816526, y: -0.20693263, z: -0.36205336, w: 0.89503074}
   m_LocalPosition: {x: 0.109, y: 1.092, z: 0.893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 4354968228915296344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4354968227809598512}
   m_RootOrder: 0
@@ -72,10 +72,10 @@ VisualEffect:
   m_GameObject: {fileID: 4354968228915296344}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 410b83831c4218a419f110496f1a72a2, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
-  m_ResetSeedOnPlay: 1
+  m_ResetSeedOnPlay: 0
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:

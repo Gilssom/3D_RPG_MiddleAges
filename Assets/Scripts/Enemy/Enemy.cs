@@ -14,11 +14,15 @@ public class Enemy : Base
     [SerializeField]
     private GameObject m_Target;
 
+    private WaitForSeconds m_OnDamageColor;
+
     public override void Init()
     {
+        WorldObjectType = Defines.WorldObject.Monster;
         enemyInfo = GetComponent<EnemyInfo>();
         m_Chracter = GetComponent<Transform>();
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
+        m_OnDamageColor = new WaitForSeconds(0.2f);
 
         if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
             UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
@@ -209,6 +213,11 @@ public class Enemy : Base
     #region #몬스터 방향
     public void LookAt()
     {
+        if(m_Target == null)
+        {
+            return;
+        }
+
         m_Chracter.LookAt(m_Target.transform.position);
     }
     #endregion
@@ -217,21 +226,29 @@ public class Enemy : Base
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerHitBox")
-            OnHitEvent(other.transform.parent.gameObject.GetComponent<BaseInfo>());
+            OnHitEvent(other.transform.parent.gameObject.GetComponent<PlayerInfo>());
     }
 
-    void OnHitEvent(BaseInfo player)
+    void OnHitEvent(PlayerInfo player)
     {
-        if(BaseInfo.Instance.Hp > 0)
+        if(enemyInfo.Hp > 0)
         {
-            BaseInfo enemyStat = gameObject.GetComponent<BaseInfo>();
-            int damage = Random.Range(player.Attack - enemyStat.Defense, player.Attack + 1);
+            int damage = Random.Range(player.Attack - enemyInfo.Defense, player.Attack + 1);
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
-            enemyStat.Hp -= damage;
+            enemyInfo.Hp -= damage;
+            StartCoroutine(OnDamageEvent());
 
-            if(enemyStat.Hp <= 0)
+            // 몬스터 사망
+            if(enemyInfo.Hp <= 0)
                 enemyInfo.stateMachine.ChangeState(StateName.DIE);
         }
+    }
+
+    IEnumerator OnDamageEvent()
+    {
+        enemyInfo.m_Material.color = Color.red;
+        yield return m_OnDamageColor;
+        enemyInfo.m_Material.color = new Color(1, 1, 1);
     }
     #endregion
 

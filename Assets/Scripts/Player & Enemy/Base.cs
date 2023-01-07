@@ -31,10 +31,12 @@ public abstract class Base : MonoBehaviour
     protected bool isGrounded;
     #endregion
 
+    public Defines.WorldObject WorldObjectType { get; protected set; } = Defines.WorldObject.Unknown;
+
     private void Start() { Init(); }
     public abstract void Init();
 
-    void Update() { CtrlGravity(); /*UpdateIdle();*/ }
+    void Update() { CtrlGravity(); }
     protected virtual void CtrlGravity() { }
     protected virtual void UpdateIdle() { }
 }
