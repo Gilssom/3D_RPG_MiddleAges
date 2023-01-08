@@ -38,5 +38,4 @@ public abstract class Base : MonoBehaviour
 
     void Update() { CtrlGravity(); }
     protected virtual void CtrlGravity() { }
-    protected virtual void UpdateIdle() { }
 }

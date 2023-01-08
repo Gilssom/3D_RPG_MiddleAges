@@ -84,7 +84,7 @@ public class Player : Base
     {
         m_CulatedDirection = GetDirection(playerInfo.MoveSpeed);
 
-        if (!DashState.m_IsDash)
+        if (m_InputDirection.magnitude == 0)
         {
             playerInfo.m_Rigid.velocity = Vector3.zero;
             playerInfo.m_Rigid.angularVelocity = Vector3.zero;

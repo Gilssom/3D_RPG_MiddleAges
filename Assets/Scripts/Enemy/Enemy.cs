@@ -13,6 +13,7 @@ public class Enemy : Base
     private Transform m_Chracter;
     [SerializeField]
     private GameObject m_Target;
+    private Vector3 m_Pos;
 
     private WaitForSeconds m_OnDamageColor;
 
@@ -73,6 +74,8 @@ public class Enemy : Base
     {
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
         navmesh.isStopped = isStop;
+        enemyInfo.m_Rigid.velocity = Vector3.zero;
+        enemyInfo.m_Rigid.angularVelocity = Vector3.zero;
     }
     #endregion
 
@@ -104,6 +107,7 @@ public class Enemy : Base
         if (player == null)
             return;
 
+        m_Pos = transform.position;
         float distance = (player.transform.position - transform.position).magnitude;
 
         // 1번 공격 전환
@@ -138,59 +142,6 @@ public class Enemy : Base
             // Idle 로 변경
             enemyInfo.stateMachine.ChangeState(StateName.IDLE);
             return;
-        }
-    }
-
-    protected override void UpdateIdle()
-    {
-        // 플레이어 체크
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-            return;
-
-        float distance = (player.transform.position - transform.position).magnitude;
-
-        // 공격 범위 내에 들어왔을 때
-        if (distance <= enemyInfo.AttackRange)
-        {
-            //EnemyAttackState.isAttack == false && 
-            if (enemyInfo.ReadyAttack)
-            {
-                Debug.LogError("Check");
-                enemyInfo.CheckPlayer = false;
-                enemyInfo.ReadyAttack = false;
-                // Attack 로 변경
-                enemyInfo.stateMachine.ChangeState(StateName.ATTACK);
-                return;
-            }
-            else
-            {
-                enemyInfo.stateMachine.ChangeState(StateName.IDLE);
-            }
-        }
-        // 플레이어 감지 범위 내에 들어왔을 때
-        else if (distance <= enemyInfo.ScanRange)
-        {
-            if (!enemyInfo.CheckPlayer)
-            {
-                enemyInfo.CheckPlayer = true;
-                m_Target = player;
-                // Move 로 변경
-                enemyInfo.stateMachine.ChangeState(StateName.MOVE);
-                return;
-            }
-        }
-        // 공격 범위 내에도 , 감지 범위 내에도 플레이어가 없을 때
-        else
-        {
-            if (enemyInfo.CheckPlayer)
-            {
-                enemyInfo.CheckPlayer = false;
-                m_Target = null;
-                // Idle 로 변경
-                enemyInfo.stateMachine.ChangeState(StateName.IDLE);
-                return;
-            }
         }
     }
 
@@ -246,9 +197,21 @@ public class Enemy : Base
 
     IEnumerator OnDamageEvent()
     {
+        ShakeCamera.Instance.CameraShake(3f, 0.2f);
+        HitEffect();
         enemyInfo.m_Material.color = Color.red;
         yield return m_OnDamageColor;
         enemyInfo.m_Material.color = new Color(1, 1, 1);
+    }
+
+    void HitEffect()
+    {
+        GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[0].Dequeue();
+        // new Vector3 는 struct type 이고 스택에 생성되기 때문에 반복된 메모리릭 , 할당/해제 문제는 발생 X
+        HitEffect.transform.position = new Vector3(m_Pos.x, enemyInfo.m_CapsuleCollider.bounds.size.y / 2, m_Pos.z);
+        HitEffect.transform.rotation = transform.rotation;
+        HitEffect.SetActive(true);
+        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, 0, HitEffect));
     }
     #endregion
 

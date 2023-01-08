@@ -9,7 +9,6 @@ public class ObjectsInfo
     public string m_ObjectName;
     public GameObject m_Prefab;
     public int m_Count;
-    public Transform m_PoolParent;
 }
 
 public class ObjectPoolManager : SingletomManager<ObjectPoolManager>

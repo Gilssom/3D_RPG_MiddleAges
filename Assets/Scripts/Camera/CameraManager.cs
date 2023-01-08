@@ -6,16 +6,12 @@ using Cinemachine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField]
-    CinemachineFreeLook m_FreeLook;
+    private CinemachineFreeLook m_FreeLook;
+    private GameObject m_Player = null;
 
-    [SerializeField]
-    protected GameObject m_Player = null;
-
-    public void SetPlayer(GameObject player) 
-    { 
+    public void SetPlayer(GameObject player)
+    {
         m_Player = player;
-
-        m_FreeLook = m_FreeLook.GetComponent<CinemachineFreeLook>();
 
         if (m_Player.IsValid() == false)
             return;
@@ -26,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if(m_Player.IsValid() == false)
+        if (m_Player.IsValid() == false)
             return;
 
         Vector3 dir = (m_Player.transform.position - transform.position).normalized;
