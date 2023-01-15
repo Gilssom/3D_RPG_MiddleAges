@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667079359}
   - component: {fileID: 1667079360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackArea
   m_TagString: EnemyHitBox
   m_Icon: {fileID: 0}
@@ -853,6 +853,8 @@ MonoBehaviour:
   m_ScanRange: 10
   m_EffectList:
   - {fileID: 1132824114454605644}
+  m_DissolveSpeed: 0.003
+  m_DissolveCutoff: 0
 --- !u!114 &1074112801
 MonoBehaviour:
   m_ObjectHideFlags: 0

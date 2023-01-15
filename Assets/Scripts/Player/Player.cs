@@ -56,8 +56,8 @@ public class Player : Base
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
-            UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
+        //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
+            //UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
     }
 
     #region #기본 시스템

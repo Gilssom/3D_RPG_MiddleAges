@@ -191,7 +191,10 @@ public class Enemy : Base
 
             // ∏ÛΩ∫≈Õ ªÁ∏¡
             if(enemyInfo.Hp <= 0)
+            {
+                player.Exp += enemyInfo.DropExp;
                 enemyInfo.stateMachine.ChangeState(StateName.DIE);
+            }
         }
     }
 

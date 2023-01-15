@@ -35,6 +35,9 @@ public class UI_HPBar : UI_Base
 
     public void SetHpRatio(float ratio)
     {
+        if (ratio <= 0)
+            ResourcesManager.Instance.Destroy(this.gameObject);
+
         GetObject((int)GameObjects.HPBar).GetComponent<Slider>().value = ratio;
     }
 }

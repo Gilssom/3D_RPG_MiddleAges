@@ -46,13 +46,6 @@ namespace CharacterController
 
         protected override void TestAttackEffect(int AttackNumber)
         {
-            //GameObject Effect = ObjectPoolManager.Instance.m_ObjectPoolList[AttackNumber].Dequeue();
-            //Effect.SetActive(true);
-
-            //Effect.transform.position = transform.forward + transform.position + effectData.m_EffectList[AttackNumber].m_LocalPosition;
-
-            //ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(1.5f, AttackNumber, Effect));
-
             playerInfo.m_EffectList[AttackNumber].Play();
         }
     }

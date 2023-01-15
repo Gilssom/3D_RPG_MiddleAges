@@ -51,6 +51,11 @@ public class EnemyInfo : BaseInfo
     #region #이펙트
     [Header("이펙트 리스트")]
     public VisualEffect[] m_EffectList;
+    [Header("Dissolve 관련 속성")]
+    [SerializeField, Tooltip("Dissolve 재생 속도")]
+    public float m_DissolveSpeed;
+    [SerializeField, Tooltip("Dissolve 현재 값")]
+    public float m_DissolveCutoff = default;
     #endregion
 
     protected override void Init()

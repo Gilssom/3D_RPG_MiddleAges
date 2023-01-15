@@ -9,5 +9,7 @@ public class GameScene : MonoBehaviour
         GameObject player = GameManager.Instance.Spwan(Defines.WorldObject.Player, "Player/Player");
         Camera.main.gameObject.GetOrAddComponet<CameraManager>().SetPlayer(player);
         GameManager.Instance.Spwan(Defines.WorldObject.Monster, "Enemy/Mutant");
+
+        UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
     }
 }
