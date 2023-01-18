@@ -44,7 +44,7 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            ResourcesManager.Instance.Destroy(m_EnemyController.gameObject);
+            GameManager.Instance.Despawn(m_EnemyController.gameObject);
         }
     }
 }

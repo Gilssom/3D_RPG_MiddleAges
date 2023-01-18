@@ -16,6 +16,8 @@ public class EnemyInfo : BaseInfo
     #region #몬스터 부가 스탯
     [Header("몬스터 부가 스탯")]
     [SerializeField]
+    Defines.MonsterType m_Type;
+    [SerializeField]
     string m_name;
     [SerializeField]
     int m_Id;
@@ -24,6 +26,7 @@ public class EnemyInfo : BaseInfo
     [SerializeField]
     int m_DropGold;
 
+    public Defines.MonsterType Type { get { return m_Type; } set { m_Type = value; } }
     public string Name { get { return m_name; } set { m_name = value; } }
     public int ID { get { return m_Id; } set { m_Id = value; } }
     public int DropExp { get { return m_DropExp; } set { m_DropExp = value; } }
@@ -61,12 +64,12 @@ public class EnemyInfo : BaseInfo
     protected override void Init()
     {
         enemyInfo = this;
-        Debug.Log($"{name} - {enemyInfo}");
         m_DataManager = new DataManager();
         m_Rigid = GetComponent<Rigidbody>();
         m_Anim = GetComponent<Animator>();
         m_CapsuleCollider = GetComponent<CapsuleCollider>();
         m_Material = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        m_Type = (Defines.MonsterType)m_Id;
 
         m_CheckPlayer = false;
         m_ReadyAttack = true;

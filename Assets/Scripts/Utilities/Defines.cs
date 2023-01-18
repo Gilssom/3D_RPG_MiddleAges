@@ -10,6 +10,11 @@ public class Defines
         Player,
         Monster
     }
+    public enum MonsterType
+    {
+        Mutant = 1000,
+        Warrock
+    }
     public enum UIEvent
     {
         Click,

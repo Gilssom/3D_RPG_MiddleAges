@@ -36,12 +36,6 @@ public class BaseInfo : SingletomManager<BaseInfo>
         Init();
     }
 
-    private void Start()
-    {
-        Debug.Log($"Base Info - {enemyInfo}");
-        Debug.Log($"Base Info - {playerInfo}");
-    }
-
     protected virtual void Init() { }
     protected virtual void SetStat(int number) { }
     protected virtual void InitStateMachine() { }

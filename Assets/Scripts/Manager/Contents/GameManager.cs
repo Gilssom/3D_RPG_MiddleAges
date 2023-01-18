@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,11 @@ public class GameManager : SingletomManager<GameManager>
 
     GameObject m_Player;
     HashSet<GameObject> m_Monster = new HashSet<GameObject>();
+
+    #region #Monster Spawn Event
+    public Action<int> OnMutantSpawnEvent;
+    public Action<int> OnWarrockSpawnEvent;
+    #endregion
 
     public GameObject Spwan(Defines.WorldObject type, string path, Transform parent = null)
     {
@@ -20,6 +26,17 @@ public class GameManager : SingletomManager<GameManager>
                 break;
             case Defines.WorldObject.Monster:
                 m_Monster.Add(go);
+                switch (go.GetComponent<EnemyInfo>().Type)
+                {
+                    case Defines.MonsterType.Mutant:
+                        if (OnMutantSpawnEvent != null)
+                            OnMutantSpawnEvent.Invoke(1);
+                        break;
+                    case Defines.MonsterType.Warrock:
+                        if (OnWarrockSpawnEvent != null)
+                            OnWarrockSpawnEvent.Invoke(1);
+                        break;
+                }
                 break;
         }
 
@@ -52,7 +69,21 @@ public class GameManager : SingletomManager<GameManager>
             case Defines.WorldObject.Monster:
                 {
                     if (m_Monster.Contains(go))
+                    {
                         m_Monster.Remove(go);
+                        switch (go.GetComponent<EnemyInfo>().Type)
+                        {
+                            case Defines.MonsterType.Mutant:
+                                if (OnMutantSpawnEvent != null)
+                                    OnMutantSpawnEvent.Invoke(-1);
+                                break;
+                            case Defines.MonsterType.Warrock:
+                                if (OnWarrockSpawnEvent != null)
+                                    OnWarrockSpawnEvent.Invoke(-1);
+                                break;
+                        }
+                        break;
+                    }                    
                 }
                 break;
         }
