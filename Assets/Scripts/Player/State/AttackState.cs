@@ -11,6 +11,7 @@ namespace CharacterController
             ATTACK = 200,
             CHARGE,
             KICK,
+            ULTIMATE,
         }
 
         public static AttackName m_AttackName;
@@ -33,6 +34,9 @@ namespace CharacterController
                     break;
                 case AttackName.KICK:
                     m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.KickAttack(this);
+                    break;
+                case AttackName.ULTIMATE:
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.UltimateSkill(this);
                     break;
             }
         }

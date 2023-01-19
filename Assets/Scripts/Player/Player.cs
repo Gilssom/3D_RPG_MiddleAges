@@ -261,6 +261,23 @@ public class Player : Base
             }
         }
     }
+
+    public void UltimateSkill(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (context.interaction is PressInteraction)       // 궁극기 공격
+            {
+                if (DashState.m_IsDash && AttackState.isAttack)
+                {
+                    return;
+                }
+
+                AttackState.m_AttackName = AttackState.AttackName.ULTIMATE;
+                playerInfo.stateMachine.ChangeState(StateName.ATTACK);
+            }
+        }
+    }
     #endregion
 
     #region #플레이어 방향

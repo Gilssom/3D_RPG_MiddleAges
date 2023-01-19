@@ -101,3 +101,4 @@ MonoBehaviour:
   attackDamage: 20
   attackSpeed: 1.8
   attackRange: 3
+  UltiSkillObject: {fileID: 4103175036243038822, guid: d80a926d8c4479745a37be51540f6bac, type: 3}

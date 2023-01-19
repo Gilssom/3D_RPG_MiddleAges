@@ -8,6 +8,7 @@ public class NormalSword : BaseWeapon
     public readonly int IsAttackAnimation = Animator.StringToHash("isAttack");
     public readonly int IsChargeAnimation = Animator.StringToHash("isCharge");
     public readonly int IsKickAnimation = Animator.StringToHash("isKick");
+    public readonly int IsUltiSkillAnimation = Animator.StringToHash("isUltiSkill");
     public readonly int AttackComboAnimation = Animator.StringToHash("AttackCombo");
     public readonly int AttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
 
@@ -30,7 +31,7 @@ public class NormalSword : BaseWeapon
 
     public override void KickAttack(BaseState state)
     {
-        BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 1);
+        BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, m_AttackSpeed);
         BaseInfo.playerInfo.m_Anim.SetBool(IsKickAnimation, true);
     }
 
@@ -46,7 +47,11 @@ public class NormalSword : BaseWeapon
 
     public override void UltimateSkill(BaseState state)
     {
-
+        Debug.Log("Ultimate Skill On");
+        Camera.main.fieldOfView = 80;
+        BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
+        BaseInfo.playerInfo.m_Anim.SetBool(IsUltiSkillAnimation, true);
+        ResourcesManager.Instance.Instantiate("Player/Ultimate_Effect");
     }
 
     public void CheckAttackReInput(float ReInputTime)

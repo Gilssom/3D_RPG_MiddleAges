@@ -178,7 +178,9 @@ public class Enemy : Base
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerHitBox")
-            OnHitEvent(other.transform.parent.gameObject.GetComponent<PlayerInfo>());
+            OnHitEvent(BaseInfo.playerInfo);
+
+        //other.transform.parent.gameObject.GetComponent<PlayerInfo>()
     }
 
     void OnHitEvent(PlayerInfo player)

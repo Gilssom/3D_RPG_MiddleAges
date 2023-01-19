@@ -12,6 +12,7 @@ public abstract class BaseWeapon : MonoBehaviour
     public float m_AttackDamage { get { return attackDamage; } }
     public float m_AttackSpeed { get { return attackSpeed; } }
     public float m_AttackRange { get { return attackRange; } }
+    public GameObject m_UltimateSkillObject { get { return UltiSkillObject; } }
 
     #region #무기 정보
     [Header("Create 정보"), Tooltip("해당 무기의 Local Position")]
@@ -23,6 +24,9 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] protected float attackDamage;
     [SerializeField] protected float attackSpeed;
     [SerializeField] protected float attackRange;
+
+    [Header("Skill 정보")]
+    [SerializeField] protected GameObject UltiSkillObject;
     #endregion
 
     public void SetWeaponData(string name, float attackDamage, float attackSpeed, float attackRange)
