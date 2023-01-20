@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using CharacterController;
-using DG.Tweening;
 
-[RequireComponent(typeof(EnemyInfo))]
-public class Enemy : Base
+[RequireComponent(typeof(BossInfo))]
+public class Boss : Base
 {
-    public EnemyInfo enemyInfo { get; private set; }
+    public BossInfo bossInfo { get; private set; }
+    [SerializeField]
+    public GameObject m_Target { get; private set; }
 
     private Transform m_Chracter;
-    [SerializeField]
-    private GameObject m_Target;
     private Vector3 m_Pos;
 
     private WaitForSeconds m_OnDamageColor;
@@ -20,7 +19,7 @@ public class Enemy : Base
     public override void Init()
     {
         WorldObjectType = Defines.WorldObject.Monster;
-        enemyInfo = GetComponent<EnemyInfo>();
+        bossInfo = GetComponent<BossInfo>();
         m_Chracter = GetComponent<Transform>();
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
         m_OnDamageColor = new WaitForSeconds(0.2f);
@@ -35,7 +34,7 @@ public class Enemy : Base
         MoveStop(false);
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
         navmesh.SetDestination(m_Target.transform.position);
-        navmesh.speed = enemyInfo.MoveSpeed;
+        navmesh.speed = bossInfo.MoveSpeed;
 
         LookAt();
     }
@@ -44,8 +43,8 @@ public class Enemy : Base
     {
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
         navmesh.isStopped = isStop;
-        enemyInfo.m_Rigid.velocity = Vector3.zero;
-        enemyInfo.m_Rigid.angularVelocity = Vector3.zero;
+        bossInfo.m_Rigid.velocity = Vector3.zero;
+        bossInfo.m_Rigid.angularVelocity = Vector3.zero;
     }
     #endregion
 
@@ -81,37 +80,37 @@ public class Enemy : Base
         float distance = (player.transform.position - transform.position).magnitude;
 
         // 1번 공격 전환
-        if (distance <= enemyInfo.AttackRange)
+        if (distance <= bossInfo.AttackRange)
         {
             //EnemyAttackState.isAttack == false && 
-            if (enemyInfo.CheckPlayer && enemyInfo.ReadyAttack)
+            if (bossInfo.CheckPlayer && bossInfo.ReadyAttack)
             {
                 Debug.LogWarning("공격 상태로 전환");
                 // Attack 로 변경
-                enemyInfo.stateMachine.ChangeState(StateName.ATTACK);
+                bossInfo.stateMachine.ChangeState(StateName.ATTACK);
                 return;
             }
         }
         // 2번 추적 전환
-        else if (distance <= enemyInfo.ScanRange)
+        else if (distance <= bossInfo.ScanRange)
         {
             Debug.LogWarning("추적 상태로 전환");
-            enemyInfo.CheckPlayer = true;
-            enemyInfo.ReadyAttack = true;
+            bossInfo.CheckPlayer = true;
+            bossInfo.ReadyAttack = true;
             m_Target = player;
             // Move 로 변경
-            enemyInfo.stateMachine.ChangeState(StateName.MOVE);
-            return;            
+            bossInfo.stateMachine.ChangeState(StateName.MOVE);
+            return;
         }
         // 3번 기본 자세 전환
         else
         {
             Debug.LogWarning("기본 상태로 전환");
-            enemyInfo.CheckPlayer = false;
-            enemyInfo.ReadyAttack = false;
+            bossInfo.CheckPlayer = false;
+            bossInfo.ReadyAttack = false;
             m_Target = null;
             // Idle 로 변경
-            enemyInfo.stateMachine.ChangeState(StateName.IDLE);
+            bossInfo.stateMachine.ChangeState(StateName.IDLE);
             return;
         }
     }
@@ -123,19 +122,19 @@ public class Enemy : Base
         while (true)
         {
             curTime += Time.deltaTime;
-            if (curTime >= enemyInfo.AttackCoolTime)
+            if (curTime >= bossInfo.AttackCoolTime)
                 break;
             yield return null;
         }
 
-        enemyInfo.ReadyAttack = true;
+        bossInfo.ReadyAttack = true;
     }
     #endregion
 
     #region #몬스터 방향
     public void LookAt()
     {
-        if(m_Target == null)
+        if (m_Target == null)
         {
             return;
         }
@@ -155,18 +154,18 @@ public class Enemy : Base
 
     void OnHitEvent(PlayerInfo player)
     {
-        if(enemyInfo.Hp > 0)
+        if (bossInfo.Hp > 0)
         {
-            int damage = Random.Range(player.Attack - enemyInfo.Defense, player.Attack + 1);
+            int damage = Random.Range(player.Attack - bossInfo.Defense, player.Attack + 1);
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
-            enemyInfo.Hp -= damage;
+            bossInfo.Hp -= damage;
             StartCoroutine(OnDamageEvent());
 
             // 몬스터 사망
-            if(enemyInfo.Hp <= 0)
+            if (bossInfo.Hp <= 0)
             {
-                player.Exp += enemyInfo.DropExp;
-                enemyInfo.stateMachine.ChangeState(StateName.DIE);
+                player.Exp += bossInfo.DropExp;
+                bossInfo.stateMachine.ChangeState(StateName.DIE);
             }
         }
     }
@@ -175,19 +174,19 @@ public class Enemy : Base
     {
         ShakeCamera.Instance.CameraShake(3f, 0.2f);
         HitEffect();
-        enemyInfo.m_Material.color = Color.red;
+        bossInfo.m_Material.color = Color.red;
         yield return m_OnDamageColor;
-        enemyInfo.m_Material.color = new Color(1, 1, 1);
+        bossInfo.m_Material.color = new Color(1, 1, 1);
     }
 
     void HitEffect()
     {
-        GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[enemyInfo.ID - 1000].Dequeue();
+        GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[bossInfo.ID - 1000].Dequeue();
         // new Vector3 는 struct type 이고 스택에 생성되기 때문에 반복된 메모리릭 , 할당/해제 문제는 발생 X
-        HitEffect.transform.position = new Vector3(m_Pos.x, enemyInfo.m_CapsuleCollider.bounds.size.y / 2, m_Pos.z);
+        HitEffect.transform.position = new Vector3(m_Pos.x, bossInfo.m_CapsuleCollider.bounds.size.y / 2, m_Pos.z);
         HitEffect.transform.rotation = transform.rotation;
         HitEffect.SetActive(true);
-        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, enemyInfo.ID - 1000, HitEffect));
+        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, bossInfo.ID - 1000, HitEffect));
     }
     #endregion
 

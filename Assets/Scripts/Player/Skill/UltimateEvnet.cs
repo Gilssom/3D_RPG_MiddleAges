@@ -58,7 +58,6 @@ public class UltimateEvnet : MonoBehaviour
     {
         transform.DOMoveY(0.45f, 0.8f).SetEase(Ease.InOutBack);
         yield return ATTACK_TIME;
-        Camera.main.fieldOfView = 50;
         for (int i = 0; i < m_ChildrenSword.Count - 1; i++)
         {
             m_ChildrenSword[i].gameObject.GetOrAddComponet<BoxCollider>().enabled = true;

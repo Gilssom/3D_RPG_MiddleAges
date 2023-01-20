@@ -48,7 +48,6 @@ public class NormalSword : BaseWeapon
     public override void UltimateSkill(BaseState state)
     {
         Debug.Log("Ultimate Skill On");
-        Camera.main.fieldOfView = 80;
         BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
         BaseInfo.playerInfo.m_Anim.SetBool(IsUltiSkillAnimation, true);
         ResourcesManager.Instance.Instantiate("Player/Ultimate_Effect");

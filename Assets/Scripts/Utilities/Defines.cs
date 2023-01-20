@@ -13,7 +13,8 @@ public class Defines
     public enum MonsterType
     {
         Mutant = 1000,
-        Warrock
+        Warrock,
+        Boss = 2000,
     }
     public enum UIEvent
     {

@@ -14,11 +14,51 @@
       "id": "1001",
       "level": "4",
       "maxHp": "225",
-      "attack": "14",
+      "attack": "13",
       "defense": "6",
       "dropExp": "6",
       "dropGold": "23",
       "name": "붉은빛의 레기오로스"
+    },
+    {
+      "id": "1002",
+      "level": "5",
+      "maxHp": "255",
+      "attack": "15",
+      "defense": "7",
+      "dropExp": "9",
+      "dropGold": "28",
+      "name": null
+    },
+    {
+      "id": "1003",
+      "level": "6",
+      "maxHp": "290",
+      "attack": "16",
+      "defense": "8",
+      "dropExp": "13",
+      "dropGold": "35",
+      "name": null
+    },
+    {
+      "id": "1004",
+      "level": "8",
+      "maxHp": "340",
+      "attack": "17",
+      "defense": "10",
+      "dropExp": "18",
+      "dropGold": "42",
+      "name": null
+    },
+    {
+      "id": "2000",
+      "level": "10",
+      "maxHp": "3500",
+      "attack": "20",
+      "defense": "12",
+      "dropExp": "55",
+      "dropGold": "500",
+      "name": "레기오로스의 창조자"
     }
   ]
 }

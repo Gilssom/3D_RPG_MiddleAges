@@ -842,6 +842,7 @@ MonoBehaviour:
   m_Attack: 0
   m_Defense: 0
   m_Speed: 1
+  m_Type: 0
   m_name: 
   m_Id: 1000
   m_DropExp: 0
@@ -1606,9 +1607,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4354968227809598513, guid: cb300704632eea743bde1048e381916e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4354968228915296344, guid: cb300704632eea743bde1048e381916e, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354968228915296350, guid: cb300704632eea743bde1048e381916e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4354968228915296350, guid: cb300704632eea743bde1048e381916e, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -7,6 +7,7 @@ public class BaseInfo : SingletomManager<BaseInfo>
     protected BaseInfo() { }
     public static PlayerInfo playerInfo;
     public static EnemyInfo enemyInfo;
+    public static BossInfo bossInfo;
 
     #region #╟Ь©К ╫╨ех
     [Header("╟Ь©К ╫╨ех")]

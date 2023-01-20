@@ -17,6 +17,7 @@ namespace CharacterController
     {
         protected Player m_PlayerController { get; private set; }
         protected Enemy m_EnemyController { get; private set; }
+        protected Boss m_BossController { get; private set; }
 
         public BaseState(Player playerCtrl)
         {
@@ -26,6 +27,11 @@ namespace CharacterController
         public BaseState(Enemy enemyCtrl)
         {
             this.m_EnemyController = enemyCtrl;
+        }
+
+        public BaseState(Boss bossCtrl)
+        {
+            this.m_BossController = bossCtrl;
         }
 
         public abstract void OnEnterState();

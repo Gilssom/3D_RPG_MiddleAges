@@ -14,12 +14,12 @@ public class GameScene : MonoBehaviour
         Camera.main.gameObject.GetOrAddComponet<CameraManager>().SetPlayer(player);
 
         GameObject go = new GameObject { name = "SpawningPool" };
-        MutantSpawn Mpool = go.GetOrAddComponet<MutantSpawn>();
-        WarrockSpawn Wpool = go.GetOrAddComponet<WarrockSpawn>();
-        Mpool.SetKeepMonsterCount(5);
-        Mpool.SetPosition(m_MutantSpawnPoint.position);
-        Wpool.SetKeepMonsterCount(3);
-        Wpool.SetPosition(m_WarrockSpawnPoint.position);
+        //MutantSpawn Mpool = go.GetOrAddComponet<MutantSpawn>();
+        //WarrockSpawn Wpool = go.GetOrAddComponet<WarrockSpawn>();
+        //Mpool.SetKeepMonsterCount(5);
+        //Mpool.SetPosition(m_MutantSpawnPoint.position);
+        //Wpool.SetKeepMonsterCount(3);
+        //Wpool.SetPosition(m_WarrockSpawnPoint.position);
 
         UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
     }
