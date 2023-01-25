@@ -27,6 +27,7 @@ namespace CharacterController
                 if(RandomAttack < 2)
                 {
                     m_BossController.bossInfo.m_Anim.SetBool(IsCoverAnimation, true);
+                    m_BossController.bossInfo.Cover = true;
                 }
                 else if(RandomAttack < 5)
                 {
@@ -47,7 +48,7 @@ namespace CharacterController
 
         public override void OnUpdateState()
         {
-            m_BossController.LookAt();
+            m_BossController.LookAt(m_BossController.m_Target.transform.position);
             m_BossController.MoveStop(true);
         }
 
@@ -62,6 +63,7 @@ namespace CharacterController
             m_BossController.bossInfo.m_Anim.SetBool(IsEpicAttackAnimation, false);
             m_BossController.bossInfo.m_Anim.SetBool(IsSpecialAttackAnimation, false);
             m_BossController.bossInfo.m_Anim.SetBool(IsCoverAnimation, false);
+            m_BossController.bossInfo.Cover = false;
         }
     }
 }

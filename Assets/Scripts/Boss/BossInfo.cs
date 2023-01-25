@@ -37,23 +37,34 @@ public class BossInfo : BaseInfo
     bool m_CheckPlayer;
     [SerializeField, Tooltip("공격 가능 유무")]
     bool m_ReadyAttack;
+    [SerializeField, Tooltip("전투 중 회피")]
+    bool m_RunAway;
+    [SerializeField, Tooltip("전투 중 방어")]
+    bool m_Cover;
     [SerializeField, Tooltip("공격 재사용 대기시간")]
     float m_AttackCoolTime;
     [SerializeField, Tooltip("공격 실행 범위")]
     float m_AttackRange;
+    [SerializeField, Tooltip("전투 준비 범위")]
+    float m_CombatRange;
     [SerializeField, Tooltip("플레이어 탐지 범위")]
     float m_ScanRange;
 
-    public bool CheckPlayer { get { return m_CheckPlayer; } set { m_CheckPlayer = value; } }
-    public bool ReadyAttack { get { return m_ReadyAttack; } set { m_ReadyAttack = value; } }
-    public float ScanRange { get { return m_ScanRange; } set { m_ScanRange = value; } }
-    public float AttackRange { get { return m_AttackRange; } set { m_AttackRange = value; } }
+    public bool CheckPlayer     { get { return m_CheckPlayer; } set { m_CheckPlayer = value; } }
+    public bool ReadyAttack     { get { return m_ReadyAttack; } set { m_ReadyAttack = value; } }
+    public bool RunAway         { get { return m_RunAway; } set { m_RunAway = value; } }
+    public bool Cover           { get { return m_Cover; } set { m_Cover = value; } }
+    public float ScanRange      { get { return m_ScanRange; } set { m_ScanRange = value; } }
+    public float AttackRange    { get { return m_AttackRange; } set { m_AttackRange = value; } }
+    public float CombotRange    { get { return m_CombatRange; } set { m_CombatRange = value; } }
     public float AttackCoolTime { get { return m_AttackCoolTime; } set { m_AttackCoolTime = value; } }
     #endregion
 
     #region #이펙트
     [Header("이펙트 리스트")]
     public VisualEffect[] m_EffectList;
+    [Header("온오프 오브젝트")]
+    public GameObject[] m_ObjectList;
     [Header("Dissolve 관련 속성")]
     [SerializeField, Tooltip("Dissolve 재생 속도")]
     public float m_DissolveSpeed;
@@ -114,6 +125,7 @@ public class BossInfo : BaseInfo
         Boss bossCtrl = GetComponent<Boss>();
         stateMachine = new StateMachine(StateName.IDLE, new BossIdleState(bossCtrl));
         stateMachine.AddState(StateName.MOVE, new BossMoveState(bossCtrl));
+        stateMachine.AddState(StateName.RUN, new BossRunState(bossCtrl));
         stateMachine.AddState(StateName.ATTACK, new BossAttackState(bossCtrl));
         stateMachine.AddState(StateName.DIE, new BossDieState(bossCtrl));
     }

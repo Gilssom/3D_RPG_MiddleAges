@@ -426,7 +426,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'RIGMahiaHub002'
-      : rotation error = 7.745836 deg\n\t'RIGMahiaNeck2' : rotation error = 13.745774
+      : rotation error = 7.745838 deg\n\t'RIGMahiaNeck2' : rotation error = 13.745774
       deg\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
@@ -453,7 +453,7 @@ ModelImporter:
       lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0.2
+      level: 0.3
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0

@@ -15,17 +15,23 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
+            int ranRunAway = Random.Range(0, 10);
             Debug.Log($"{m_BossController.bossInfo.Name}의 현재 상태는 Idle !");
+            if(ranRunAway < 1)
+                m_BossController.MoveRanTarget();
         }
 
         public override void OnUpdateState()
         {
             m_BossController.PlayerCheck();
 
-            if(m_BossController.m_Target)
-                m_BossController.bossInfo.m_Anim.SetBool(IsIdle_2Animation, true);
-            else
-                m_BossController.bossInfo.m_Anim.SetBool(IsIdle_2Animation, false);
+            if (!m_BossController.bossInfo.RunAway)
+            {
+                if (m_BossController.m_Target)
+                    m_BossController.bossInfo.m_Anim.SetBool(IsIdle_2Animation, true);
+                else
+                    m_BossController.bossInfo.m_Anim.SetBool(IsIdle_2Animation, false);
+            }
         }
 
         public override void OnFixedUpdateState()

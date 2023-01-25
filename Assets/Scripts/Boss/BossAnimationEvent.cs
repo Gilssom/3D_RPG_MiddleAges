@@ -45,5 +45,10 @@ namespace CharacterController
         {
             bossInfo.ReadyAttack = false;
         }
+
+        public void OnOffCoverEffect(int ObjectNumber)
+        {
+            bossInfo.m_ObjectList[ObjectNumber].SetActive(bossInfo.Cover);
+        }
     }
 }

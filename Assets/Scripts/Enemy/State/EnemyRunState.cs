@@ -4,21 +4,21 @@ using UnityEngine;
 
 namespace CharacterController
 {
-    public class BossMoveState : BaseState
+    public class BossRunState : BaseState
     {
-        public readonly int IsWalkAnimation = Animator.StringToHash("isWalk");
+        public readonly int IsRunAnimation = Animator.StringToHash("isRun");
         public readonly int IsMoveSpeed = Animator.StringToHash("MoveSpeed");
 
-        public BossMoveState(Boss bossCtrl) : base(bossCtrl)
+        public BossRunState(Boss bossCtrl) : base(bossCtrl)
         {
 
         }
 
         public override void OnEnterState()
         {
-            Debug.Log($"{m_BossController.bossInfo.Name}의 현재 상태는 Move !");
-            m_BossController.bossInfo.MoveSpeed = 1;
-            m_BossController.bossInfo.m_Anim.SetBool(IsWalkAnimation, true);
+            Debug.Log($"{m_BossController.bossInfo.Name}의 현재 상태는 Run !");
+            m_BossController.bossInfo.MoveSpeed = 1.5f;
+            m_BossController.bossInfo.m_Anim.SetBool(IsRunAnimation, true);
         }
 
         public override void OnUpdateState()
@@ -29,6 +29,8 @@ namespace CharacterController
 
             if (!m_BossController.bossInfo.RunAway)
                 m_BossController.Move(m_BossController.m_Target.transform.position);
+            else
+                m_BossController.CheckRanTargetEnd();
 
             m_BossController.PlayerCheck();
         }
@@ -40,7 +42,7 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            m_BossController.bossInfo.m_Anim.SetBool(IsWalkAnimation, false);
+            m_BossController.bossInfo.m_Anim.SetBool(IsRunAnimation, false);
         }
     }
 }

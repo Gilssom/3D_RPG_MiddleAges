@@ -13,6 +13,8 @@ public class Boss : Base
 
     private Transform m_Chracter;
     private Vector3 m_Pos;
+    [SerializeField]
+    private Vector3 m_RunAwayPos;
 
     private WaitForSeconds m_OnDamageColor;
 
@@ -29,14 +31,14 @@ public class Boss : Base
     }
 
     #region #기본 이동 시스템
-    public void Move()
+    public void Move(Vector3 target)
     {
         MoveStop(false);
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
-        navmesh.SetDestination(m_Target.transform.position);
+        navmesh.SetDestination(target);
         navmesh.speed = bossInfo.MoveSpeed;
 
-        LookAt();
+        LookAt(target);
     }
 
     public void MoveStop(bool isStop)
@@ -48,14 +50,14 @@ public class Boss : Base
     }
     #endregion
 
-
-    //------ AI 시스템 ---------
+    #region #보스 기본 추적 - 공격 - 휴먼 상태 시스템
+    //------ Boss 시스템 ---------
     /// <summary>
-    /// 1. 플레이어를 감지하게 되면 EnemyInfo 의 CheckPlayer 를 true 로 변경
+    /// 1. 플레이어를 감지하게 되면 BossInfo 의 CheckPlayer 를 true 로 변경
     /// >> Target 이 Player 로 잡히게 된다.
     /// => State 를 Move 로 전환
     /// 
-    /// 2. 플레이어가 공격 범위 내에 들어오게 되면 EnemyInfo 의 ReadyAttack 을 true 로 변경
+    /// 2. 플레이어가 공격 범위 내에 들어오게 되면 BossInfo 의 ReadyAttack 을 true 로 변경
     /// >> Target 은 그대로 Player .
     /// => State 를 Attack 으로 전환
     /// 
@@ -71,47 +73,97 @@ public class Boss : Base
     /// </summary>
     public void PlayerCheck()
     {
-        // 플레이어 체크
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-            return;
-
-        m_Pos = transform.position;
-        float distance = (player.transform.position - transform.position).magnitude;
-
-        // 1번 공격 전환
-        if (distance <= bossInfo.AttackRange)
+        if (bossInfo.RunAway == false)
         {
-            //EnemyAttackState.isAttack == false && 
-            if (bossInfo.CheckPlayer && bossInfo.ReadyAttack)
+            // 플레이어 체크
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+                return;
+
+            m_Pos = transform.position;
+            float distance = (player.transform.position - transform.position).magnitude;
+
+            // 1번 공격 전환
+            if (distance <= bossInfo.AttackRange)
             {
-                Debug.LogWarning("공격 상태로 전환");
-                // Attack 로 변경
-                bossInfo.stateMachine.ChangeState(StateName.ATTACK);
+                //EnemyAttackState.isAttack == false && 
+                if (bossInfo.CheckPlayer && bossInfo.ReadyAttack)
+                {
+                    Debug.LogWarning("공격 상태로 전환");
+                    // Attack 로 변경
+                    bossInfo.stateMachine.ChangeState(StateName.ATTACK);
+                    return;
+                }
+            }
+            else if (distance <= bossInfo.CombotRange)
+            {
+                Debug.LogWarning("경계 상태로 전환");
+                bossInfo.ReadyAttack = true;
+                bossInfo.CheckPlayer = true;
+                m_Target = player;
+                bossInfo.stateMachine.ChangeState(StateName.MOVE);
+            }
+            // 2번 추적 전환
+            else if (distance <= bossInfo.ScanRange)
+            {
+                Debug.LogWarning("추적 상태로 전환");
+                m_Target = player;
+                // Move 로 변경
+                bossInfo.stateMachine.ChangeState(StateName.RUN);
+                return;
+            }
+            // 3번 기본 자세 전환
+            else
+            {
+                Debug.LogWarning("기본 상태로 전환");
+                bossInfo.CheckPlayer = false;
+                bossInfo.ReadyAttack = false;
+                m_Target = null;
+                // Idle 로 변경
+                bossInfo.stateMachine.ChangeState(StateName.IDLE);
                 return;
             }
         }
-        // 2번 추적 전환
-        else if (distance <= bossInfo.ScanRange)
+    }
+    #endregion
+
+    /// <summary>
+    /// 보스 회피 시스템
+    /// 1. 플레이어에게 피격시 확률적으로 회피 지역으로 이동 / 체력이 일정 닳을 때 회피 지역으로 이동
+    /// 2. 회피지역은 Spawning.cs 의 insideUnitySphere 이용
+    /// 3. 해당 지역을 Target 으로 두고 이동 시킴 / 변수를 둠으로써 PlayerCheck 메소드 비활성화 필요
+    /// 4. 해당 지역에 도착했을 시 다시 PlayerCheck 실행
+    /// </summary>
+    public void MoveRanTarget()
+    {
+        bossInfo.RunAway = true;
+        NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
+        Vector3 randPos;
+
+        Vector3 randDir = Random.insideUnitSphere * Random.Range(3, 7);
+        randDir.y = 0;
+        randPos = transform.position + randDir;
+
+        //NavMeshPath path = new NavMeshPath();
+        //if (navmesh.CalculatePath(randPos, path))
+        //{        
+        //}
+        //else
+        //    return;
+
+        m_RunAwayPos = randPos;
+        bossInfo.stateMachine.ChangeState(StateName.RUN);
+        Move(m_RunAwayPos);
+    }
+
+    public void CheckRanTargetEnd()
+    {
+        NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
+        if (navmesh.remainingDistance <= 0.2f)
         {
-            Debug.LogWarning("추적 상태로 전환");
-            bossInfo.CheckPlayer = true;
-            bossInfo.ReadyAttack = true;
-            m_Target = player;
-            // Move 로 변경
-            bossInfo.stateMachine.ChangeState(StateName.MOVE);
-            return;
-        }
-        // 3번 기본 자세 전환
-        else
-        {
-            Debug.LogWarning("기본 상태로 전환");
-            bossInfo.CheckPlayer = false;
-            bossInfo.ReadyAttack = false;
-            m_Target = null;
-            // Idle 로 변경
+            m_RunAwayPos = Vector3.zero;
+            bossInfo.RunAway = false;
             bossInfo.stateMachine.ChangeState(StateName.IDLE);
-            return;
         }
     }
 
@@ -132,14 +184,14 @@ public class Boss : Base
     #endregion
 
     #region #몬스터 방향
-    public void LookAt()
+    public void LookAt(Vector3 target)
     {
         if (m_Target == null)
         {
             return;
         }
 
-        m_Chracter.LookAt(m_Target.transform.position);
+        m_Chracter.LookAt(target);
     }
     #endregion
 
@@ -148,13 +200,11 @@ public class Boss : Base
     {
         if (other.tag == "PlayerHitBox")
             OnHitEvent(BaseInfo.playerInfo);
-
-        //other.transform.parent.gameObject.GetComponent<PlayerInfo>()
     }
 
     void OnHitEvent(PlayerInfo player)
     {
-        if (bossInfo.Hp > 0)
+        if (bossInfo.Hp > 0 && !bossInfo.Cover)
         {
             int damage = Random.Range(player.Attack - bossInfo.Defense, player.Attack + 1);
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
@@ -181,12 +231,13 @@ public class Boss : Base
 
     void HitEffect()
     {
-        GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[bossInfo.ID - 1000].Dequeue();
+        // 테스트용 피격 이펙트
+        GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[1].Dequeue();
         // new Vector3 는 struct type 이고 스택에 생성되기 때문에 반복된 메모리릭 , 할당/해제 문제는 발생 X
         HitEffect.transform.position = new Vector3(m_Pos.x, bossInfo.m_CapsuleCollider.bounds.size.y / 2, m_Pos.z);
         HitEffect.transform.rotation = transform.rotation;
         HitEffect.SetActive(true);
-        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, bossInfo.ID - 1000, HitEffect));
+        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, 1, HitEffect));
     }
     #endregion
 

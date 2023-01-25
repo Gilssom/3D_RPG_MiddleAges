@@ -10,6 +10,7 @@ namespace CharacterController
         DASH,
         ATTACK,
         IDLE,
+        RUN,
         DIE
     }
 
