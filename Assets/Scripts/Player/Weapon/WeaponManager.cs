@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WeaponManager
@@ -47,8 +48,9 @@ public class WeaponManager
     {
         if(m_Weapon == null)
         {
-            m_WeaponObject = weapon;
-            m_Weapon = weapon.GetComponent<BaseWeapon>();
+            Debug.Log("무기 처음 장착");
+            m_WeaponObject = m_Weapons[0];
+            m_Weapon = m_Weapons[0].GetComponent<BaseWeapon>();
             m_WeaponObject.SetActive(true);
             BaseInfo.playerInfo.m_Anim.runtimeAnimatorController = m_Weapon.m_WeaponAnimator;
             return;
@@ -56,16 +58,18 @@ public class WeaponManager
 
         for (int i = 0; i < m_Weapons.Count; i++)
         {
-            if(m_Weapons[i].Equals(m_Weapons))
+            Debug.Log(m_Weapons[i]);
+            Debug.Log(m_Weapon.gameObject);
+            Debug.Log(!m_Weapons[i].Equals(m_Weapon.gameObject));
+            if (!m_Weapons[i].Equals(m_Weapon.gameObject))
             {
-                m_WeaponObject = weapon;
+                m_WeaponObject = m_Weapons[i];
+                m_Weapon.gameObject.SetActive(false);
                 m_WeaponObject.SetActive(true);
-                m_Weapon = weapon.GetComponent<BaseWeapon>();
+                m_Weapon = m_Weapons[i].GetComponent<BaseWeapon>();
                 BaseInfo.playerInfo.m_Anim.runtimeAnimatorController = m_Weapon.m_WeaponAnimator;
-                continue;
+                break;
             }
-
-            m_Weapons[i].SetActive(false);
         }
     }
 }

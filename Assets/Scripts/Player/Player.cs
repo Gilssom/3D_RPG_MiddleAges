@@ -280,6 +280,23 @@ public class Player : Base
     }
     #endregion
 
+    public void ChangeWeapon(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (context.interaction is PressInteraction)       // 무기 교체
+            {
+                if (DashState.m_IsDash && AttackState.isAttack)
+                {
+                    return;
+                }
+
+                playerInfo.m_WeaponManager.SetWeapon(null);
+                playerInfo.m_Anim.SetTrigger("isChange");
+            }
+        }
+    }
+
     #region #플레이어 방향
     public void LookAt(Vector3 lookForward)
     {

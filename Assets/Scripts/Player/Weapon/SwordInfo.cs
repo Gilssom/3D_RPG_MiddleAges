@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CharacterController;
 
-public class NormalSword : BaseWeapon
+public class SwordInfo : BaseWeapon
 {
     public readonly int IsAttackAnimation = Animator.StringToHash("isAttack");
     public readonly int IsChargeAnimation = Animator.StringToHash("isCharge");

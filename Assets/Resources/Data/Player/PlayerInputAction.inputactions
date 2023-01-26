@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ChangeWeapon",
+                    "type": "Button",
+                    "id": "382ff798-b751-49f7-b4d2-e0960f6d0bbe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -219,6 +227,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "UltimateSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d37fafb2-cd56-4425-bea2-7ddcca69e28f",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "ChangeWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
