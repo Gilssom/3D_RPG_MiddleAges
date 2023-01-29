@@ -27,6 +27,9 @@ public abstract class BaseWeapon : MonoBehaviour
 
     [Header("Skill 정보")]
     [SerializeField] protected GameObject UltiSkillObject;
+
+    [Header("재공격 가능 시간")]
+    [SerializeField] protected float m_CanReInputTime;
     #endregion
 
     public void SetWeaponData(string name, float attackDamage, float attackSpeed, float attackRange)

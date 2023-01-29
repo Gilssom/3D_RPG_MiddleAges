@@ -8,13 +8,17 @@ public class Defines
     {
         Unknown,
         Player,
-        Monster
+        Monster,
+        Boss
     }
     public enum MonsterType
     {
         Mutant = 1000,
         Warrock,
-        Boss = 2000,
+        Maw,
+        Mutant_Boss = 2000,
+        Warrock_Boss,
+        Maw_Boss,
     }
     public enum UIEvent
     {

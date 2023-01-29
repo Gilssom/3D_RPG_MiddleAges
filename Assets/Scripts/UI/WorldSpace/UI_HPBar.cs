@@ -8,14 +8,17 @@ public class UI_HPBar : UI_Base
     enum GameObjects
     {
         HPBar,
+        TargetName,
     }
 
     BaseInfo m_Stat;
+    EnemyInfo m_Enemy;
 
     public override void Init()
     {
         Bind<GameObject>(typeof(GameObjects));
         m_Stat = transform.parent.GetComponent<BaseInfo>();
+        m_Enemy = transform.parent.GetComponent<EnemyInfo>();
     }
 
     void Update()
@@ -31,6 +34,7 @@ public class UI_HPBar : UI_Base
         // 각각의 오브젝트에서 가지고 있는 Stat 에 의해 HP Bar 변경
         float ratio = m_Stat.Hp / (float)m_Stat.MaxHp;
         SetHpRatio(ratio);
+        SetName(m_Enemy.Name, m_Enemy.Level);
     }
 
     public void SetHpRatio(float ratio)
@@ -38,6 +42,11 @@ public class UI_HPBar : UI_Base
         if (ratio <= 0)
             ResourcesManager.Instance.Destroy(this.gameObject);
 
-        GetObject((int)GameObjects.HPBar).GetComponent<Slider>().value = ratio;
+        GetObject((int)GameObjects.HPBar).GetOrAddComponet<Slider>().value = ratio;
+    }
+
+    public void SetName(string name, int level)
+    {
+        GetObject((int)GameObjects.TargetName).GetOrAddComponet<Text>().text = $"<color=#D4BE3D>Lv.{level}</color> {name}";
     }
 }

@@ -26,8 +26,9 @@ public class Boss : Base
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
         m_OnDamageColor = new WaitForSeconds(0.2f);
 
-        if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
-            UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
+        // 보스는 추가로 씬UI 에서 관리할 예정
+        //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
+            //UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
     }
 
     #region #기본 이동 시스템
@@ -232,12 +233,12 @@ public class Boss : Base
     void HitEffect()
     {
         // 테스트용 피격 이펙트
-        GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[1].Dequeue();
+        GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[bossInfo.ID - 2000].Dequeue();
         // new Vector3 는 struct type 이고 스택에 생성되기 때문에 반복된 메모리릭 , 할당/해제 문제는 발생 X
         HitEffect.transform.position = new Vector3(m_Pos.x, bossInfo.m_CapsuleCollider.bounds.size.y / 2, m_Pos.z);
         HitEffect.transform.rotation = transform.rotation;
         HitEffect.SetActive(true);
-        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, 1, HitEffect));
+        ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, bossInfo.ID - 2000, HitEffect));
     }
     #endregion
 

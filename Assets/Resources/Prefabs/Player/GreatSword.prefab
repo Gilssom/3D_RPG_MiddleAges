@@ -99,6 +99,7 @@ MonoBehaviour:
   weaponAnimator: {fileID: 22100000, guid: 76917608ebdb59043874753b785a43be, type: 2}
   _name: "\uBAA8\uD5D8\uAC00\uC758 \uB300\uAC80"
   attackDamage: 30
-  attackSpeed: 1.5
+  attackSpeed: 1.2
   attackRange: 4
   UltiSkillObject: {fileID: 4103175036243038822, guid: d80a926d8c4479745a37be51540f6bac, type: 3}
+  m_CanReInputTime: 1.5

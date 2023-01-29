@@ -10,11 +10,19 @@ public class SpawningPool : MonoBehaviour
     protected int m_MonsterCount = 0;
     protected int m_ReserveCount = 0; // 예약 생성 카운트
 
+    [SerializeField]
+    [Header("보스 생존 유무")]
+    protected int m_BossCount = 0;
+    protected int m_BossReserveCount = 0; // 예약 생성 카운트
+
     // 몬스터마다 유지 시켜야 되는 갯수가 다르기 때문에 세분화가 필요하다.
     // 1월 15일 현재 몬스터의 종류는 한가지 이므로 일단 진행
     [SerializeField]
     [Header("유지 시켜야 되는 몬스터 갯수")]
     protected int m_KeepMonsterCount = 0;
+    [SerializeField]
+    [Header("유지 시켜야 되는 보스 갯수")]
+    protected int m_KeepBossCount = 1;
 
     [SerializeField]
     [Header("스폰 Position")]
@@ -24,6 +32,8 @@ public class SpawningPool : MonoBehaviour
     protected float m_SpawnRadius = 7.5f;
     [SerializeField]
     protected float m_SpawnTime = 5.0f;
+    [SerializeField]
+    protected float m_BossSpawnTime = 3.0f;
 
     void Start() { Init(); }
     protected virtual void Init(){ }
@@ -76,6 +86,15 @@ public class SpawningPool : MonoBehaviour
 
         obj.transform.position = randPos;
         m_ReserveCount--;
+    }
+
+    protected virtual IEnumerator BossResurveSpawn(string BossType)
+    {
+        m_BossReserveCount++;
+        yield return new WaitForSeconds(m_BossSpawnTime);
+        GameObject obj = GameManager.Instance.Spwan(Defines.WorldObject.Boss, $"Boss/{BossType}");
+        obj.transform.position = m_SpawnPos;
+        m_BossReserveCount--;
     }
 }
 

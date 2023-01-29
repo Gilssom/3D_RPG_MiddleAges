@@ -9,10 +9,15 @@ public class GameManager : SingletomManager<GameManager>
 
     GameObject m_Player;
     HashSet<GameObject> m_Monster = new HashSet<GameObject>();
+    HashSet<GameObject> m_Boss = new HashSet<GameObject>();
 
-    #region #Monster Spawn Event
+    #region #Monster & Boss Spawn Event
     public Action<int> OnMutantSpawnEvent;
     public Action<int> OnWarrockSpawnEvent;
+    public Action<int> OnMawSpawnEvent;
+    public Action<int> OnMutantBossSpawnEvent;
+    public Action<int> OnWarrockBossSpawnEvent;
+    public Action<int> OnMawBossSpawnEvent;
     #endregion
 
     public GameObject Spwan(Defines.WorldObject type, string path, Transform parent = null)
@@ -35,6 +40,28 @@ public class GameManager : SingletomManager<GameManager>
                     case Defines.MonsterType.Warrock:
                         if (OnWarrockSpawnEvent != null)
                             OnWarrockSpawnEvent.Invoke(1);
+                        break;
+                    case Defines.MonsterType.Maw:
+                        if (OnMawSpawnEvent != null)
+                            OnMawSpawnEvent.Invoke(1);
+                        break;
+                }
+                break;
+            case Defines.WorldObject.Boss:
+                m_Boss.Add(go);
+                switch (go.GetComponent<BossInfo>().Type)
+                {
+                    case Defines.MonsterType.Mutant_Boss:
+                        if (OnMutantBossSpawnEvent != null)
+                            OnMutantBossSpawnEvent.Invoke(1);
+                        break;
+                    case Defines.MonsterType.Warrock_Boss:
+                        if (OnWarrockBossSpawnEvent != null)
+                            OnWarrockBossSpawnEvent.Invoke(1);
+                        break;
+                    case Defines.MonsterType.Maw_Boss:
+                        if (OnMawBossSpawnEvent != null)
+                            OnMawBossSpawnEvent.Invoke(1);
                         break;
                 }
                 break;
@@ -81,9 +108,37 @@ public class GameManager : SingletomManager<GameManager>
                                 if (OnWarrockSpawnEvent != null)
                                     OnWarrockSpawnEvent.Invoke(-1);
                                 break;
+                            case Defines.MonsterType.Maw:
+                                if (OnMawSpawnEvent != null)
+                                    OnMawSpawnEvent.Invoke(-1);
+                                break;
                         }
                         break;
                     }                    
+                }
+                break;
+            case Defines.WorldObject.Boss:
+                {
+                    if (m_Boss.Contains(go))
+                    {
+                        m_Boss.Remove(go);
+                        switch (go.GetComponent<BossInfo>().Type)
+                        {
+                            case Defines.MonsterType.Mutant_Boss:
+                                if (OnMutantBossSpawnEvent != null)
+                                    OnMutantBossSpawnEvent.Invoke(-1);
+                                break;
+                            case Defines.MonsterType.Warrock_Boss:
+                                if (OnWarrockBossSpawnEvent != null)
+                                    OnWarrockBossSpawnEvent.Invoke(-1);
+                                break;
+                            case Defines.MonsterType.Maw_Boss:
+                                if (OnMawBossSpawnEvent != null)
+                                    OnMawBossSpawnEvent.Invoke(-1);
+                                break;
+                        }
+                        break;
+                    }
                 }
                 break;
         }

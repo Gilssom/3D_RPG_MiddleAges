@@ -6,7 +6,7 @@ public class GameScene : MonoBehaviour
 {
     [SerializeField]
     [Header("각각 몬스터 스폰 위치 ( 테스트 )")]
-    Transform m_MutantSpawnPoint, m_WarrockSpawnPoint;
+    Transform m_MutantSpawnPoint, m_WarrockSpawnPoint, m_MawSpawnPoint;
 
     void Start()
     {
@@ -14,12 +14,15 @@ public class GameScene : MonoBehaviour
         Camera.main.gameObject.GetOrAddComponet<CameraManager>().SetPlayer(player);
 
         GameObject go = new GameObject { name = "SpawningPool" };
-        //MutantSpawn Mpool = go.GetOrAddComponet<MutantSpawn>();
-        //WarrockSpawn Wpool = go.GetOrAddComponet<WarrockSpawn>();
-        //Mpool.SetKeepMonsterCount(5);
-        //Mpool.SetPosition(m_MutantSpawnPoint.position);
-        //Wpool.SetKeepMonsterCount(3);
-        //Wpool.SetPosition(m_WarrockSpawnPoint.position);
+        MutantSpawn Mutantpool = go.GetOrAddComponet<MutantSpawn>();
+        WarrockSpawn Warrockpool = go.GetOrAddComponet<WarrockSpawn>();
+        MawSpawn Mawpool = go.GetOrAddComponet<MawSpawn>();
+        Mutantpool.SetKeepMonsterCount(5);
+        Mutantpool.SetPosition(m_MutantSpawnPoint.position);
+        Warrockpool.SetKeepMonsterCount(3);
+        Warrockpool.SetPosition(m_WarrockSpawnPoint.position);
+        Mawpool.SetKeepMonsterCount(2);
+        Mawpool.SetPosition(m_MawSpawnPoint.position);
 
         UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
     }

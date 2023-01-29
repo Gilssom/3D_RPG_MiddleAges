@@ -20,7 +20,7 @@ public class SwordInfo : BaseWeapon
         BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, m_AttackSpeed);
         BaseInfo.playerInfo.m_Anim.SetBool(IsAttackAnimation, true);
         BaseInfo.playerInfo.m_Anim.SetInteger(AttackComboAnimation, m_ComboCount);
-        CheckAttackReInput(AttackState.m_CanReInputTime);
+        CheckAttackReInput(m_CanReInputTime);
     }
 
     public override void ChargingAttack(BaseState state)

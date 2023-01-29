@@ -8,57 +8,57 @@
       "defense": "5",
       "dropExp": "4",
       "dropGold": "20",
-      "name": "푸른빛의 레기오로스"
+      "name": "은하계의 레기오로스"
     },
     {
       "id": "1001",
-      "level": "4",
-      "maxHp": "225",
-      "attack": "13",
+      "level": "6",
+      "maxHp": "400",
+      "attack": "15",
       "defense": "6",
-      "dropExp": "6",
+      "dropExp": "9",
       "dropGold": "23",
-      "name": "붉은빛의 레기오로스"
+      "name": "태양계의 수호자"
     },
     {
       "id": "1002",
-      "level": "5",
-      "maxHp": "255",
-      "attack": "15",
+      "level": "10",
+      "maxHp": "600",
+      "attack": "18",
       "defense": "7",
-      "dropExp": "9",
-      "dropGold": "28",
-      "name": null
-    },
-    {
-      "id": "1003",
-      "level": "6",
-      "maxHp": "290",
-      "attack": "16",
-      "defense": "8",
       "dropExp": "13",
-      "dropGold": "35",
-      "name": null
-    },
-    {
-      "id": "1004",
-      "level": "8",
-      "maxHp": "340",
-      "attack": "17",
-      "defense": "10",
-      "dropExp": "18",
-      "dropGold": "42",
-      "name": null
+      "dropGold": "28",
+      "name": "미궁의 기사단"
     },
     {
       "id": "2000",
-      "level": "10",
-      "maxHp": "3500",
+      "level": "5",
+      "maxHp": "650",
       "attack": "20",
-      "defense": "12",
+      "defense": "6",
       "dropExp": "55",
       "dropGold": "500",
-      "name": "레기오로스의 창조자"
+      "name": "은하계의 지도자"
+    },
+    {
+      "id": "2001",
+      "level": "8",
+      "maxHp": "850",
+      "attack": "23",
+      "defense": "7",
+      "dropExp": "75",
+      "dropGold": "720",
+      "name": "태양계의 수호단장"
+    },
+    {
+      "id": "2002",
+      "level": "12",
+      "maxHp": "1050",
+      "attack": "26",
+      "defense": "8",
+      "dropExp": "95",
+      "dropGold": "940",
+      "name": "미궁의 기사단장"
     }
   ]
 }

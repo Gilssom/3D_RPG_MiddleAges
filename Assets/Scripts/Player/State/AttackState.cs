@@ -17,7 +17,6 @@ namespace CharacterController
         public static AttackName m_AttackName;
 
         public static bool isAttack = false;
-        public const float m_CanReInputTime = 1f;
 
         public AttackState(Player playerCtrl) : base(playerCtrl) { }
 

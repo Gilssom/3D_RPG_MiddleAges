@@ -159,6 +159,7 @@ public class Enemy : Base
         {
             int damage = Random.Range(player.Attack - enemyInfo.Defense, player.Attack + 1);
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
+            DamageText(damage);
             enemyInfo.Hp -= damage;
             StartCoroutine(OnDamageEvent());
 
@@ -188,6 +189,12 @@ public class Enemy : Base
         HitEffect.transform.rotation = transform.rotation;
         HitEffect.SetActive(true);
         ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, enemyInfo.ID - 1000, HitEffect));
+    }
+
+    void DamageText(int damage)
+    {
+        UI_Damage damageObj = UIManager.Instance.MakeWorldSpaceUI<UI_Damage>(transform);
+        damageObj.m_Damage = damage;
     }
     #endregion
 
