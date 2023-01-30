@@ -9,7 +9,7 @@ public class UIManager : SingletomManager<UIManager>
     int m_Order = 10; // 최근에 사용된 Sorting Order
 
     [Header("Popup UI Open / Close")]
-    public bool isInvenOpen;
+    public bool isInvenOpen, isBossHPOpen;
 
     // 가장 마지막에 띄워진 UI가 지워져야 하는 구조이기 때문에 Stack 구조가 맞다 => First In Last Out ( FILO )
     Stack<UI_Popup> m_PopupStack = new Stack<UI_Popup>();

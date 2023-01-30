@@ -376,7 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7151878326037207302}
   - component: {fileID: 7112546586735581280}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DemonGirlLThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7160611166209826732}
   - component: {fileID: 7113087739159007772}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DemonGirlRLegThigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1555,7 +1555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7152207744048272466}
   - component: {fileID: 7112365518846499352}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DemonGirlPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}

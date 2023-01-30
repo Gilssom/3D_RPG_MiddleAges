@@ -20,7 +20,7 @@ public class Boss : Base
 
     public override void Init()
     {
-        WorldObjectType = Defines.WorldObject.Monster;
+        WorldObjectType = Defines.WorldObject.Boss;
         bossInfo = GetComponent<BossInfo>();
         m_Chracter = GetComponent<Transform>();
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
@@ -79,8 +79,11 @@ public class Boss : Base
             // 플레이어 체크
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player == null)
+            {
                 return;
+            }
 
+            SetHpBar();
             m_Pos = transform.position;
             float distance = (player.transform.position - transform.position).magnitude;
 
@@ -126,8 +129,26 @@ public class Boss : Base
             }
         }
     }
+
+    void SetHpBar()
+    {
+        if (UIManager.Instance.isBossHPOpen)
+            return;
+
+        UIManager.Instance.isBossHPOpen = true;
+        UI_Boss_HPBar HpBarObj = UIManager.Instance.ShowPopupUI<UI_Boss_HPBar>();
+        HpBarObj.m_BossInfo = bossInfo;
+
+        if (!m_Target)
+        {
+            UIManager.Instance.ClosePopupUI(HpBarObj);
+            UIManager.Instance.isBossHPOpen = false;
+            return;
+        }
+    }
     #endregion
 
+    #region #보스 회피 시스템
     /// <summary>
     /// 보스 회피 시스템
     /// 1. 플레이어에게 피격시 확률적으로 회피 지역으로 이동 / 체력이 일정 닳을 때 회피 지역으로 이동
@@ -167,6 +188,7 @@ public class Boss : Base
             bossInfo.stateMachine.ChangeState(StateName.IDLE);
         }
     }
+    #endregion
 
     #region #몬스터 공격 시스템
     public IEnumerator AttackCoroutine()
@@ -207,8 +229,18 @@ public class Boss : Base
     {
         if (bossInfo.Hp > 0 && !bossInfo.Cover)
         {
+            bool isCritical = false;
+            int critical = Random.Range(0, 100);
             int damage = Random.Range(player.Attack - bossInfo.Defense, player.Attack + 1);
+
+            if (critical < player.CriticalChance)
+            {
+                damage = Mathf.RoundToInt(damage * (player.CriticalDamage / 100));
+                isCritical = true;
+            }
+
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
+            DamageText(damage, isCritical);
             bossInfo.Hp -= damage;
             StartCoroutine(OnDamageEvent());
 
@@ -239,6 +271,13 @@ public class Boss : Base
         HitEffect.transform.rotation = transform.rotation;
         HitEffect.SetActive(true);
         ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, bossInfo.ID - 2000, HitEffect));
+    }
+
+    void DamageText(int damage, bool critical)
+    {
+        UI_Damage damageObj = UIManager.Instance.MakeWorldSpaceUI<UI_Damage>(transform);
+        damageObj.m_Damage = damage;
+        damageObj.m_Critical = critical;
     }
     #endregion
 

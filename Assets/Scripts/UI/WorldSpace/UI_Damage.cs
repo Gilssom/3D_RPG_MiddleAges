@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UI_Damage : UI_Base
 {
-    enum GameObjects
+    enum Texts
     {
         Damage,
     }
@@ -17,10 +17,11 @@ public class UI_Damage : UI_Base
     private Text text;
 
     public int m_Damage;
+    public bool m_Critical;
 
     public override void Init()
     {
-        Bind<GameObject>(typeof(GameObjects));
+        Bind<Text>(typeof(Texts));
 
         m_MoveSpeed = 0.5f;
         m_AlphaSpeed = 2f;
@@ -32,13 +33,13 @@ public class UI_Damage : UI_Base
 
         transform.position = parent.position + Vector3.up * (parent.GetComponent<Collider>().bounds.size.y);
 
-        alpha = GetObject((int)GameObjects.Damage).GetOrAddComponet<Text>().color;
-        text = GetObject((int)GameObjects.Damage).GetOrAddComponet<Text>();
+        text = GetText((int)Texts.Damage);
+        alpha = text.color;
     }
 
     void Update()
     {
-        GetDamage(m_Damage);
+        GetDamage(m_Damage, m_Critical);
 
         transform.rotation = Camera.main.transform.rotation;
 
@@ -49,8 +50,15 @@ public class UI_Damage : UI_Base
         text.color = alpha;
     }
 
-    void GetDamage(int damage)
+    void GetDamage(int damage, bool critical)
     {
+        if(critical)
+        {
+            text.fontSize = 50;
+            // new Color 또한 가비지가 안생김. new Vector 와 동일하다.
+            alpha = new Color(1f, 225 / 250f, 74 / 250f);
+        }
+
         text.text = $"-{damage}";
     }
 

@@ -8,6 +8,10 @@ public class UI_HPBar : UI_Base
     enum GameObjects
     {
         HPBar,
+    }
+
+    enum Texts
+    {
         TargetName,
     }
 
@@ -17,6 +21,8 @@ public class UI_HPBar : UI_Base
     public override void Init()
     {
         Bind<GameObject>(typeof(GameObjects));
+        Bind<Text>(typeof(Texts));
+
         m_Stat = transform.parent.GetComponent<BaseInfo>();
         m_Enemy = transform.parent.GetComponent<EnemyInfo>();
     }
@@ -47,6 +53,6 @@ public class UI_HPBar : UI_Base
 
     public void SetName(string name, int level)
     {
-        GetObject((int)GameObjects.TargetName).GetOrAddComponet<Text>().text = $"<color=#D4BE3D>Lv.{level}</color> {name}";
+        GetText((int)Texts.TargetName).text = $"{name} <color=#D4BE3D>Lv.{level}</color> ";
     }
 }

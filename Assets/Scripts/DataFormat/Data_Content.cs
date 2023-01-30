@@ -12,6 +12,8 @@ namespace Data
         public int level;
         public int maxHp;
         public int attack;
+        public int criticalchance;
+        public float criticaldamage;
         public int totalExp;
         public int defense;
     }

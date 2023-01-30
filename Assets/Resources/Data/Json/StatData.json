@@ -4,6 +4,8 @@
       "level": "1",
       "maxHp": "200",
       "attack": "15",
+      "criticalchance": "4",
+      "criticaldamage": "150",
       "defense": "3",
       "totalExp": "0"
     },
@@ -11,6 +13,8 @@
       "level": "2",
       "maxHp": "225",
       "attack": "18",
+      "criticalchance": "4",
+      "criticaldamage": "150",
       "defense": "4",
       "totalExp": "20"
     },
@@ -18,6 +22,8 @@
       "level": "3",
       "maxHp": "250",
       "attack": "22",
+      "criticalchance": "4",
+      "criticaldamage": "150",
       "defense": "5",
       "totalExp": "50"
     },
@@ -25,6 +31,8 @@
       "level": "4",
       "maxHp": "275",
       "attack": "25",
+      "criticalchance": "4",
+      "criticaldamage": "150",
       "defense": "6",
       "totalExp": "90"
     },
@@ -32,6 +40,8 @@
       "level": "5",
       "maxHp": "300",
       "attack": "28",
+      "criticalchance": "7",
+      "criticaldamage": "150",
       "defense": "7",
       "totalExp": "140"
     },
@@ -39,6 +49,8 @@
       "level": "6",
       "maxHp": "325",
       "attack": "32",
+      "criticalchance": "7",
+      "criticaldamage": "150",
       "defense": "8",
       "totalExp": "200"
     },
@@ -46,6 +58,8 @@
       "level": "7",
       "maxHp": "350",
       "attack": "36",
+      "criticalchance": "7",
+      "criticaldamage": "150",
       "defense": "9",
       "totalExp": "270"
     },
@@ -53,6 +67,8 @@
       "level": "8",
       "maxHp": "375",
       "attack": "40",
+      "criticalchance": "7",
+      "criticaldamage": "150",
       "defense": "10",
       "totalExp": "350"
     },
@@ -60,6 +76,8 @@
       "level": "9",
       "maxHp": "400",
       "attack": "44",
+      "criticalchance": "10",
+      "criticaldamage": "150",
       "defense": "11",
       "totalExp": "440"
     },
@@ -67,6 +85,8 @@
       "level": "10",
       "maxHp": "425",
       "attack": "49",
+      "criticalchance": "10",
+      "criticaldamage": "150",
       "defense": "12",
       "totalExp": "540"
     },
@@ -74,6 +94,8 @@
       "level": "11",
       "maxHp": "450",
       "attack": "54",
+      "criticalchance": "10",
+      "criticaldamage": "150",
       "defense": "13",
       "totalExp": "650"
     },
@@ -81,6 +103,8 @@
       "level": "12",
       "maxHp": "475",
       "attack": "59",
+      "criticalchance": "10",
+      "criticaldamage": "150",
       "defense": "14",
       "totalExp": "720"
     },
@@ -88,6 +112,8 @@
       "level": "13",
       "maxHp": "500",
       "attack": "65",
+      "criticalchance": "10",
+      "criticaldamage": "150",
       "defense": "15",
       "totalExp": "850"
     },
@@ -95,6 +121,8 @@
       "level": "14",
       "maxHp": "525",
       "attack": "72",
+      "criticalchance": "13",
+      "criticaldamage": "150",
       "defense": "16",
       "totalExp": "990"
     },
@@ -102,6 +130,8 @@
       "level": "15",
       "maxHp": "550",
       "attack": "80",
+      "criticalchance": "13",
+      "criticaldamage": "150",
       "defense": "17",
       "totalExp": "1050"
     }

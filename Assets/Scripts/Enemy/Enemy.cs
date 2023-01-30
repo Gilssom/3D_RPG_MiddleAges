@@ -49,7 +49,7 @@ public class Enemy : Base
     }
     #endregion
 
-
+    #region #AI 시스템
     //------ AI 시스템 ---------
     /// <summary>
     /// 1. 플레이어를 감지하게 되면 EnemyInfo 의 CheckPlayer 를 true 로 변경
@@ -115,6 +115,7 @@ public class Enemy : Base
             return;
         }
     }
+    #endregion
 
     #region #몬스터 공격 시스템
     public IEnumerator AttackCoroutine()
@@ -157,9 +158,18 @@ public class Enemy : Base
     {
         if(enemyInfo.Hp > 0)
         {
+            bool isCritical = false;
+            int critical = Random.Range(0, 100);
             int damage = Random.Range(player.Attack - enemyInfo.Defense, player.Attack + 1);
+
+            if(critical < player.CriticalChance)
+            {
+                damage = Mathf.RoundToInt(damage * (player.CriticalDamage / 100));
+                isCritical = true;
+            }
+
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
-            DamageText(damage);
+            DamageText(damage, isCritical);
             enemyInfo.Hp -= damage;
             StartCoroutine(OnDamageEvent());
 
@@ -191,10 +201,11 @@ public class Enemy : Base
         ObjectPoolManager.Instance.StartCoroutine(ObjectPoolManager.Instance.DestroyObj(0.75f, enemyInfo.ID - 1000, HitEffect));
     }
 
-    void DamageText(int damage)
+    void DamageText(int damage, bool critical)
     {
         UI_Damage damageObj = UIManager.Instance.MakeWorldSpaceUI<UI_Damage>(transform);
         damageObj.m_Damage = damage;
+        damageObj.m_Critical = critical;
     }
     #endregion
 

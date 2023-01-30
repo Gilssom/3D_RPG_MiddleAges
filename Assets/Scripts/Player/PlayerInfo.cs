@@ -19,12 +19,18 @@ public class PlayerInfo : BaseInfo
     #region #캐릭터 부가 스탯
     [Header("캐릭터 부가 스탯")]
     [SerializeField]
+    int m_CriticalChance;
+    [SerializeField]
+    float m_CriticalDamage;
+    [SerializeField]
     protected int m_DashCount;
     [SerializeField]
     int m_Exp;
     [SerializeField]
     int m_Gold;
 
+    public int CriticalChance { get { return m_CriticalChance; } }
+    public float CriticalDamage { get { return m_CriticalDamage; } }
     public int DashCount { get { return m_DashCount; } }
     public int Exp 
     { 
@@ -108,6 +114,8 @@ public class PlayerInfo : BaseInfo
         m_Hp = stat.maxHp;
         m_MaxHp = stat.maxHp;
         m_Attack = stat.attack;
+        m_CriticalChance = stat.criticalchance;
+        m_CriticalDamage = stat.criticaldamage;
         m_Defense = stat.defense;
     }
 
