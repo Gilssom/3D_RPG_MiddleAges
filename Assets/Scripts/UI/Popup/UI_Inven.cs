@@ -10,35 +10,75 @@ public class UI_Inven : UI_Popup
         UI_Inven_GridArea
     }
 
-    GameObject m_Gridpanel;
+    [SerializeField]
+    private UI_Inven_Slot[] m_Slots;
 
     public override void Init()
     {
         base.Init();
 
-        UIManager.Instance.isInvenOpen = true;
-
         Bind<GameObject>(typeof(GameObjects));
 
         GameObject gridPanel = Get<GameObject>((int)GameObjects.UI_Inven_GridArea);
-
-        m_Gridpanel = gridPanel;
 
         foreach (Transform child in gridPanel.transform)
             ResourcesManager.Instance.Destroy(child.gameObject);
 
         // 실제 인벤토리 정보를 참고해야함
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 63; i++)
         {
-            GameObject item = UIManager.Instance.MakeSubItem<UI_Inven_2000>(parent: gridPanel.transform).gameObject;
+            UIManager.Instance.MakeSubItem<UI_Inven_Slot>(parent: gridPanel.transform);
+        }
 
-            // item.GetOrAddComponent<> => Extension Method 활용
-            UI_Inven_2000 invenItem = item.GetOrAddComponet<UI_Inven_2000>();
+        m_Slots = gridPanel.GetComponentsInChildren<UI_Inven_Slot>();
+
+        GetObject((int)GameObjects.ItemPanel).SetActive(false);
+    }
+
+    public void OpenInventory()
+    {
+        GetObject((int)GameObjects.ItemPanel).SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // 인벤토리 오픈 마다 각 아이템 슬롯의 위치 초기화
+        for (int i = 0; i < m_Slots.Length; i++)
+        {
+            m_Slots[i].SetPos();
         }
     }
 
-    //public void ItemAdd()
-    //{
-    //    GameObject item = UIManager.Instance.MakeSubItem<UI_Inven_2000>(parent: m_Gridpanel.transform).gameObject;
-    //}
+    public void CloseInventory()
+    {
+        GetObject((int)GameObjects.ItemPanel).SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void AcquireItem(Item item, int count = 1)
+    {
+        if (Item.ItemType.Equipment != item.m_ItemType)
+        {
+            for (int i = 0; i < m_Slots.Length; i++)
+            {
+                if (m_Slots[i].m_Item != null)
+                {
+                    if (m_Slots[i].m_Item.m_ItemName == item.m_ItemName)
+                    {
+                        m_Slots[i].SetSlotCount(count);
+                        return;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < m_Slots.Length; i++)
+        {
+            if (m_Slots[i].m_Item == null)
+            {
+                m_Slots[i].AddItem(item, count);
+                return;
+            }
+        }
+    }
 }

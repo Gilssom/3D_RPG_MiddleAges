@@ -23,7 +23,10 @@ public class Defines
     public enum UIEvent
     {
         Click,
+        BeginDrag,
         Drag,
+        EndDrag,
+        Drop,
         Enter
     }
 }

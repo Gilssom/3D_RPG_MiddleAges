@@ -105,19 +105,7 @@ public class Player : Base
     {
         if(context.performed)
         {
-            if(!UIManager.Instance.isInvenOpen)
-            {
-                UIManager.Instance.ShowPopupUI<UI_Inven>();
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                UIManager.Instance.isInvenOpen = false;
-                UIManager.Instance.ClosePopupUI();
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
+            InventoryManager.Instance.TryOpenInventory();
         }
     }
 
@@ -125,7 +113,7 @@ public class Player : Base
     {
         //if (context.performed)
         //{
-        //    playerInfo.m_UIInven.ItemAdd();
+        //    
         //}
     }
     #endregion
@@ -347,6 +335,7 @@ public class Player : Base
     void ItemPickUp(ItemPickUp item)
     {
         Debug.Log($"{item.m_Item.m_ItemName} ({item.m_Item.m_ItemClass}등급) 획득!");
+        InventoryManager.Instance.AcquireItem(item.m_Item);
         ResourcesManager.Instance.Destroy(item.gameObject);
     }
     #endregion
