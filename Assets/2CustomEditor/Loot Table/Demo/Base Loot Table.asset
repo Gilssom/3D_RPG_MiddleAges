@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa80a4f21652164d8ac37ff492439b4, type: 3}
+  m_Name: Base Loot Table
+  m_EditorClassIdentifier: 
+  GuaranteedLootTable:
+  - Weight: 0
+    Drop: {fileID: 4159398933232316013, guid: 9f0680fb7dc80624d9df71db35a31c1b, type: 3}
+    MinCountItem: 1
+    MaxCountItem: 1
+  OneItemFromList:
+  - Weight: 50
+    Drop: {fileID: 3756099229369266414, guid: dee2e40c5f7583144ae981ee23bf394a, type: 3}
+    MinCountItem: 1
+    MaxCountItem: 2
+  - Weight: 30
+    Drop: {fileID: 6139744156321514788, guid: 5fda7da6d40d0a241ae017bbada992df, type: 3}
+    MinCountItem: 1
+    MaxCountItem: 2
+  - Weight: 30
+    Drop: {fileID: 5796586805486911755, guid: 40620b3825f38014496321861f847d44, type: 3}
+    MinCountItem: 1
+    MaxCountItem: 2
+  - Weight: 25
+    Drop: {fileID: 5074111686942249017, guid: ad5b52caf55f5dd48970d126095961c6, type: 3}
+    MinCountItem: 1
+    MaxCountItem: 2
+  - Weight: 20
+    Drop: {fileID: 7925468204566439248, guid: 5b8e43e55916eb24695fb2df86b13cb3, type: 3}
+    MinCountItem: 1
+    MaxCountItem: 2
+  - Weight: 10
+    Drop: {fileID: 1628771002131494987, guid: c56698d787ebc284fa86b3c2d87e9ab9, type: 3}
+    MinCountItem: 4
+    MaxCountItem: 8
+  - Weight: 7
+    Drop: {fileID: 5209996533143158915, guid: c5807e9a39028f648b793ddb4bfab509, type: 3}
+    MinCountItem: 4
+    MaxCountItem: 8
+  - Weight: 5
+    Drop: {fileID: 4438281288478671255, guid: a57b30c74a7ce4140b49d087aa08c1f5, type: 3}
+    MinCountItem: 4
+    MaxCountItem: 8
+  - Weight: 4
+    Drop: {fileID: 7476383553058755429, guid: aed1b02bf19cc354084f54143e35b216, type: 3}
+    MinCountItem: 4
+    MaxCountItem: 8
+  - Weight: 3
+    Drop: {fileID: 2505413902557331434, guid: 2e0f37e5b9b147949897b607ca0bdf1b, type: 3}
+    MinCountItem: 4
+    MaxCountItem: 8
+  WeightToNoDrop: 1

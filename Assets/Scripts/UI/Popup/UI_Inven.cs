@@ -10,6 +10,8 @@ public class UI_Inven : UI_Popup
         UI_Inven_GridArea
     }
 
+    GameObject m_Gridpanel;
+
     public override void Init()
     {
         base.Init();
@@ -20,17 +22,23 @@ public class UI_Inven : UI_Popup
 
         GameObject gridPanel = Get<GameObject>((int)GameObjects.UI_Inven_GridArea);
 
+        m_Gridpanel = gridPanel;
+
         foreach (Transform child in gridPanel.transform)
             ResourcesManager.Instance.Destroy(child.gameObject);
 
         // 실제 인벤토리 정보를 참고해야함
         for (int i = 0; i < 8; i++)
         {
-            GameObject item = UIManager.Instance.MakeSubItem<UI_Inven_Item>(parent: gridPanel.transform).gameObject;
+            GameObject item = UIManager.Instance.MakeSubItem<UI_Inven_2000>(parent: gridPanel.transform).gameObject;
 
             // item.GetOrAddComponent<> => Extension Method 활용
-            UI_Inven_Item invenItem = item.GetOrAddComponet<UI_Inven_Item>();
-            invenItem.SetInfo($"{i}번 아이템");
+            UI_Inven_2000 invenItem = item.GetOrAddComponet<UI_Inven_2000>();
         }
     }
+
+    //public void ItemAdd()
+    //{
+    //    GameObject item = UIManager.Instance.MakeSubItem<UI_Inven_2000>(parent: m_Gridpanel.transform).gameObject;
+    //}
 }

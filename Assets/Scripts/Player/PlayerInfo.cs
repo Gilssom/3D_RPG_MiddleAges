@@ -12,6 +12,7 @@ public class PlayerInfo : BaseInfo
     public Rigidbody m_Rigid                 { get; private set; }
     public Animator m_Anim                   { get; private set; }
     public CapsuleCollider m_CapsuleCollider { get; private set; }
+    public UI_Inven m_UIInven                { get; private set; }
 
     [SerializeField]
     private Transform m_RightHand;
@@ -86,6 +87,7 @@ public class PlayerInfo : BaseInfo
     {
         playerInfo = this;
         Debug.Log($"{name} - {playerInfo}");
+        m_UIInven = new UI_Inven();
         m_DataManager = new DataManager();
         m_WeaponManager = new WeaponManager(m_RightHand);
         m_WeaponManager.m_UnRegisterWeapon = (weapon) => { Destroy(weapon); };

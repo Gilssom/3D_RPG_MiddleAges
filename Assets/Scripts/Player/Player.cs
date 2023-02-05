@@ -108,21 +108,25 @@ public class Player : Base
             if(!UIManager.Instance.isInvenOpen)
             {
                 UIManager.Instance.ShowPopupUI<UI_Inven>();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else
             {
                 UIManager.Instance.isInvenOpen = false;
                 UIManager.Instance.ClosePopupUI();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
         }
     }
 
     public void TestButtonClick(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            playerInfo.Exp += 20;
-        }
+        //if (context.performed)
+        //{
+        //    playerInfo.m_UIInven.ItemAdd();
+        //}
     }
     #endregion
 
@@ -280,6 +284,7 @@ public class Player : Base
     }
     #endregion
 
+    #region #플레이어 무기 교체 시스템
     public void ChangeWeapon(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -296,6 +301,7 @@ public class Player : Base
             }
         }
     }
+    #endregion
 
     #region #플레이어 방향
     public void LookAt(Vector3 lookForward)
@@ -307,13 +313,20 @@ public class Player : Base
     }
     #endregion
 
-    #region #플레이어 피격 이벤트
+    #region #플레이어 트리거 이벤트
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "EnemyHitBox")
             OnHitEvent(other.transform.parent.gameObject.GetComponent<EnemyInfo>());
-    }
 
+        if(other.tag == "Item")
+        {
+            ItemPickUp(other.gameObject.GetOrAddComponet<ItemPickUp>());
+        }
+    }
+    #endregion
+
+    #region #플레이어 피격 이벤트
     void OnHitEvent(EnemyInfo enemy)
     {
         if (playerInfo.Hp > 0)
@@ -327,6 +340,14 @@ public class Player : Base
                 GameManager.Instance.Despawn(gameObject);
                 //playerInfo.stateMachine.ChangeState(StateName.DIE);
         }
+    }
+    #endregion
+
+    #region #플레이어 아이템 획득 시스템
+    void ItemPickUp(ItemPickUp item)
+    {
+        Debug.Log($"{item.m_Item.m_ItemName} ({item.m_Item.m_ItemClass}등급) 획득!");
+        ResourcesManager.Instance.Destroy(item.gameObject);
     }
     #endregion
 
