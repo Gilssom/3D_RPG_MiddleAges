@@ -5,19 +5,20 @@ using UnityEngine.UI;
 
 public class UI_Inven_Slot : UI_Base
 {
-    public Vector3 m_OriginPos;
-
     public Image m_SlotImage;
     public Text m_SlotCount;
     public Item m_Item;
     public int m_ItemCount;
 
-    public override void Init() { }
+    private Rect m_BaseRect;
+    private UI_InputNumber m_InputNumber;
 
-    public void SetPos()
-    {
-        m_OriginPos = transform.position;
+    public override void Init() 
+    { 
         SetEvent();
+
+        m_BaseRect = transform.parent.parent.GetComponent<RectTransform>().rect;
+        m_InputNumber = InventoryManager.Instance.m_InputNumber;
     }
 
     // 슬롯 아이템 이미지 투명도
@@ -43,6 +44,7 @@ public class UI_Inven_Slot : UI_Base
         SetColor(1);
     }
 
+    // UI EventHandler 등록
     void SetEvent()
     {
         // 아이템 Enter 이벤트
@@ -59,20 +61,11 @@ public class UI_Inven_Slot : UI_Base
 
             if(m_Item != null)
             {
-                if(m_Item.m_ItemType == Item.ItemType.Equipment)
-                {
-                    // 아이템 장착
-                }
-                else if(m_Item.m_ItemType == Item.ItemType.Used)
-                {
-                    // 아이템 소모
-                    Debug.Log($"{m_Item.m_ItemName}을 사용했습니다.");
+                // 아이템 소모
+                ItemEffectDataBase.Instance.UseItem(m_Item);
+
+                if(m_Item.m_ItemType == Item.ItemType.Used)
                     SetSlotCount(-1);
-                }
-                else
-                {
-                    // 기타 아이템
-                }
             }
         }
         );
@@ -107,8 +100,22 @@ public class UI_Inven_Slot : UI_Base
         {
             //Debug.Log($"{m_Item.m_ItemName} 드래그 종료!");
 
-            UI_DragSlot.Instance.SetColor(0);
-            UI_DragSlot.Instance.m_DragSlot = null;
+            if (UI_DragSlot.Instance.transform.localPosition.x < m_BaseRect.xMin
+            || UI_DragSlot.Instance.transform.localPosition.x > m_BaseRect.xMax
+            || UI_DragSlot.Instance.transform.localPosition.y < m_BaseRect.yMin
+            || UI_DragSlot.Instance.transform.localPosition.y > m_BaseRect.yMax)
+            {
+                // 우리는 버리기 시스템 안넣을 예정 => 파괴 시스템 (로스트아크 방식)
+                if (UI_DragSlot.Instance.m_DragSlot != null)
+                {
+                    m_InputNumber.Call();
+                }
+            }
+            else
+            {
+                UI_DragSlot.Instance.SetColor(0);
+                UI_DragSlot.Instance.m_DragSlot = null;
+            }
         }
         , Defines.UIEvent.EndDrag);
 
@@ -124,12 +131,11 @@ public class UI_Inven_Slot : UI_Base
         , Defines.UIEvent.Drop);
     }
 
+    // 슬롯 체인지
     public void ChangeSlot()
     {
         Item tempItem = m_Item;
         int tempItemCount = m_ItemCount;
-
-        //Debug.Log($"슬롯 체인지 / 이전 아이템 {tempItem} / 이전 아이템 갯수 {tempItemCount}");
 
         AddItem(UI_DragSlot.Instance.m_DragSlot.m_Item, UI_DragSlot.Instance.m_DragSlot.m_ItemCount);
 

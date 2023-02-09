@@ -12,6 +12,7 @@ public class DataManager
 {
     public Dictionary<int, Data.Stat> StatDict { get; private set; } = new Dictionary<int, Data.Stat>();
     public Dictionary<int, Data.MonsterStat> MonsterStatDict { get; private set; } = new Dictionary<int, Data.MonsterStat>();
+    public Dictionary<int, Data.ItemData> ItemDict { get; private set; } = new Dictionary<int, Data.ItemData>();
 
     public void Init(string DataName)
     {
@@ -22,6 +23,9 @@ public class DataManager
                 break;
             case "MonsterStatData":
                 MonsterStatDict = LoadJson<Data.MonsterStatData, int, Data.MonsterStat>(DataName).MakeDict();
+                break;
+            case "ItemDataBase":
+                ItemDict = LoadJson<Data.ItemDataBase, int, Data.ItemData>(DataName).MakeDict();
                 break;
             default:
                 break;

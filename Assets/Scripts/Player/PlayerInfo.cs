@@ -29,6 +29,8 @@ public class PlayerInfo : BaseInfo
     int m_Exp;
     [SerializeField]
     int m_Gold;
+    [SerializeField]
+    int m_Fragments;
 
     public int CriticalChance { get { return m_CriticalChance; } }
     public float CriticalDamage { get { return m_CriticalDamage; } }
@@ -62,6 +64,7 @@ public class PlayerInfo : BaseInfo
         } 
     }
     public int Gold { get { return m_Gold; } set { m_Gold = value; } }
+    public int Fragments { get { return m_Fragments; } set { m_Fragments = value; } }
 
     [Header("대쉬기 옵션")]
     [SerializeField, Tooltip("Dash 파워")]
@@ -105,6 +108,7 @@ public class PlayerInfo : BaseInfo
         m_DashCount = 2;
         m_Exp = 0;
         m_Gold = 0;
+        m_Fragments = 0;
         SetStat(m_Level);
     }
 

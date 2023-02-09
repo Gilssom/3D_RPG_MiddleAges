@@ -12,6 +12,7 @@ public class EnemyInfo : BaseInfo
     public Animator m_Anim                      { get; private set; }
     public CapsuleCollider m_CapsuleCollider    { get; private set; }
     public Material m_Material                  { get; private set; }
+    public Item m_DropPotion                      { get; private set; }
 
     #region #몬스터 부가 스탯
     [Header("몬스터 부가 스탯")]
@@ -49,6 +50,21 @@ public class EnemyInfo : BaseInfo
     public float ScanRange      { get { return m_ScanRange; } set { m_ScanRange = value; } }
     public float AttackRange    { get { return m_AttackRange; } set { m_AttackRange = value; } }
     public float AttackCoolTime { get { return m_AttackCoolTime; } set { m_AttackCoolTime = value; } }
+
+    [Header("몬스터 드랍 정보")]
+    [SerializeField, Tooltip("포션 드랍 확률")]
+    float m_PotionChance;
+    [SerializeField, Tooltip("포션 드랍 갯수")]
+    int m_PotionCount;
+    [SerializeField, Tooltip("최소 강화파편 드랍 갯수")]
+    int m_MinFragmentsCount;
+    [SerializeField, Tooltip("최대 강화파편 드랍 갯수")]
+    int m_MaxFragmentsCount;
+
+    public float PotionChance { get { return m_PotionChance; } set { m_PotionChance = value; } }
+    public int PotionCount  { get { return m_PotionCount; } set { m_PotionCount = value; } }
+    public int MinFargCount { get { return m_MinFragmentsCount; } set { m_MinFragmentsCount = value; } }
+    public int MaxFragCount { get { return m_MaxFragmentsCount; } set { m_MaxFragmentsCount = value; } }
     #endregion
 
     #region #이펙트
@@ -69,6 +85,7 @@ public class EnemyInfo : BaseInfo
         m_Anim = GetComponent<Animator>();
         m_CapsuleCollider = GetComponent<CapsuleCollider>();
         m_Material = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        //m_DropPotion = ResourcesManager.Instance.Load<Item>("Data/ItemData/Used/HpPotion");
         m_Type = (Defines.MonsterType)m_Id;
 
         m_CheckPlayer = false;
@@ -92,6 +109,11 @@ public class EnemyInfo : BaseInfo
         m_DropExp = stat.dropExp;
         m_DropGold = stat.dropGold;
         m_name = stat.name;
+
+        m_PotionChance = stat.potionChance;
+        m_PotionCount = stat.potionCount;
+        m_MinFragmentsCount = stat.minFragments;
+        m_MaxFragmentsCount = stat.maxFragments;
     }
 
     void Update()

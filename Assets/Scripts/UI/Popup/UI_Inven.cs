@@ -40,12 +40,6 @@ public class UI_Inven : UI_Popup
         GetObject((int)GameObjects.ItemPanel).SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // 인벤토리 오픈 마다 각 아이템 슬롯의 위치 초기화
-        for (int i = 0; i < m_Slots.Length; i++)
-        {
-            m_Slots[i].SetPos();
-        }
     }
 
     public void CloseInventory()

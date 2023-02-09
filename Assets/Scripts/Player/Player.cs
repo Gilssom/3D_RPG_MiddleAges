@@ -52,6 +52,8 @@ public class Player : Base
 
         m_DashState = playerInfo.stateMachine.GetState(StateName.DASH) as DashState;
 
+        ItemEffectDataBase.Instance.m_Player = this;
+
         // Test
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -116,6 +118,22 @@ public class Player : Base
         //    
         //}
     }
+
+    public void OnEnter(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            InventoryManager.Instance.CtrlInputBase(true);
+        }
+    }
+
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            InventoryManager.Instance.CtrlInputBase(false);
+        }
+    }
     #endregion
 
     #region #플레이어 이동 시스템
@@ -150,7 +168,7 @@ public class Player : Base
 
             if (isabledash)
             {
-                if(AttackState.isAttack)
+                if(AttackState.isAttack || InventoryManager.m_InventoryActivated)
                 {
                     return;
                 }
@@ -209,7 +227,7 @@ public class Player : Base
         {
             if(context.interaction is HoldInteraction)       // 차지 공격
             {
-                if (DashState.m_IsDash)
+                if (DashState.m_IsDash || InventoryManager.m_InventoryActivated)
                 {
                     return;
                 }
@@ -222,7 +240,7 @@ public class Player : Base
             {
                 AttackState.m_AttackName = AttackState.AttackName.ATTACK;
 
-                if (DashState.m_IsDash)
+                if (DashState.m_IsDash || InventoryManager.m_InventoryActivated)
                 {
                     return;
                 }
@@ -243,7 +261,7 @@ public class Player : Base
         {
             if (context.interaction is PressInteraction)       // 발차기 공격
             {
-                if (DashState.m_IsDash && AttackState.isAttack)
+                if (DashState.m_IsDash && AttackState.isAttack || InventoryManager.m_InventoryActivated)
                 {
                     return;
                 }
@@ -260,7 +278,7 @@ public class Player : Base
         {
             if (context.interaction is PressInteraction)       // 궁극기 공격
             {
-                if (DashState.m_IsDash && AttackState.isAttack)
+                if (DashState.m_IsDash && AttackState.isAttack || InventoryManager.m_InventoryActivated)
                 {
                     return;
                 }
@@ -383,6 +401,34 @@ public class Player : Base
         }
 
         return 0f;
+    }
+    #endregion
+
+    #region #플레이어 Status 관리
+    public void IncreaseHp(int _count)
+    {
+        if (playerInfo.Hp + _count < playerInfo.MaxHp)
+        {
+            playerInfo.Hp += _count;
+        }
+        else
+            playerInfo.Hp = playerInfo.MaxHp;
+    }
+
+    public void IncreaseDF(int _count)
+    {
+        playerInfo.Defense += _count;
+    }
+
+    public void IncreaseAt(int _count)
+    {
+        playerInfo.Attack += _count;
+    }
+
+    public void IncreaseMaxHp(int _count)
+    {
+        playerInfo.MaxHp += _count;
+        IncreaseHp(_count);
     }
     #endregion
 }

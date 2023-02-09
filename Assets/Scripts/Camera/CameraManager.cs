@@ -20,6 +20,14 @@ public class CameraManager : MonoBehaviour
         m_FreeLook.LookAt = m_Player.transform;
     }
 
+    void Update()
+    {
+        if (InventoryManager.m_InventoryActivated)
+            m_FreeLook.enabled = false;
+        else
+            m_FreeLook.enabled = true;
+    }
+
     void LateUpdate()
     {
         if (m_Player.IsValid() == false)

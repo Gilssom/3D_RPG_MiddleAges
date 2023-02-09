@@ -47,6 +47,13 @@ namespace Data
         public int dropExp;
         public int dropGold;
         public string name;
+
+        //------ 아이템 드랍 정보 ------
+
+        public float potionChance;
+        public int potionCount;
+        public int minFragments;
+        public int maxFragments;
     }
 
     [Serializable]
@@ -60,6 +67,37 @@ namespace Data
 
             foreach (MonsterStat stat in monster)
                 Dict.Add(stat.id, stat);
+
+            return Dict;
+        }
+    }
+    #endregion
+
+    #region #Item Data Base
+    [Serializable]
+    public class ItemData
+    {
+        public int itemId;
+        public string itemName;
+        public string itemPart_0;
+        public string itemPart_1;
+        public string itemPart_2;
+        public int itemShame;
+        public int itemAddPrice;
+        public int itemSalePirce;
+    }
+
+    [Serializable]
+    public class ItemDataBase : ILoader<int, ItemData>
+    {
+        public List<ItemData> item = new List<ItemData>();
+
+        public Dictionary<int, ItemData> MakeDict()
+        {
+            Dictionary<int, ItemData> Dict = new Dictionary<int, ItemData>();
+
+            foreach (ItemData stat in item)
+                Dict.Add(stat.itemId, stat);
 
             return Dict;
         }

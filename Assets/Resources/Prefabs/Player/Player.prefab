@@ -1247,6 +1247,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 382ff798-b751-49f7-b4d2-e0960f6d0bbe
     m_ActionName: Player/ChangeWeapon[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3015626511609478910}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 67978594-2136-4ee7-b486-46f170360b28
+    m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3015626511609478910}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnEscape
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 171cb407-d747-4265-bc5b-c8c8c0d2dc2c
+    m_ActionName: Player/New action1
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -1288,6 +1320,8 @@ MonoBehaviour:
   m_Defense: 0
   m_Speed: 1
   m_RightHand: {fileID: 176566475}
+  m_CriticalChance: 0
+  m_CriticalDamage: 0
   m_DashCount: 2
   m_Exp: 0
   m_Gold: 0

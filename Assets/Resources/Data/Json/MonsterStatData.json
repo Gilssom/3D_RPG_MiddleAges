@@ -8,7 +8,11 @@
       "defense": "5",
       "dropExp": "4",
       "dropGold": "20",
-      "name": "은하계의 레기오로스"
+      "name": "은하계의 레기오로스",
+      "potionChance": "10",
+      "potionCount": "1",
+      "minFragments": "40",
+      "maxFragments": "70"
     },
     {
       "id": "1001",
@@ -18,7 +22,11 @@
       "defense": "6",
       "dropExp": "9",
       "dropGold": "23",
-      "name": "태양계의 수호자"
+      "name": "태양계의 수호자",
+      "potionChance": "14",
+      "potionCount": "2",
+      "minFragments": "60",
+      "maxFragments": "100"
     },
     {
       "id": "1002",
@@ -28,7 +36,11 @@
       "defense": "7",
       "dropExp": "13",
       "dropGold": "28",
-      "name": "미궁의 기사단"
+      "name": "미궁의 기사단",
+      "potionChance": "18",
+      "potionCount": "3",
+      "minFragments": "80",
+      "maxFragments": "130"
     },
     {
       "id": "2000",
@@ -38,7 +50,11 @@
       "defense": "6",
       "dropExp": "55",
       "dropGold": "500",
-      "name": "은하계의 지도자"
+      "name": "은하계의 지도자",
+      "potionChance": "12",
+      "potionCount": "2",
+      "minFragments": "65",
+      "maxFragments": "195"
     },
     {
       "id": "2001",
@@ -48,7 +64,11 @@
       "defense": "7",
       "dropExp": "75",
       "dropGold": "720",
-      "name": "태양계의 수호단장"
+      "name": "태양계의 수호단장",
+      "potionChance": "16",
+      "potionCount": "3",
+      "minFragments": "105",
+      "maxFragments": "315"
     },
     {
       "id": "2002",
@@ -58,7 +78,11 @@
       "defense": "8",
       "dropExp": "95",
       "dropGold": "940",
-      "name": "미궁의 기사단장"
+      "name": "미궁의 기사단장",
+      "potionChance": "20",
+      "potionCount": "4",
+      "minFragments": "155",
+      "maxFragments": "465"
     }
   ]
 }
