@@ -74,7 +74,7 @@ public abstract class UI_Base : MonoBehaviour
                 evt.OnClickHandler += action;
                 break;
             case Defines.UIEvent.Drop:
-                //evt.OnDropHandler -= action;
+                evt.OnDropHandler -= action;
                 evt.OnDropHandler += action;
                 break;
             case Defines.UIEvent.BeginDrag:
@@ -92,6 +92,10 @@ public abstract class UI_Base : MonoBehaviour
             case Defines.UIEvent.Enter:
                 evt.OnEnterHandler -= action;
                 evt.OnEnterHandler += action;
+                break;
+            case Defines.UIEvent.Exit:
+                evt.OnExitHandler -= action;
+                evt.OnExitHandler += action;
                 break;
         }
     }

@@ -24,26 +24,32 @@ public class ItemEffectDataBase : SingletomManager<ItemEffectDataBase>
     // 변수의 상수화 체력 / 방어력 / 공격력 / 최대 생명력
     private const string HP = "Hp", DP = "Dp", AT = "At", MaxHp = "MaxHp";
 
-    void Start()
+    void Awake()
     {
         m_DataManager = new DataManager();
 
-        m_DataManager.Init("ItemDataBase");
-        //SetItemEffects(1000);
+        m_DataManager.Init("ItemBaseData");
+        SetItemEffects();
     }
 
-    void SetItemEffects(int id)
+    void SetItemEffects()
     {
-        Dictionary<int, Data.ItemData> dict = m_DataManager.ItemDict;
-        Data.ItemData stat = dict[id];
+        for (int i = 0; i < 4; i++)
+        {
+            m_ItemEffects[i].m_Part = new string[3];
+            m_ItemEffects[i].m_Shame = new int[3];
 
-        m_ItemEffects[0].m_ItemName = stat.itemName;
-        m_ItemEffects[0].m_Part[0] = stat.itemPart_0;
-        m_ItemEffects[0].m_Part[1] = stat.itemPart_1;
-        m_ItemEffects[0].m_Part[2] = stat.itemPart_2;
-        m_ItemEffects[0].m_Shame[0] = stat.itemShame;
-        m_ItemEffects[0].m_Shame[1] = stat.itemShame;
-        m_ItemEffects[0].m_Shame[2] = stat.itemShame;
+            Dictionary<int, Data.ItemStat> dict = m_DataManager.ItemDict;
+            Data.ItemStat stat = dict[i + 1000];
+
+            m_ItemEffects[i].m_ItemName = stat.itemName;
+            m_ItemEffects[i].m_Part[0] = stat.itemPart_0;
+            m_ItemEffects[i].m_Part[1] = stat.itemPart_1;
+            m_ItemEffects[i].m_Part[2] = stat.itemPart_2;
+            m_ItemEffects[i].m_Shame[0] = stat.itemShame;
+            m_ItemEffects[i].m_Shame[1] = stat.itemShame;
+            m_ItemEffects[i].m_Shame[2] = stat.itemShame;
+        }
     }
 
     public void UseItem(Item item)
@@ -74,8 +80,10 @@ public class ItemEffectDataBase : SingletomManager<ItemEffectDataBase>
                             case MaxHp:
                                 m_Player.IncreaseMaxHp(m_ItemEffects[i].m_Shame[j]);
                                 break;
+                            case null:
+                                break;
                             default:
-                                Debug.LogError("잘못된 Status 부위를 적용할려고 함");
+                                Debug.LogWarning("잘못된 Status 부위를 적용할려고 함");
                                 break;
                         }
                         Debug.Log($"{item.m_ItemName}을 사용했습니다.");

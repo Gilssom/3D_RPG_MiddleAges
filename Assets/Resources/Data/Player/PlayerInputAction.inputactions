@@ -38,18 +38,18 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "67862a50-df8f-460e-ae8b-396494dc915c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "RightMouse",
                     "type": "Button",
                     "id": "99a749ed-55d0-40bc-95d3-57d93fe164e4",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "67862a50-df8f-460e-ae8b-396494dc915c",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
@@ -204,17 +204,6 @@
                 },
                 {
                     "name": "",
-                    "id": "dd0c3086-3397-427e-bf7f-06fce73f41dc",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "RightMouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7067f6d5-a436-4886-90aa-4b51ea0fb91e",
                     "path": "<Keyboard>/f",
                     "interactions": "Press(behavior=1)",
@@ -276,6 +265,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd0c3086-3397-427e-bf7f-06fce73f41dc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "RightMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

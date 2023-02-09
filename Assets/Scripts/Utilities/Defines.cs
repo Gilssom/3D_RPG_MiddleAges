@@ -27,6 +27,7 @@ public class Defines
         Drag,
         EndDrag,
         Drop,
-        Enter
+        Enter,
+        Exit
     }
 }

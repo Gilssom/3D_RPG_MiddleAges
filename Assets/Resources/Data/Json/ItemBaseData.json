@@ -2,40 +2,40 @@
   "ItemDataBase": [
     {
       "itemId": "1000",
-      "itemName": "Potion_AD",
+      "itemName": "회복약",
       "itemPart_0": "Hp",
+      "itemPart_1": null,
       "itemPart_2": null,
-      "itemPart_3": null,
       "itemShame": "40",
       "itemAddPrice": "20",
       "itemSalePrice": "14"
     },
     {
       "itemId": "1001",
-      "itemName": "Potion_RR",
+      "itemName": "고급 회복약",
       "itemPart_0": "Hp",
+      "itemPart_1": null,
       "itemPart_2": null,
-      "itemPart_3": null,
       "itemShame": "50",
       "itemAddPrice": "40",
       "itemSalePrice": "28"
     },
     {
       "itemId": "1002",
-      "itemName": "Potion_EP",
+      "itemName": "정령의 회복약",
       "itemPart_0": "Hp",
+      "itemPart_1": null,
       "itemPart_2": null,
-      "itemPart_3": null,
       "itemShame": "70",
       "itemAddPrice": "75",
       "itemSalePrice": "53"
     },
     {
       "itemId": "1003",
-      "itemName": "Potion_LG",
+      "itemName": "빛나는 정령의 회복약",
       "itemPart_0": "Hp",
+      "itemPart_1": null,
       "itemPart_2": null,
-      "itemPart_3": null,
       "itemShame": "100",
       "itemAddPrice": "150",
       "itemSalePrice": "105"

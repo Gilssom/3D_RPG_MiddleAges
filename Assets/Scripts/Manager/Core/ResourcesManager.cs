@@ -22,9 +22,6 @@ public class ResourcesManager : SingletomManager<ResourcesManager>
         // 인스턴스 생성 시 Clone 문자열 제거하기
         GameObject go = Object.Instantiate(prefab, parent);
         CloneDelete(go);
-        //int index = go.name.IndexOf("(Clone)");
-        //if (index > 0)
-        //    go.name = go.name.Substring(0, index); // => 0번째 부터 index번째 까지 짜르기
 
         return go;
     }

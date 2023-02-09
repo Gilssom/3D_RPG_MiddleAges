@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Legandary Potion
   m_EditorClassIdentifier: 
   m_ItemName: "\uBE5B\uB098\uB294 \uC815\uB839\uC758 \uD68C\uBCF5\uC57D"
+  m_ItemInfo: "100 \uC758 \uC0DD\uBA85\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4."
+  m_ItemTypeInfo: "\uD68C\uBCF5 , \uAC70\uB798 \uBD88\uAC00"
+  m_ItemClassInfo: "\uC804\uC124 \uC18C\uBE44\uC544\uC774\uD15C"
   m_ItemType: 1
   m_ItemClass: 4
   m_ItemImage: {fileID: 21300000, guid: f49851466053a3945a950bd2653a2a37, type: 3}

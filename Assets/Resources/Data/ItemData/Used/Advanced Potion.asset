@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Advanced Potion
   m_EditorClassIdentifier: 
   m_ItemName: "\uD68C\uBCF5\uC57D"
+  m_ItemInfo: "40 \uC758 \uC0DD\uBA85\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4."
+  m_ItemTypeInfo: "\uD68C\uBCF5 , \uAC70\uB798 \uBD88\uAC00"
+  m_ItemClassInfo: "\uACE0\uAE09 \uC18C\uBE44\uC544\uC774\uD15C"
   m_ItemType: 1
   m_ItemClass: 1
   m_ItemImage: {fileID: 21300000, guid: 60eafba298ba8bb4a8cd619cf6835b63, type: 3}

@@ -12,6 +12,7 @@ public class UI_Inven_Slot : UI_Base
 
     private Rect m_BaseRect;
     private UI_InputNumber m_InputNumber;
+    public RectTransform m_QuickSlotBaseRect;
 
     public override void Init() 
     { 
@@ -19,6 +20,7 @@ public class UI_Inven_Slot : UI_Base
 
         m_BaseRect = transform.parent.parent.GetComponent<RectTransform>().rect;
         m_InputNumber = InventoryManager.Instance.m_InputNumber;
+        m_QuickSlotBaseRect = InventoryManager.Instance.m_QuickSlotBaseRect;
     }
 
     // 슬롯 아이템 이미지 투명도
@@ -48,32 +50,42 @@ public class UI_Inven_Slot : UI_Base
     void SetEvent()
     {
         // 아이템 Enter 이벤트
-        gameObject.BindEvent((PointerEventData) => 
-        { 
+        gameObject.BindEvent((PointerEventData) =>
+        {
             //Debug.Log($"{m_Item.m_ItemName} 정보!"); 
+            if (m_Item != null)
+                InventoryManager.Instance.ShowToolTip(m_Item, transform.position);
         }
         , Defines.UIEvent.Enter);
 
+        // 아이템 Exit 이벤트
+        gameObject.BindEvent((PointerEventData) =>
+        {
+            //Debug.Log($"{m_Item.m_ItemName} 정보 안보기"); 
+            InventoryManager.Instance.HideToolTip();
+        }
+        , Defines.UIEvent.Exit);
+
         // 아이템 슬롯 클릭 이벤트
-        gameObject.BindEvent((PointerEventData) => 
+        gameObject.BindEvent((PointerEventData) =>
         {
             //Debug.Log($"{m_Item.m_ItemName} 클릭!");
 
-            if(m_Item != null)
+            if (m_Item != null)
             {
                 // 아이템 소모
                 ItemEffectDataBase.Instance.UseItem(m_Item);
 
-                if(m_Item.m_ItemType == Item.ItemType.Used)
+                if (m_Item.m_ItemType == Item.ItemType.Used)
                     SetSlotCount(-1);
             }
         }
         );
 
         // 아이템 드래그 이벤트
-        gameObject.BindEvent((PointerEventData) => 
+        gameObject.BindEvent((PointerEventData) =>
         {
-            if(m_Item != null)
+            if (m_Item != null)
             {
                 //Debug.Log($"{m_Item.m_ItemName} 드래그 시작!");
 
@@ -100,10 +112,16 @@ public class UI_Inven_Slot : UI_Base
         {
             //Debug.Log($"{m_Item.m_ItemName} 드래그 종료!");
 
-            if (UI_DragSlot.Instance.transform.localPosition.x < m_BaseRect.xMin
-            || UI_DragSlot.Instance.transform.localPosition.x > m_BaseRect.xMax
-            || UI_DragSlot.Instance.transform.localPosition.y < m_BaseRect.yMin
-            || UI_DragSlot.Instance.transform.localPosition.y > m_BaseRect.yMax)
+            // 인벤토리 및 퀵슬롯의 영역을 벗어나게 되면
+            if (!((UI_DragSlot.Instance.transform.localPosition.x > m_BaseRect.xMin
+            && UI_DragSlot.Instance.transform.localPosition.x < m_BaseRect.xMax
+            && UI_DragSlot.Instance.transform.localPosition.y > m_BaseRect.yMin
+            && UI_DragSlot.Instance.transform.localPosition.y < m_BaseRect.yMax)
+            || 
+            (UI_DragSlot.Instance.transform.localPosition.x < m_QuickSlotBaseRect.transform.localPosition.x - m_QuickSlotBaseRect.rect.xMin - 560
+            && UI_DragSlot.Instance.transform.localPosition.x > m_QuickSlotBaseRect.transform.localPosition.x - m_QuickSlotBaseRect.rect.xMax - 560
+            && UI_DragSlot.Instance.transform.localPosition.y < m_QuickSlotBaseRect.transform.localPosition.y - m_QuickSlotBaseRect.rect.yMin
+            && UI_DragSlot.Instance.transform.localPosition.y > m_QuickSlotBaseRect.transform.localPosition.y - m_QuickSlotBaseRect.rect.yMax)))
             {
                 // 우리는 버리기 시스템 안넣을 예정 => 파괴 시스템 (로스트아크 방식)
                 if (UI_DragSlot.Instance.m_DragSlot != null)

@@ -11,6 +11,8 @@ public class InventoryManager : SingletomManager<InventoryManager>
     [SerializeField]
     private UI_Inven m_InvenBase;
     public UI_InputNumber m_InputNumber;
+    public UI_SlotToolTip m_ToopTip;
+    public RectTransform m_QuickSlotBaseRect;
 
     public GameObject[] m_Swords;
 
@@ -25,8 +27,10 @@ public class InventoryManager : SingletomManager<InventoryManager>
         //GameObject[] weapons = m_Swords;
         GameObject Inven = ResourcesManager.Instance.Instantiate("UI/Popup/UI_Inven", gameObject.transform);
         GameObject InputField = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ThrowItem", gameObject.transform);
+        GameObject ToolTip = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ToolTip", gameObject.transform);
         m_InvenBase = Inven.GetComponent<UI_Inven>();
         m_InputNumber = InputField.GetComponent<UI_InputNumber>();
+        m_ToopTip = ToolTip.GetComponent<UI_SlotToolTip>();
 
         for (int i = 0; i < m_Swords.Length; i++)
         {
@@ -58,5 +62,15 @@ public class InventoryManager : SingletomManager<InventoryManager>
             return;
 
         m_InputNumber.Activited(OnOff);
+    }
+
+    public void ShowToolTip(Item item, Vector3 pos)
+    {
+        m_ToopTip.ShowToolTip(item, pos);
+    }
+
+    public void HideToolTip()
+    {
+        m_ToopTip.HideToolTip();
     }
 }

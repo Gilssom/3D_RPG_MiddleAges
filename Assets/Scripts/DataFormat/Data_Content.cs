@@ -75,7 +75,7 @@ namespace Data
 
     #region #Item Data Base
     [Serializable]
-    public class ItemData
+    public class ItemStat
     {
         public int itemId;
         public string itemName;
@@ -88,15 +88,15 @@ namespace Data
     }
 
     [Serializable]
-    public class ItemDataBase : ILoader<int, ItemData>
+    public class ItemStatData : ILoader<int, ItemStat>
     {
-        public List<ItemData> item = new List<ItemData>();
+        public List<ItemStat> ItemDataBase = new List<ItemStat>();
 
-        public Dictionary<int, ItemData> MakeDict()
+        public Dictionary<int, ItemStat> MakeDict()
         {
-            Dictionary<int, ItemData> Dict = new Dictionary<int, ItemData>();
+            Dictionary<int, ItemStat> Dict = new Dictionary<int, ItemStat>();
 
-            foreach (ItemData stat in item)
+            foreach (ItemStat stat in ItemDataBase)
                 Dict.Add(stat.itemId, stat);
 
             return Dict;
