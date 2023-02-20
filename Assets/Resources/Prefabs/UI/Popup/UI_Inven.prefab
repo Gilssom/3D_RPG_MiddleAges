@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 2367938923502532709}
   - component: {fileID: 2367938923502532715}
   - component: {fileID: 2367938923502532714}
+  - component: {fileID: 5082251995313312050}
   m_Layer: 5
   m_Name: ItemPanel
   m_TagString: Untagged
@@ -192,6 +193,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5082251995313312050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367938923502532708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8d7836d684e4746804e84fc771031a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TargetTr: {fileID: 0}
 --- !u!1 &2367938924609640270
 GameObject:
   m_ObjectHideFlags: 0

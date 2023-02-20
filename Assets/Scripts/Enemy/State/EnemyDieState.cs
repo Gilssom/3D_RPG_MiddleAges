@@ -45,9 +45,7 @@ namespace CharacterController
         public override void OnExitState()
         {
             // 아이템 드랍
-            GameObject Item = ResourcesManager.Instance.Instantiate("Item/DropBox");
-            Item.transform.position = m_EnemyController.transform.position;
-            Item.GetComponent<DropBox>().m_Id = m_EnemyController.enemyInfo.ID;
+            m_EnemyController.enemyInfo.m_LootDrop.SpawnDrop(m_EnemyController.transform, m_EnemyController.enemyInfo.RandomDropCount, m_EnemyController.enemyInfo.ItemDropRange);
 
             GameManager.Instance.Despawn(m_EnemyController.gameObject);
         }

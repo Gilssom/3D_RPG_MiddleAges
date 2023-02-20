@@ -44,13 +44,13 @@ public class UI_InputNumber : UI_Base
         }
     }
 
-    public void Call()
+    public void Call(UI_Inven_Slot item)
     {
         GetObject((int)GameObjects.UI_InputBase).SetActive(true);
         isActivited = true;
         UI_DragSlot.Instance.SetColor(0);
         Get<InputField>((int)InputFields.UI_InputField).text = "";
-        GetText((int)Texts.UI_PreviewText).text = UI_DragSlot.Instance.m_DragSlot.m_ItemCount.ToString();
+        GetText((int)Texts.UI_PreviewText).text = item.m_ItemCount.ToString();
     }
 
     public void Cancel()
@@ -92,6 +92,20 @@ public class UI_InputNumber : UI_Base
     // 버릴 때 우리는 바로 파괴시켜 버릴것 이기 때문에
     private void DropItem(int num)
     {
+        if (InventoryManager.m_ShopActivated)
+        {
+            Debug.Log($"{UI_DragSlot.Instance.m_DragSlot.m_Item.m_ItemName} {num}개 판매 완료");
+            for (int i = 0; i < ShopManager.Instance.m_ShopSaleItems.Length; i++)
+            {
+                if (ShopManager.Instance.m_ShopSaleItems[i].m_ItemId == UI_DragSlot.Instance.m_DragSlot.m_Item.m_ItemId)
+                {
+                    BaseInfo.playerInfo.Gold += ShopManager.Instance.m_ShopSaleItems[i].m_SalePrice * num;
+                    Debug.Log($"{ShopManager.Instance.m_ShopSaleItems[i].m_SalePrice * num}골드 획득");
+                    break;
+                }
+            }
+        }
+
         UI_DragSlot.Instance.m_DragSlot.SetSlotCount(-num);
 
         UI_DragSlot.Instance.m_DragSlot = null;

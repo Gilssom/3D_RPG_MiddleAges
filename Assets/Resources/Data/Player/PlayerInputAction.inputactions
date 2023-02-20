@@ -100,6 +100,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "QuickSlot",
+                    "type": "Button",
+                    "id": "2433fefd-f72b-4a3b-9662-488c11ad0e57",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PlayerInfoOpen",
+                    "type": "Button",
+                    "id": "3083138b-8b82-47ea-8f2b-a71269e5b6d0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -276,6 +292,88 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "RightMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a6b0b82-b907-48bc-aa76-11da4ff9004a",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d934bfd7-9605-4e05-95c9-be723ce2a377",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ffe4a4f-8f5d-441a-831d-a6ab9a50d2fe",
+                    "path": "<Keyboard>/3",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f2b8cf8-7528-4e08-861d-0d2d894807ce",
+                    "path": "<Keyboard>/4",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3337f86-8728-4403-991a-04a9e09a8a89",
+                    "path": "<Keyboard>/p",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "PlayerInfoOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "New action map",
+            "id": "21f81dae-fe2e-4a75-8959-91216d91b9bb",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "16c0ce89-d7fb-436e-af4a-ce5780ca6234",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a07cadf4-f891-4a51-a533-7d09fa4977c2",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

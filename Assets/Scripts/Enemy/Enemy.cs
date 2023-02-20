@@ -179,7 +179,6 @@ public class Enemy : Base
                 player.Exp += enemyInfo.DropExp;
                 player.Gold += enemyInfo.DropGold;
                 player.Fragments += Random.Range(enemyInfo.MinFargCount, enemyInfo.MaxFragCount + 1);
-                InventoryManager.Instance.AcquireItem(enemyInfo.m_DropPotion, enemyInfo.PotionCount);
                 enemyInfo.stateMachine.ChangeState(StateName.DIE);
             }
         }

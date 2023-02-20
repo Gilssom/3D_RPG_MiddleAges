@@ -54,7 +54,7 @@ public class UI_Inven_Slot : UI_Base
         {
             //Debug.Log($"{m_Item.m_ItemName} 정보!"); 
             if (m_Item != null)
-                InventoryManager.Instance.ShowToolTip(m_Item, transform.position);
+                InventoryManager.Instance.ShowToolTip(m_Item, GetComponent<RectTransform>(), 0);
         }
         , Defines.UIEvent.Enter);
 
@@ -73,7 +73,19 @@ public class UI_Inven_Slot : UI_Base
 
             if (m_Item != null)
             {
+                if (InventoryManager.m_ShopActivated)
+                {
+                    m_InputNumber.Call(this);
+                    return;
+                }
+
                 // 아이템 소모
+                if (m_Item.m_UsedType == Item.UsedType.Potion && (ItemEffectDataBase.Instance.m_Player.playerInfo.Hp == ItemEffectDataBase.Instance.m_Player.playerInfo.MaxHp))
+                {
+                    Debug.LogWarning("플레이어의 체력이 가득 차있습니다.");
+                    return;
+                }
+
                 ItemEffectDataBase.Instance.UseItem(m_Item);
 
                 if (m_Item.m_ItemType == Item.ItemType.Used)
@@ -126,7 +138,7 @@ public class UI_Inven_Slot : UI_Base
                 // 우리는 버리기 시스템 안넣을 예정 => 파괴 시스템 (로스트아크 방식)
                 if (UI_DragSlot.Instance.m_DragSlot != null)
                 {
-                    m_InputNumber.Call();
+                    m_InputNumber.Call(UI_DragSlot.Instance.m_DragSlot);
                 }
             }
             else

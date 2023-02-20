@@ -57,9 +57,6 @@ public class Player : Base
         // Test
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
-            //UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
     }
 
     #region #기본 시스템
@@ -111,12 +108,20 @@ public class Player : Base
         }
     }
 
+    public void PlayerInfoUIOpen(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            InventoryManager.Instance.TryOpenPlayerInfo();
+        }
+    }
+
     public void TestButtonClick(InputAction.CallbackContext context)
     {
-        //if (context.performed)
-        //{
-        //    
-        //}
+        if (context.performed)
+        {
+            InventoryManager.Instance.TryOpenEnforceSystem();
+        }
     }
 
     public void OnEnter(InputAction.CallbackContext context)
@@ -132,6 +137,16 @@ public class Player : Base
         if (context.performed)
         {
             InventoryManager.Instance.CtrlInputBase(false);
+        }
+    }
+
+    public void QuickSlot(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int QuickNum = int.Parse(context.control.name);
+
+            InventoryManager.Instance.m_QuickSlot.EatItem(QuickNum - 1);
         }
     }
     #endregion
@@ -168,7 +183,10 @@ public class Player : Base
 
             if (isabledash)
             {
-                if(AttackState.isAttack || InventoryManager.m_InventoryActivated)
+                if(AttackState.isAttack 
+                    || InventoryManager.m_InventoryActivated
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_ShopActivated)
                 {
                     return;
                 }
@@ -227,7 +245,9 @@ public class Player : Base
         {
             if(context.interaction is HoldInteraction)       // 차지 공격
             {
-                if (DashState.m_IsDash || InventoryManager.m_InventoryActivated)
+                if (DashState.m_IsDash || InventoryManager.m_InventoryActivated 
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated)
                 {
                     return;
                 }
@@ -240,7 +260,10 @@ public class Player : Base
             {
                 AttackState.m_AttackName = AttackState.AttackName.ATTACK;
 
-                if (DashState.m_IsDash || InventoryManager.m_InventoryActivated)
+                if (DashState.m_IsDash 
+                    || InventoryManager.m_InventoryActivated 
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated)
                 {
                     return;
                 }
@@ -261,7 +284,10 @@ public class Player : Base
         {
             if (context.interaction is PressInteraction)       // 발차기 공격
             {
-                if (DashState.m_IsDash && AttackState.isAttack || InventoryManager.m_InventoryActivated)
+                if (DashState.m_IsDash && AttackState.isAttack 
+                    || InventoryManager.m_InventoryActivated 
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated)
                 {
                     return;
                 }
@@ -278,7 +304,10 @@ public class Player : Base
         {
             if (context.interaction is PressInteraction)       // 궁극기 공격
             {
-                if (DashState.m_IsDash && AttackState.isAttack || InventoryManager.m_InventoryActivated)
+                if (DashState.m_IsDash && AttackState.isAttack 
+                    || InventoryManager.m_InventoryActivated 
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated)
                 {
                     return;
                 }
@@ -407,12 +436,20 @@ public class Player : Base
     #region #플레이어 Status 관리
     public void IncreaseHp(int _count)
     {
+        UI_Heal healObj = UIManager.Instance.MakeWorldSpaceUI<UI_Heal>(transform);
+
         if (playerInfo.Hp + _count < playerInfo.MaxHp)
         {
+            healObj.m_Heal = _count;
             playerInfo.Hp += _count;
         }
         else
+        {
+            healObj.m_Heal = playerInfo.MaxHp - playerInfo.Hp;
             playerInfo.Hp = playerInfo.MaxHp;
+        }
+
+        StartCoroutine(BuffEffect());
     }
 
     public void IncreaseDF(int _count)
@@ -429,6 +466,13 @@ public class Player : Base
     {
         playerInfo.MaxHp += _count;
         IncreaseHp(_count);
+    }
+
+    IEnumerator BuffEffect()
+    {
+        playerInfo.m_EffectList[8].Play();
+        yield return new WaitForSeconds(1);
+        playerInfo.m_EffectList[8].Stop();
     }
     #endregion
 }

@@ -30,4 +30,22 @@ public class Defines
         Enter,
         Exit
     }
+
+    public enum ItemType
+    {
+        Helmat,
+        Shoulder,
+        Top,
+        Bottom,
+        Glove,
+        Weapon,
+    }
+
+    public enum ItemClass
+    {
+        Rair,
+        Epic,
+        Legandary,
+        Relics,
+    }
 }

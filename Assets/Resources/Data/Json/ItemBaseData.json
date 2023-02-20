@@ -8,7 +8,8 @@
       "itemPart_2": null,
       "itemShame": "40",
       "itemAddPrice": "20",
-      "itemSalePrice": "14"
+      "itemSalePrice": "14",
+      "itemAddLevel": "1"
     },
     {
       "itemId": "1001",
@@ -18,7 +19,8 @@
       "itemPart_2": null,
       "itemShame": "50",
       "itemAddPrice": "40",
-      "itemSalePrice": "28"
+      "itemSalePrice": "28",
+      "itemAddLevel": "3"
     },
     {
       "itemId": "1002",
@@ -28,7 +30,8 @@
       "itemPart_2": null,
       "itemShame": "70",
       "itemAddPrice": "75",
-      "itemSalePrice": "53"
+      "itemSalePrice": "53",
+      "itemAddLevel": "8"
     },
     {
       "itemId": "1003",
@@ -38,7 +41,129 @@
       "itemPart_2": null,
       "itemShame": "100",
       "itemAddPrice": "150",
-      "itemSalePrice": "105"
+      "itemSalePrice": "105",
+      "itemAddLevel": "12"
+    },
+    {
+      "itemId": "2000",
+      "itemName": "조화의 돌파석",
+      "itemPart_0": "Enforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "15",
+      "itemSalePrice": "1",
+      "itemAddLevel": "3"
+    },
+    {
+      "itemId": "2001",
+      "itemName": "생명의 돌파석",
+      "itemPart_0": "Enforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "25",
+      "itemSalePrice": "1",
+      "itemAddLevel": "6"
+    },
+    {
+      "itemId": "2002",
+      "itemName": "명예의 돌파석",
+      "itemPart_0": "Enforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "45",
+      "itemSalePrice": "1",
+      "itemAddLevel": "10"
+    },
+    {
+      "itemId": "2003",
+      "itemName": "하급 융화 재료",
+      "itemPart_0": "SubEnforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "10",
+      "itemSalePrice": "1",
+      "itemAddLevel": "3"
+    },
+    {
+      "itemId": "2004",
+      "itemName": "칼다르 융화 재료",
+      "itemPart_0": "SubEnforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "20",
+      "itemSalePrice": "1",
+      "itemAddLevel": "6"
+    },
+    {
+      "itemId": "2005",
+      "itemName": "최상급 오레하 융화 재료",
+      "itemPart_0": "SubEnforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "40",
+      "itemSalePrice": "1",
+      "itemAddLevel": "10"
+    },
+    {
+      "itemId": "2006",
+      "itemName": "시큼한 미완의 버섯",
+      "itemPart_0": "Cooking",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "0",
+      "itemSalePrice": "4",
+      "itemAddLevel": "1"
+    },
+    {
+      "itemId": "2007",
+      "itemName": "수줍은 들꽃",
+      "itemPart_0": "Cooking",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "0",
+      "itemSalePrice": "6",
+      "itemAddLevel": "2"
+    },
+    {
+      "itemId": "2008",
+      "itemName": "칼다르 태양 잉어",
+      "itemPart_0": "Cooking",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "0",
+      "itemSalePrice": "10",
+      "itemAddLevel": "4"
+    },
+    {
+      "itemId": "2009",
+      "itemName": "칼다르 두툼한 생고기",
+      "itemPart_0": "Cooking",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "0",
+      "itemSalePrice": "12",
+      "itemAddLevel": "5"
+    },
+    {
+      "itemId": "2010",
+      "itemName": "파닥거리는 촉수 회",
+      "itemPart_0": "Cooking",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "0",
+      "itemSalePrice": "50",
+      "itemAddLevel": "10"
     }
   ]
 }

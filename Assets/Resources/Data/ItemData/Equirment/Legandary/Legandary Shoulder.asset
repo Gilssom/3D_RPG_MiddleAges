@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92f69bd718101143a1c6985d96fd7a1, type: 3}
+  m_Name: Legandary Shoulder
+  m_EditorClassIdentifier: 
+  m_ItemId: 0
+  m_ItemName: "\uB9F9\uC138\uC758 \uC5B4\uAE68\uC7A5\uC2DD"
+  m_ItemInfo: "\uC544\uD06C\uB77C\uC2DC\uC544\uB97C \uD574\uBC29\uC2DC\uD0A4\uAE30
+    \uC704\uD574\n\uC544\uD06C\uD22C\uB8E8\uC2A4\uC640 \uB9F9\uC138\uB97C \uD558\uBA70
+    \uBC1B\uC740 \uD558\uC758\uC774\uB2E4.\n\uBB34\uC5B8\uAC00\uC758 \uD798\uC5D0
+    \uC758\uD574 \uD2B9\uBCC4\uD55C \uD6A8\uACFC\uB97C\n\uC5BB\uC744 \uC218 \uC788\uC744
+    \uAC83 \uAC19\uB2E4."
+  m_ItemTypeInfo: "\uD68D\uB4DD \uC2DC \uADC0\uC18D\r"
+  m_ItemClassInfo: "\uC804\uC124 \uC5B4\uAE68 \uBC29\uC5B4\uAD6C"
+  m_ItemType: 0
+  m_ItemClass: 4
+  m_ItemImage: {fileID: 21300000, guid: e19f4c206c4367e43a23879c5ce1cdf0, type: 3}
+  m_ItemPrefabs: {fileID: 0}
+  m_UsedType: 0
+  m_ItemPart: 1

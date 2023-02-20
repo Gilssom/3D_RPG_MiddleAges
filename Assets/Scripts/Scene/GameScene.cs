@@ -25,6 +25,5 @@ public class GameScene : MonoBehaviour
         //Mawpool.SetPosition(m_MawSpawnPoint.position);
 
         UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
-        UIManager.Instance.ShowSceneUI<UI_QuickSlotCtrl>();
     }
 }

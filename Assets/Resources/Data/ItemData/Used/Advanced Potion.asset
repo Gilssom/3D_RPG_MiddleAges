@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92f69bd718101143a1c6985d96fd7a1, type: 3}
   m_Name: Advanced Potion
   m_EditorClassIdentifier: 
+  m_ItemId: 1000
   m_ItemName: "\uD68C\uBCF5\uC57D"
   m_ItemInfo: "40 \uC758 \uC0DD\uBA85\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4."
-  m_ItemTypeInfo: "\uD68C\uBCF5 , \uAC70\uB798 \uBD88\uAC00"
+  m_ItemTypeInfo: "\uAC70\uB798, \uBD84\uD574\uBD88\uAC00"
   m_ItemClassInfo: "\uACE0\uAE09 \uC18C\uBE44\uC544\uC774\uD15C"
   m_ItemType: 1
   m_ItemClass: 1
   m_ItemImage: {fileID: 21300000, guid: 60eafba298ba8bb4a8cd619cf6835b63, type: 3}
   m_ItemPrefabs: {fileID: 0}
-  weaponType: 
+  m_UsedType: 1
+  m_ItemPart: 6

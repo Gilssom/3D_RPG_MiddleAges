@@ -73,6 +73,35 @@ namespace Data
     }
     #endregion
 
+    #region #Enforce Data
+    [Serializable]
+    public class EnforceData
+    {
+        public int itemLevel;
+        public int needMain;
+        public int needSub;
+        public int needFragments;
+        public int needGold;
+        public float success;
+    }
+
+    [Serializable]
+    public class EnforceDataBase : ILoader<int, EnforceData>
+    {
+        public List<EnforceData> EnforceData = new List<EnforceData>();
+
+        public Dictionary<int, EnforceData> MakeDict()
+        {
+            Dictionary<int, EnforceData> Dict = new Dictionary<int, EnforceData>();
+
+            foreach (EnforceData stat in EnforceData)
+                Dict.Add(stat.itemLevel, stat);
+
+            return Dict;
+        }
+    }
+    #endregion
+
     #region #Item Data Base
     [Serializable]
     public class ItemStat
@@ -84,7 +113,8 @@ namespace Data
         public string itemPart_2;
         public int itemShame;
         public int itemAddPrice;
-        public int itemSalePirce;
+        public int itemSalePrice;
+        public int itemAddLevel;
     }
 
     [Serializable]

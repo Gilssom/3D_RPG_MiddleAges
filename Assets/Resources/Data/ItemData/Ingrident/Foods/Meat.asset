@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92f69bd718101143a1c6985d96fd7a1, type: 3}
+  m_Name: Meat
+  m_EditorClassIdentifier: 
+  m_ItemId: 2009
+  m_ItemName: "\uCE7C\uB2E4\uB974 \uB450\uD23C\uD55C \uC0DD\uACE0\uAE30"
+  m_ItemInfo: "\uB9E4\uC6B0 \uC9C4\uADC0\uD55C \uBD80\uC704\uB85C\uC368 \uAC00\uACF5\uD558\uC5EC\n\uD2B9\uBCC4\uD55C
+    \uAC00\uC8FD \uB300\uC2E0 \uC0AC\uC6A9\uB418\uAC70\uB098\n\uB3C5\uD2B9\uD55C
+    \uC2DD\uC7AC\uB8CC\uB85C \uC0AC\uC6A9\uB418\uB294 \uD76C\uADC0\uC7AC\uB8CC.\r\n\uD2B9\uBCC4\uD55C
+    \uC9C0\uC5ED\uC758 \uC804\uCCB4\uC5D0\uC11C \uC0AC\uB0E5\uC744 \uD1B5\uD574\uC11C\n\uD76C\uADC0\uD558\uAC8C
+    \uC785\uC218 \uD560\uC218 \uC788\uB2E4."
+  m_ItemTypeInfo: "\uAC70\uB798, \uBD84\uD574\uBD88\uAC00"
+  m_ItemClassInfo: "\uC601\uC6C5 \uC694\uB9AC \uC7AC\uB8CC"
+  m_ItemType: 2
+  m_ItemClass: 3
+  m_ItemImage: {fileID: 21300000, guid: 94be4f80cf14d7a43a1ca25a298414a5, type: 3}
+  m_ItemPrefabs: {fileID: 7288905791690696537, guid: 3201273222d5eff4fae06f0060f7d572, type: 3}
+  m_UsedType: 0
+  m_ItemPart: 6

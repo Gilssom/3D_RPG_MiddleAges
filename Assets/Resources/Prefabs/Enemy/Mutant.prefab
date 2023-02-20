@@ -842,6 +842,7 @@ MonoBehaviour:
   m_Attack: 0
   m_Defense: 0
   m_Speed: 1
+  m_LootDrop: {fileID: 0}
   m_Type: 0
   m_name: 
   m_Id: 1000
@@ -852,6 +853,12 @@ MonoBehaviour:
   m_AttackCoolTime: 4
   m_AttackRange: 1
   m_ScanRange: 10
+  m_PotionChance: 0
+  m_PotionCount: 0
+  m_MinFragmentsCount: 0
+  m_MaxFragmentsCount: 0
+  m_RandomDropCount: 1
+  m_ItemDropRange: 0.5
   m_EffectList:
   - {fileID: 1132824114454605644}
   m_DissolveSpeed: 0.003

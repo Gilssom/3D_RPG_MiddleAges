@@ -1,0 +1,124 @@
+{
+  "EnforceData": [
+    {
+      "itemLevel": "0",
+      "needMain": "5",
+      "needSub": "7",
+      "needFragments": "15",
+      "needGold": "500",
+      "success": "100"
+    },
+    {
+      "itemLevel": "1",
+      "needMain": "7",
+      "needSub": "9",
+      "needFragments": "20",
+      "needGold": "530",
+      "success": "95"
+    },
+    {
+      "itemLevel": "2",
+      "needMain": "9",
+      "needSub": "11",
+      "needFragments": "25",
+      "needGold": "560",
+      "success": "90"
+    },
+    {
+      "itemLevel": "3",
+      "needMain": "11",
+      "needSub": "13",
+      "needFragments": "30",
+      "needGold": "590",
+      "success": "85"
+    },
+    {
+      "itemLevel": "4",
+      "needMain": "15",
+      "needSub": "20",
+      "needFragments": "35",
+      "needGold": "620",
+      "success": "80"
+    },
+    {
+      "itemLevel": "5",
+      "needMain": "7",
+      "needSub": "9",
+      "needFragments": "40",
+      "needGold": "650",
+      "success": "75"
+    },
+    {
+      "itemLevel": "6",
+      "needMain": "9",
+      "needSub": "11",
+      "needFragments": "45",
+      "needGold": "680",
+      "success": "65"
+    },
+    {
+      "itemLevel": "7",
+      "needMain": "11",
+      "needSub": "13",
+      "needFragments": "50",
+      "needGold": "710",
+      "success": "55"
+    },
+    {
+      "itemLevel": "8",
+      "needMain": "13",
+      "needSub": "15",
+      "needFragments": "55",
+      "needGold": "740",
+      "success": "45"
+    },
+    {
+      "itemLevel": "9",
+      "needMain": "20",
+      "needSub": "25",
+      "needFragments": "60",
+      "needGold": "770",
+      "success": "30"
+    },
+    {
+      "itemLevel": "10",
+      "needMain": "12",
+      "needSub": "14",
+      "needFragments": "65",
+      "needGold": "800",
+      "success": "25"
+    },
+    {
+      "itemLevel": "11",
+      "needMain": "14",
+      "needSub": "16",
+      "needFragments": "70",
+      "needGold": "830",
+      "success": "20"
+    },
+    {
+      "itemLevel": "12",
+      "needMain": "16",
+      "needSub": "18",
+      "needFragments": "75",
+      "needGold": "860",
+      "success": "15"
+    },
+    {
+      "itemLevel": "13",
+      "needMain": "18",
+      "needSub": "20",
+      "needFragments": "80",
+      "needGold": "890",
+      "success": "10"
+    },
+    {
+      "itemLevel": "14",
+      "needMain": "25",
+      "needSub": "30",
+      "needFragments": "85",
+      "needGold": "950",
+      "success": "5"
+    }
+  ]
+}

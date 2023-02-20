@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using CharacterController;
+using TinyScript;
 
 public class BossInfo : BaseInfo
 {
-    public DataManager m_DataManager { get; private set; }
-    public StateMachine stateMachine { get; private set; }
-    public Rigidbody m_Rigid { get; private set; }
-    public Animator m_Anim { get; private set; }
-    public CapsuleCollider m_CapsuleCollider { get; private set; }
-    public Material m_Material { get; private set; }
+    public DataManager m_DataManager            { get; private set; }
+    public StateMachine stateMachine            { get; private set; }
+    public Rigidbody m_Rigid                    { get; private set; }
+    public Animator m_Anim                      { get; private set; }
+    public CapsuleCollider m_CapsuleCollider    { get; private set; }
+    public Material m_Material;
+    public LootDrop m_LootDrop                  { get; private set; }
 
     #region #몬스터 부가 스탯
     [Header("몬스터 부가 스탯")]
@@ -58,6 +60,21 @@ public class BossInfo : BaseInfo
     public float AttackRange    { get { return m_AttackRange; } set { m_AttackRange = value; } }
     public float CombotRange    { get { return m_CombatRange; } set { m_CombatRange = value; } }
     public float AttackCoolTime { get { return m_AttackCoolTime; } set { m_AttackCoolTime = value; } }
+
+    [Header("몬스터 드랍 정보")]
+    [SerializeField, Tooltip("최소 강화파편 드랍 갯수")]
+    int m_MinFragmentsCount;
+    [SerializeField, Tooltip("최대 강화파편 드랍 갯수")]
+    int m_MaxFragmentsCount;
+    [SerializeField, Tooltip("아이템 드랍 횟수")]
+    int m_RandomDropCount;
+    [SerializeField, Tooltip("아이템 드랍 범위")]
+    float m_ItemDropRange;
+
+    public int MinFargCount { get { return m_MinFragmentsCount; } set { m_MinFragmentsCount = value; } }
+    public int MaxFragCount { get { return m_MaxFragmentsCount; } set { m_MaxFragmentsCount = value; } }
+    public int RandomDropCount { get { return m_RandomDropCount; } set { m_RandomDropCount = value; } }
+    public float ItemDropRange { get { return m_ItemDropRange; } set { m_ItemDropRange = value; } }
     #endregion
 
     #region #이펙트
@@ -81,6 +98,7 @@ public class BossInfo : BaseInfo
         m_CapsuleCollider = GetComponent<CapsuleCollider>();
         m_Material = GetComponentInChildren<SkinnedMeshRenderer>().material;
         m_Type = (Defines.MonsterType)m_Id;
+        m_LootDrop = ResourcesManager.Instance.Load<LootDrop>($"Data/Loot System/{m_Id}");
 
         m_CheckPlayer = false;
         m_ReadyAttack = true;
@@ -103,6 +121,9 @@ public class BossInfo : BaseInfo
         m_DropExp = stat.dropExp;
         m_DropGold = stat.dropGold;
         m_name = stat.name;
+
+        m_MinFragmentsCount = stat.minFragments;
+        m_MaxFragmentsCount = stat.maxFragments;
     }
 
     void Update()

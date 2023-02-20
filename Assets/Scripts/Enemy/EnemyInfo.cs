@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using CharacterController;
+using TinyScript;
 
 public class EnemyInfo : BaseInfo
 {
@@ -12,7 +13,7 @@ public class EnemyInfo : BaseInfo
     public Animator m_Anim                      { get; private set; }
     public CapsuleCollider m_CapsuleCollider    { get; private set; }
     public Material m_Material                  { get; private set; }
-    public Item m_DropPotion                      { get; private set; }
+    public LootDrop m_LootDrop                  { get; private set; }
 
     #region #몬스터 부가 스탯
     [Header("몬스터 부가 스탯")]
@@ -60,11 +61,17 @@ public class EnemyInfo : BaseInfo
     int m_MinFragmentsCount;
     [SerializeField, Tooltip("최대 강화파편 드랍 갯수")]
     int m_MaxFragmentsCount;
+    [SerializeField, Tooltip("아이템 드랍 횟수")]
+    int m_RandomDropCount;
+    [SerializeField, Tooltip("아이템 드랍 범위")]
+    float m_ItemDropRange;
 
     public float PotionChance { get { return m_PotionChance; } set { m_PotionChance = value; } }
     public int PotionCount  { get { return m_PotionCount; } set { m_PotionCount = value; } }
     public int MinFargCount { get { return m_MinFragmentsCount; } set { m_MinFragmentsCount = value; } }
     public int MaxFragCount { get { return m_MaxFragmentsCount; } set { m_MaxFragmentsCount = value; } }
+    public int RandomDropCount { get { return m_RandomDropCount; } set { m_RandomDropCount = value; } }
+    public float ItemDropRange { get { return m_ItemDropRange; } set { m_ItemDropRange = value; } }
     #endregion
 
     #region #이펙트
@@ -85,8 +92,8 @@ public class EnemyInfo : BaseInfo
         m_Anim = GetComponent<Animator>();
         m_CapsuleCollider = GetComponent<CapsuleCollider>();
         m_Material = GetComponentInChildren<SkinnedMeshRenderer>().material;
-        //m_DropPotion = ResourcesManager.Instance.Load<Item>("Data/ItemData/Used/HpPotion");
         m_Type = (Defines.MonsterType)m_Id;
+        m_LootDrop = ResourcesManager.Instance.Load<LootDrop>($"Data/Loot System/{m_Id}");
 
         m_CheckPlayer = false;
         m_ReadyAttack = true;

@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        if (InventoryManager.m_InventoryActivated)
+        if (InventoryManager.m_InventoryActivated || InventoryManager.m_ShopActivated || InventoryManager.m_EnforceActivated)
             m_FreeLook.enabled = false;
         else
             m_FreeLook.enabled = true;

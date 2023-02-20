@@ -79,6 +79,21 @@ public class PlayerInfo : BaseInfo
     public float m_DashCoolTime;
     #endregion
 
+    #region 플레이어 방어구 및 무기 강화 수치
+    [SerializeField, Tooltip("머리장식 강화 단계")]
+    public int m_HelmatLevel;
+    [SerializeField, Tooltip("어깨 강화 단계")]
+    public int m_ShoulderLevel;
+    [SerializeField, Tooltip("상의 강화 단계")]
+    public int m_TopLevel;
+    [SerializeField, Tooltip("하의 강화 단계")]
+    public int m_BottomLevel;
+    [SerializeField, Tooltip("장갑 강화 단계")]
+    public int m_GloveLevel;
+    [SerializeField, Tooltip("무기 강화 단계")]
+    public int m_WeaponLevel;
+    #endregion
+
     #region #Sciprtable Object Data
     [Header("이펙트 데이터")]
     public EffectData m_EffectData;
