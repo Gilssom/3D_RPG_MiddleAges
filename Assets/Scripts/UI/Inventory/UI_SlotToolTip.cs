@@ -23,6 +23,7 @@ public class UI_SlotToolTip : UI_Popup
         UI_ItemClass,
         UI_ItemType,
         UI_ItemInfo,
+        UI_EnforceInfo,
         UI_UsedInfo,
         UI_ItemLevel,
     }
@@ -151,11 +152,50 @@ public class UI_SlotToolTip : UI_Popup
         }
 
         if (item.m_ItemType == Item.ItemType.Equipment)
+        {
+            switch (item.m_ItemPart)
+            {
+                case Item.ItemParts.Helmat:
+                    GetText((int)Texts.UI_EnforceInfo).text
+                        = $"추가 생명력 + {EnforceStatTotal.Instance.AddHp_0}\n" +
+                        $"추가 방어력 + {EnforceStatTotal.Instance.AddDF_0}";
+                    break;
+                case Item.ItemParts.Shoulder:
+                    GetText((int)Texts.UI_EnforceInfo).text
+                        = $"추가 방어력 + {EnforceStatTotal.Instance.AddDF_1}\n" +
+                        $"추가 크리티컬확률 + {EnforceStatTotal.Instance.AddCriChance_1}";
+                    break;
+                case Item.ItemParts.Top:
+                    GetText((int)Texts.UI_EnforceInfo).text
+                        = $"추가 생명력 + {EnforceStatTotal.Instance.AddHp_2}";
+                    break;
+                case Item.ItemParts.Bottom:
+                    GetText((int)Texts.UI_EnforceInfo).text
+                        = $"추가 방어력 + {EnforceStatTotal.Instance.AddDF_3}";
+                    break;
+                case Item.ItemParts.Glove:
+                    GetText((int)Texts.UI_EnforceInfo).text
+                        = $"추가 크리티컬확률 + {EnforceStatTotal.Instance.AddCriChance_4}\n" +
+                        $"추가 크리티컬 데미지 + {EnforceStatTotal.Instance.AddCriDamage_4}";
+                    break;
+                case Item.ItemParts.Weapon:
+                    GetText((int)Texts.UI_EnforceInfo).text
+                        = $"추가 공격력 + {EnforceStatTotal.Instance.AddAttack_5}";
+                    break;
+            }
+
             GetText((int)Texts.UI_UsedInfo).text = "우클릭 - 장착";
+        }
         else if (item.m_ItemType == Item.ItemType.Used)
+        {
+            GetText((int)Texts.UI_EnforceInfo).text = "";
             GetText((int)Texts.UI_UsedInfo).text = "우클릭 - 사용";
+        }
         else
+        {
+            GetText((int)Texts.UI_EnforceInfo).text = "";
             GetText((int)Texts.UI_UsedInfo).text = "";
+        }
 
         if (itemLevel == 0)
             GetText((int)Texts.UI_ItemLevel).text = "";

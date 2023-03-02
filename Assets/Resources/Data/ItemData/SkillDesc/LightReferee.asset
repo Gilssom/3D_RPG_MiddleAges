@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92f69bd718101143a1c6985d96fd7a1, type: 3}
+  m_Name: LightReferee
+  m_EditorClassIdentifier: 
+  m_ItemId: 9000
+  m_ItemName: "\uBE5B\uC758 \uC2EC\uD310"
+  m_ItemInfo: "\uC9C8\uC11C\uC758 \uC601\uC5ED\uC5D0 \uD63C\uB3C8\uC744 \uAC00\uB4DD\uCC28\uAC8C
+    \uB9CC\uB4E0\n\uC774\uB4E4\uC5D0\uAC8C \uB0B4\uB9AC\uB294 \uC2E0\uC758 \uBD84\uB178\uB85C,\n\uBB34\uC218\uD788
+    \uB9CE\uC740 \uD654\uC0B4\uB85C \uC2EC\uD310\uC744 \uB0B4\uB9B0\uB2E4."
+  m_ItemTypeInfo: "\uC81C\uD55C \uB808\uBCA8 12\n\uC2A4\uD0AC \uCFED\uD0C0\uC784
+    20\uCD08"
+  m_ItemClassInfo: "\uACF5\uC6A9 \uACF5\uACA9 \uC2A4\uD0AC"
+  m_ItemType: 3
+  m_ItemClass: 0
+  m_ItemImage: {fileID: 21300000, guid: 84651eb161ffe22a8a47044a96aa8ea9, type: 3}
+  m_ItemPrefabs: {fileID: 0}
+  m_UsedType: 0
+  m_ItemPart: 6
+  m_UsedLevel: 12

@@ -15,6 +15,7 @@ namespace CharacterController
         protected override void Init()
         {
             m_CheckTime = new WaitForSeconds(m_HitCheckTime);
+            m_BladeCheckTime = new WaitForSeconds(m_BladeHitCheckTime);
             playerInfo = GetComponent<PlayerInfo>();
         }
 
@@ -47,6 +48,28 @@ namespace CharacterController
         protected override void TestAttackEffect(int AttackNumber)
         {
             playerInfo.m_EffectList[AttackNumber].Play();
+        }
+
+        public IEnumerator BladeSkillAttack()
+        {
+            int AttackBlade = 0;
+
+            while (AttackBlade < 4)
+            {
+                m_BladeHitArea.enabled = true;
+                Debug.LogWarning("Blade Test");
+                yield return m_BladeCheckTime;
+                m_BladeHitArea.enabled = false;
+                AttackBlade++;
+
+                if (AttackBlade > 4)
+                    break;
+            }         
+        }
+
+        public void FinishSkill()
+        {
+            playerInfo.stateMachine.ChangeState(StateName.MOVE);
         }
     }
 }

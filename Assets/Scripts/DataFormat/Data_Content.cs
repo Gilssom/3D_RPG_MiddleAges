@@ -133,4 +133,35 @@ namespace Data
         }
     }
     #endregion
+
+    #region #Enforce Stat Data Base
+    [Serializable]
+    public class EnforceStatData
+    {
+        public int itemLevel;
+        public int minMaxHp;
+        public int maxMaxHp;
+        public int minDefense;
+        public int maxDefense;
+        public int criChance;
+        public float criDamage;
+        public int attack;
+    }
+
+    [Serializable]
+    public class EnforceStatDataBase : ILoader<int, EnforceStatData>
+    {
+        public List<EnforceStatData> EnforceStatData = new List<EnforceStatData>();
+
+        public Dictionary<int, EnforceStatData> MakeDict()
+        {
+            Dictionary<int, EnforceStatData> Dict = new Dictionary<int, EnforceStatData>();
+
+            foreach (EnforceStatData stat in EnforceStatData)
+                Dict.Add(stat.itemLevel, stat);
+
+            return Dict;
+        }
+    }
+    #endregion
 }

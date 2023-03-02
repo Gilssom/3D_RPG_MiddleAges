@@ -67,6 +67,7 @@ public class WeaponManager
                 m_Weapon.gameObject.SetActive(false);
                 m_WeaponObject.SetActive(true);
                 m_Weapon = m_Weapons[i].GetComponent<BaseWeapon>();
+                m_Weapon.SetEffect();
                 BaseInfo.playerInfo.m_Anim.runtimeAnimatorController = m_Weapon.m_WeaponAnimator;
                 break;
             }

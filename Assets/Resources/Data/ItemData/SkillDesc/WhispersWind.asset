@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92f69bd718101143a1c6985d96fd7a1, type: 3}
+  m_Name: WhispersWind
+  m_EditorClassIdentifier: 
+  m_ItemId: 9000
+  m_ItemName: "\uBC14\uB78C\uC758 \uC18D\uC0AD\uC784"
+  m_ItemInfo: "\uBBF8\uC9C0\uC758 \uACF5\uAC04, \uD050\uBE0C\uC758 \uD798\uC744 \uBE4C\uB824
+    \uCC28\uC6D0 \uACF5\uAC04 \uC774\uB3D9\uC5D0 \uC900\uD55C \uB2A5\uB825\uC744
+    \uAC16\uAC8C \uB41C\uB2E4.\n\uC77C\uC815 \uC2DC\uAC04 \uC720\uD2F8\uC131 \uB2A5\uB825\uCE58\uB97C
+    \uC62C\uB824\uC900\uB2E4."
+  m_ItemTypeInfo: "\uC81C\uD55C \uB808\uBCA8 10\n\uC2A4\uD0AC \uCFE8\uD0C0\uC784
+    12\uCD08"
+  m_ItemClassInfo: "\uACF5\uC6A9 \uC720\uD2F8 \uC2A4\uD0AC"
+  m_ItemType: 3
+  m_ItemClass: 0
+  m_ItemImage: {fileID: 21300000, guid: bc0576f40419bc643bb177a31ad22ef3, type: 3}
+  m_ItemPrefabs: {fileID: 0}
+  m_UsedType: 0
+  m_ItemPart: 6
+  m_UsedLevel: 10

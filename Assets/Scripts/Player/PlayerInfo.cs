@@ -13,6 +13,7 @@ public class PlayerInfo : BaseInfo
     public Animator m_Anim                   { get; private set; }
     public CapsuleCollider m_CapsuleCollider { get; private set; }
     public UI_Inven m_UIInven                { get; private set; }
+    public Player m_Player;
 
     [SerializeField]
     private Transform m_RightHand;
@@ -32,8 +33,8 @@ public class PlayerInfo : BaseInfo
     [SerializeField]
     int m_Fragments;
 
-    public int CriticalChance { get { return m_CriticalChance; } }
-    public float CriticalDamage { get { return m_CriticalDamage; } }
+    public int CriticalChance { get { return m_CriticalChance; } set { m_CriticalChance = value; } }
+    public float CriticalDamage { get { return m_CriticalDamage; } set { m_CriticalDamage = value; } }
     public int DashCount { get { return m_DashCount; } }
     public int Exp 
     { 
@@ -80,6 +81,7 @@ public class PlayerInfo : BaseInfo
     #endregion
 
     #region 플레이어 방어구 및 무기 강화 수치
+    [Header("캐릭터 강화 수치")]
     [SerializeField, Tooltip("머리장식 강화 단계")]
     public int m_HelmatLevel;
     [SerializeField, Tooltip("어깨 강화 단계")]
@@ -94,16 +96,34 @@ public class PlayerInfo : BaseInfo
     public int m_WeaponLevel;
     #endregion
 
+    #region 플레이어 능력치 강화 수치
+    [Header("캐릭터 능력치 강화 수치")]
+    [SerializeField, Tooltip("최대 체력 추가 능력치")]
+    public int m_Plus_MaxHp;
+    [SerializeField, Tooltip("생명력 재생 능력치")]
+    public int m_Plus_IncreaseHp;
+    [SerializeField, Tooltip("방어력 추가 능력치")]
+    public int m_Plus_Defense;
+    [SerializeField, Tooltip("크티리컬 확률 추가 능력치")]
+    public int m_Plus_CriChance;
+    [SerializeField, Tooltip("크리티컬 데미지 추가 능력치")]
+    public float m_Plus_CriDamage;
+    [SerializeField, Tooltip("공격력 추가 능력치")]
+    public int m_Plus_Attack;
+    #endregion
+
     #region #Sciprtable Object Data
     [Header("이펙트 데이터")]
     public EffectData m_EffectData;
     [Header("이펙트 리스트")]
     public VisualEffect[] m_EffectList;
+    public GameObject[] m_EffectList_Obj;
     #endregion
 
     protected override void Init()
     {
         playerInfo = this;
+        m_Player = GetComponent<Player>();
         Debug.Log($"{name} - {playerInfo}");
         m_UIInven = new UI_Inven();
         m_DataManager = new DataManager();
@@ -124,6 +144,7 @@ public class PlayerInfo : BaseInfo
         m_Exp = 0;
         m_Gold = 0;
         m_Fragments = 0;
+        m_Plus_IncreaseHp = 5;
         SetStat(m_Level);
     }
 
@@ -132,12 +153,17 @@ public class PlayerInfo : BaseInfo
         Dictionary<int, Data.Stat> dict = m_DataManager.StatDict;
         Data.Stat stat = dict[level];
 
-        m_Hp = stat.maxHp;
-        m_MaxHp = stat.maxHp;
-        m_Attack = stat.attack;
-        m_CriticalChance = stat.criticalchance;
-        m_CriticalDamage = stat.criticaldamage;
-        m_Defense = stat.defense;
+        m_Hp += stat.maxHp;
+        m_MaxHp += stat.maxHp;
+        m_Attack += stat.attack;
+        m_CriticalChance += stat.criticalchance;
+        m_CriticalDamage += stat.criticaldamage;
+        m_Defense += stat.defense;
+
+        foreach (NMPassiveSkill skill in SkillManager.Instance.NMPassiveSkills)
+        {
+            skill.SkillExecute();
+        }
     }
 
     void Update()
@@ -158,9 +184,8 @@ public class PlayerInfo : BaseInfo
 
     protected override void InitStateMachine()
     {
-        Player playerCtrl = GetComponent<Player>();
-        stateMachine = new StateMachine(StateName.MOVE, new MoveState(playerCtrl));
-        stateMachine.AddState(StateName.DASH, new DashState(playerCtrl, m_DashPower, m_DashTetanyTime, m_DashCoolTime));
-        stateMachine.AddState(StateName.ATTACK, new AttackState(playerCtrl));
+        stateMachine = new StateMachine(StateName.MOVE, new MoveState(m_Player));
+        stateMachine.AddState(StateName.DASH, new DashState(m_Player, m_DashPower, m_DashTetanyTime, m_DashCoolTime));
+        stateMachine.AddState(StateName.ATTACK, new AttackState(m_Player));
     }
 }

@@ -1,0 +1,164 @@
+{
+  "EnforceStatData": [
+    {
+      "itemLevel": "0",
+      "minMaxHp": "10",
+      "maxMaxHp": "20",
+      "minDefense": "0",
+      "maxDefense": "1",
+      "criChance": "0",
+      "criDamage": "10",
+      "attack": "5"
+    },
+    {
+      "itemLevel": "1",
+      "minMaxHp": "2",
+      "maxMaxHp": "3",
+      "minDefense": "0",
+      "maxDefense": "0",
+      "criChance": "0",
+      "criDamage": "0",
+      "attack": "2"
+    },
+    {
+      "itemLevel": "2",
+      "minMaxHp": "2",
+      "maxMaxHp": "3",
+      "minDefense": "0",
+      "maxDefense": "1",
+      "criChance": "0",
+      "criDamage": "0",
+      "attack": "2"
+    },
+    {
+      "itemLevel": "3",
+      "minMaxHp": "2",
+      "maxMaxHp": "3",
+      "minDefense": "0",
+      "maxDefense": "0",
+      "criChance": "1",
+      "criDamage": "0",
+      "attack": "2"
+    },
+    {
+      "itemLevel": "4",
+      "minMaxHp": "2",
+      "maxMaxHp": "3",
+      "minDefense": "0",
+      "maxDefense": "0",
+      "criChance": "0",
+      "criDamage": "0",
+      "attack": "2"
+    },
+    {
+      "itemLevel": "5",
+      "minMaxHp": "4",
+      "maxMaxHp": "5",
+      "minDefense": "0",
+      "maxDefense": "1",
+      "criChance": "1",
+      "criDamage": "5",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "6",
+      "minMaxHp": "4",
+      "maxMaxHp": "5",
+      "minDefense": "0",
+      "maxDefense": "0",
+      "criChance": "0",
+      "criDamage": "0",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "7",
+      "minMaxHp": "4",
+      "maxMaxHp": "5",
+      "minDefense": "0",
+      "maxDefense": "0",
+      "criChance": "0",
+      "criDamage": "0",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "8",
+      "minMaxHp": "6",
+      "maxMaxHp": "5",
+      "minDefense": "0",
+      "maxDefense": "0",
+      "criChance": "1",
+      "criDamage": "0",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "9",
+      "minMaxHp": "6",
+      "maxMaxHp": "5",
+      "minDefense": "0",
+      "maxDefense": "1",
+      "criChance": "0",
+      "criDamage": "0",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "10",
+      "minMaxHp": "12",
+      "maxMaxHp": "13",
+      "minDefense": "1",
+      "maxDefense": "0",
+      "criChance": "2",
+      "criDamage": "5",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "11",
+      "minMaxHp": "12",
+      "maxMaxHp": "13",
+      "minDefense": "0",
+      "maxDefense": "1",
+      "criChance": "0",
+      "criDamage": "0",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "12",
+      "minMaxHp": "12",
+      "maxMaxHp": "13",
+      "minDefense": "1",
+      "maxDefense": "0",
+      "criChance": "0",
+      "criDamage": "5",
+      "attack": "3"
+    },
+    {
+      "itemLevel": "13",
+      "minMaxHp": "12",
+      "maxMaxHp": "13",
+      "minDefense": "0",
+      "maxDefense": "1",
+      "criChance": "2",
+      "criDamage": "0",
+      "attack": "4"
+    },
+    {
+      "itemLevel": "14",
+      "minMaxHp": "12",
+      "maxMaxHp": "13",
+      "minDefense": "0",
+      "maxDefense": "1",
+      "criChance": "0",
+      "criDamage": "5",
+      "attack": "4"
+    },
+    {
+      "itemLevel": "15",
+      "minMaxHp": "35",
+      "maxMaxHp": "58",
+      "minDefense": "1",
+      "maxDefense": "3",
+      "criChance": "6",
+      "criDamage": "20",
+      "attack": "10"
+    }
+  ]
+}

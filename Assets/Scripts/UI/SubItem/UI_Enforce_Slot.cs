@@ -87,4 +87,20 @@ public class UI_Enforce_Slot : UI_Info_Slot
     {
         m_EnforceUI.SelectItem(m_Item, m_ItemName.color, m_EnforceLevel);
     }
+
+    public void SetItemStat()
+    {
+        m_EnforceUI.SetEnforceStat(m_EnforceLevel, m_ItemEffectType);
+    }
+
+    public void SetItemStat(Item.ItemParts itemType)
+    {
+        if (itemType.ToString() != m_ItemEffectType.ToString())
+            return;
+
+        m_EnforceUI.SetEnforceStat(m_EnforceLevel, m_ItemEffectType);
+
+        if (m_EnforceLevel == 15)
+            GetButton((int)Buttons.UI_Enforce_Slot).interactable = false;
+    }
 }

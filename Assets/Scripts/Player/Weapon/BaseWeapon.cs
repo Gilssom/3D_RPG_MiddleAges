@@ -30,6 +30,9 @@ public abstract class BaseWeapon : MonoBehaviour
 
     [Header("재공격 가능 시간")]
     [SerializeField] protected float m_CanReInputTime;
+
+    [Header("강화 수치에 따른 무기 이펙트")]
+    [SerializeField] protected EffectData m_Effect;
     #endregion
 
     public void SetWeaponData(string name, float attackDamage, float attackSpeed, float attackRange)
@@ -40,10 +43,38 @@ public abstract class BaseWeapon : MonoBehaviour
         this.attackRange = attackRange;
     }
 
+    public void SetEffect()
+    {
+        if (BaseInfo.playerInfo.m_WeaponLevel < 10)
+            return;
+
+        if (BaseInfo.playerInfo.m_WeaponLevel > 10)
+        {
+            Transform[] childList = gameObject.GetComponentsInChildren<Transform>();
+
+            if (childList != null)
+            {
+                for (int i = 0; i < childList.Length; i++)
+                {
+                    if (childList[i] != transform)
+                    {
+                        ResourcesManager.Instance.Destroy(childList[i].gameObject);
+                    }
+                }
+            }
+        }
+
+        Instantiate(m_Effect.m_EffectList[BaseInfo.playerInfo.m_WeaponLevel - 10].m_EffectPrefab, this.transform);
+    }
+
     public abstract void Attack(BaseState state);           // 기본 공격
     public abstract void KickAttack(BaseState state);       // 대시 공격
     public abstract void DashAttack(BaseState state);       // 대시 공격
     public abstract void ChargingAttack(BaseState state);   // 차지 공격
     public abstract void Skill(BaseState state);            // 스킬
-    public abstract void UltimateSkill(BaseState state);    // 궁극기
+    public abstract void UltimateSkill(BaseState state);    // 고대의 창
+    public abstract void BladeSkill(BaseState state);       // 임페일 블레이드
+    public abstract void DevilSlashSkill(BaseState state);       // 데빌 슬래쉬 
+    public abstract void LightRefereeSkill(BaseState state);       // 빛의 심판
+    public abstract void AngelSkill(BaseState state);       // 천사의 포옹
 }

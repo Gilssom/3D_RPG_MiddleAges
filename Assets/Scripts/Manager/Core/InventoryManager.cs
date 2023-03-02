@@ -10,6 +10,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public static bool m_PlayerInfoActivated = false;
     public static bool m_ShopActivated = false;
     public static bool m_EnforceActivated = false;
+    public static bool m_SkillActivated = false;
 
     [SerializeField]
     public UI_Inven m_InvenBase;
@@ -21,6 +22,8 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public UI_Shop m_PotionShop;
     public UI_Shop m_EnforceShop;
     public UI_Enforce m_EnforceSystem;
+    public UI_Skill m_SkillSystem;
+    public SkillKeyMap m_SkillQuickSlot;
 
     public GameObject[] m_Swords;
 
@@ -38,10 +41,12 @@ public class InventoryManager : SingletomManager<InventoryManager>
         GameObject EnforceShop = ResourcesManager.Instance.Instantiate("UI/Popup/UI_EnforceShop", gameObject.transform);
         GameObject PlayerInfo = ResourcesManager.Instance.Instantiate("UI/Popup/UI_PlayerInfo", gameObject.transform);
         GameObject EnforceSystem = ResourcesManager.Instance.Instantiate("UI/Popup/UI_Enforce", gameObject.transform);
+        GameObject SkillSystem = ResourcesManager.Instance.Instantiate("UI/Popup/UI_Skill", gameObject.transform);
         GameObject InputField = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ThrowItem", gameObject.transform);
         GameObject ToolTip = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ToolTip", gameObject.transform);
 
         m_QuickSlot = UIManager.Instance.ShowSceneUI<UI_QuickSlotCtrl>();
+        m_SkillQuickSlot = UIManager.Instance.ShowSceneUI<SkillKeyMap>();
         m_InvenBase = Inven.GetComponent<UI_Inven>();
         m_InputNumber = InputField.GetComponent<UI_InputNumber>();
         m_ToopTip = ToolTip.GetComponent<UI_SlotToolTip>();
@@ -49,6 +54,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
         m_PotionShop = PotionShop.GetComponent<UI_Shop>();
         m_EnforceShop = EnforceShop.GetComponent<UI_Shop>();
         m_EnforceSystem = EnforceSystem.GetComponent<UI_Enforce>();
+        m_SkillSystem = SkillSystem.GetComponent<UI_Skill>();
 
         for (int i = 0; i < m_Swords.Length; i++)
         {
@@ -152,6 +158,25 @@ public class InventoryManager : SingletomManager<InventoryManager>
         else
         {
             m_EnforceSystem.CloseEnforce();
+            HideToolTip();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void TryOpenSkillSystem()
+    {
+        m_SkillActivated = !m_SkillActivated;
+
+        if (m_SkillActivated)
+        {
+            m_SkillSystem.OpenEnforce();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            m_SkillSystem.CloseEnforce();
             HideToolTip();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

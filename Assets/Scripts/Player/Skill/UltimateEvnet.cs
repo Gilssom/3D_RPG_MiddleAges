@@ -68,11 +68,4 @@ public class UltimateEvnet : MonoBehaviour
 
         ResourcesManager.Instance.Destroy(gameObject);
     }
-
-    private void OnDisable()
-    {
-        Debug.Log("Ultimate Skill Off");
-        BaseInfo.playerInfo.m_Anim.SetBool("isUltiSkill", false);
-        BaseInfo.playerInfo.stateMachine.ChangeState(StateName.MOVE);
-    } 
 }

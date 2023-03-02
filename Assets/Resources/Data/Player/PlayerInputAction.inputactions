@@ -70,14 +70,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "UltimateSkill",
-                    "type": "Button",
-                    "id": "7c90708a-16b1-4a8b-9433-a299c80be2ca",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "ChangeWeapon",
                     "type": "Button",
                     "id": "382ff798-b751-49f7-b4d2-e0960f6d0bbe",
@@ -113,6 +105,22 @@
                     "name": "PlayerInfoOpen",
                     "type": "Button",
                     "id": "3083138b-8b82-47ea-8f2b-a71269e5b6d0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SkillOpen",
+                    "type": "Button",
+                    "id": "9f283662-f607-44eb-a333-ac15b8db4ef9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interaction",
+                    "type": "Button",
+                    "id": "5d05984f-506f-4ee3-b8eb-bedf81560763",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -242,17 +250,6 @@
                 },
                 {
                     "name": "",
-                    "id": "48bc7360-1d88-4e58-ac2e-f9259c3b9bba",
-                    "path": "<Keyboard>/q",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "UltimateSkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d37fafb2-cd56-4425-bea2-7ddcca69e28f",
                     "path": "<Keyboard>/r",
                     "interactions": "Press(behavior=1)",
@@ -341,6 +338,50 @@
                 },
                 {
                     "name": "",
+                    "id": "2a45ff78-8764-4fbb-a3d2-c432a4164260",
+                    "path": "<Keyboard>/5",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0f9379f7-4470-4f41-b912-16cf4e94f3c5",
+                    "path": "<Keyboard>/6",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72fac91f-d55f-4ebd-9b46-5898df48ac81",
+                    "path": "<Keyboard>/7",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3c641fc-afa7-4451-b391-b460673a5850",
+                    "path": "<Keyboard>/8",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "QuickSlot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c3337f86-8728-4403-991a-04a9e09a8a89",
                     "path": "<Keyboard>/p",
                     "interactions": "Press(behavior=1)",
@@ -349,31 +390,26 @@
                     "action": "PlayerInfoOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "New action map",
-            "id": "21f81dae-fe2e-4a75-8959-91216d91b9bb",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "16c0ce89-d7fb-436e-af4a-ce5780ca6234",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "a07cadf4-f891-4a51-a533-7d09fa4977c2",
-                    "path": "",
-                    "interactions": "",
+                    "id": "27552acd-83be-40c2-baee-a2ca55f9154d",
+                    "path": "<Keyboard>/k",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "PC",
+                    "action": "SkillOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3282414d-a329-4e3b-bb53-5030d7f28555",
+                    "path": "<Keyboard>/g",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

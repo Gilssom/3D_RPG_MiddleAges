@@ -12,6 +12,10 @@ namespace CharacterController
             CHARGE,
             KICK,
             ULTIMATE,
+            Blade,
+            Slash,
+            Referee,
+            Angel,
         }
 
         public static AttackName m_AttackName;
@@ -36,6 +40,18 @@ namespace CharacterController
                     break;
                 case AttackName.ULTIMATE:
                     m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.UltimateSkill(this);
+                    break;
+                case AttackName.Blade:
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.BladeSkill(this);
+                    break;
+                case AttackName.Slash:
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.DevilSlashSkill(this);
+                    break;
+                case AttackName.Referee:
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.LightRefereeSkill(this);
+                    break;
+                case AttackName.Angel:
+                    m_PlayerController.playerInfo.m_WeaponManager.m_Weapon?.AngelSkill(this);
                     break;
             }
         }

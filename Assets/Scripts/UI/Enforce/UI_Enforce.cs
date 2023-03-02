@@ -4,6 +4,26 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class EnforceStatTotal : SingletomManager<EnforceStatTotal>
+{
+    [Header("머리 방어구 능력치 상승량")]
+    public int AddHp_0;
+    public int AddDF_0;
+    [Header("어깨장식 능력치 상승량")]
+    public int AddDF_1;
+    public int AddCriChance_1;
+    [Header("상의 능력치 상승량")]
+    public int AddHp_2;
+    [Header("하의 능력치 상승량")]
+    public int AddDF_3;
+    [Header("장갑 능력치 상승량")]
+    public int AddCriChance_4;
+    public float AddCriDamage_4;
+    [Header("무기 능력치 상승량")]
+    public int AddAttack_5;
+}
+
 public class UI_Enforce : UI_Popup
 {
     public DataManager m_DataManager { get; private set; }
@@ -19,6 +39,7 @@ public class UI_Enforce : UI_Popup
     enum Buttons
     {
         UI_EnforceButton,
+        UI_TestButton,
         UI_OkButton,
     }
 
@@ -68,13 +89,84 @@ public class UI_Enforce : UI_Popup
         GameObject gridPanel = Get<GameObject>((int)GameObjects.UI_Info_GridArea);
         m_Slots = gridPanel.GetComponentsInChildren<UI_Enforce_Slot>();
 
+        m_DataManager.Init("EnforceData");
+        m_DataManager.Init("EnforceStatData");
+
+        for (int i = 0; i < m_Slots.Length; i++)
+        {
+            m_Slots[i].SetItemStat();
+        }
+
         GetButton((int)Buttons.UI_EnforceButton).gameObject.BindEvent(EnforceButton);
         GetButton((int)Buttons.UI_OkButton).gameObject.BindEvent(EnforceCheckButton);
+        GetButton((int)Buttons.UI_TestButton).gameObject.BindEvent(TestEnforceSuccess);
         GetObject((int)GameObjects.EnforceInfo).SetActive(false);
         GetObject((int)GameObjects.UI_Shop_BackGround).SetActive(false);
         GetObject((int)GameObjects.UI_CheckBase).SetActive(false);
+    }
 
-        m_DataManager.Init("EnforceData");
+    public void SetEnforceStat(int enforceLevel, Defines.ItemType itemType)
+    {
+        Dictionary<int, Data.EnforceStatData> dict = m_DataManager.EnforceStatDict;
+        Data.EnforceStatData stat = dict[enforceLevel];
+        PlayerInfo playerStat = BaseInfo.playerInfo;
+
+        switch (itemType)
+        {
+            case Defines.ItemType.Helmat:
+                playerStat.m_Plus_MaxHp += stat.minMaxHp;
+                playerStat.m_Plus_Defense += stat.minDefense;
+
+                BaseInfo.playerInfo.MaxHp += stat.minMaxHp;
+                BaseInfo.playerInfo.Hp += stat.minMaxHp;
+                BaseInfo.playerInfo .Defense+= stat.minDefense;
+
+                EnforceStatTotal.Instance.AddHp_0 += stat.minMaxHp;
+                EnforceStatTotal.Instance.AddDF_0 += stat.minDefense;
+                break;
+            case Defines.ItemType.Shoulder:
+                playerStat.m_Plus_Defense += stat.minDefense;
+                playerStat.m_Plus_CriChance += stat.criChance;
+
+                BaseInfo.playerInfo.Defense += stat.minDefense;
+                BaseInfo.playerInfo.CriticalChance += stat.criChance;
+
+                EnforceStatTotal.Instance.AddDF_1 += stat.minDefense;
+                EnforceStatTotal.Instance.AddCriChance_1 += stat.criChance;
+                break;
+            case Defines.ItemType.Top:
+                playerStat.m_Plus_MaxHp += stat.maxMaxHp;
+
+                BaseInfo.playerInfo.MaxHp += stat.maxMaxHp;
+                BaseInfo.playerInfo.Hp += stat.maxMaxHp;
+
+                EnforceStatTotal.Instance.AddHp_2 += stat.maxMaxHp;
+                break;
+            case Defines.ItemType.Bottom:
+                playerStat.m_Plus_Defense += stat.maxDefense;
+
+                BaseInfo.playerInfo.Defense += stat.maxDefense;
+
+                EnforceStatTotal.Instance.AddDF_3 += stat.maxDefense;
+                break;
+            case Defines.ItemType.Glove:
+                playerStat.m_Plus_CriChance += stat.criChance;
+                playerStat.m_Plus_CriDamage += stat.criDamage;
+
+                BaseInfo.playerInfo.CriticalChance += stat.criChance;
+                BaseInfo.playerInfo.CriticalDamage += stat.criDamage;
+
+                EnforceStatTotal.Instance.AddCriChance_4 += stat.criChance;
+                EnforceStatTotal.Instance.AddCriDamage_4 += stat.criDamage;
+                break;
+            case Defines.ItemType.Weapon:
+                playerStat.m_Plus_Attack += stat.attack;
+
+                BaseInfo.playerInfo.Attack += stat.attack;
+
+                EnforceStatTotal.Instance.AddAttack_5 += stat.attack;
+                break;
+        }
     }
 
     public void OpenEnforce()
@@ -94,6 +186,7 @@ public class UI_Enforce : UI_Popup
 
         if (CheckItemCount())
         {
+            UseItem();
             float Chance = Random.Range(0, 100);
             if (Chance < m_Success)
             {
@@ -124,16 +217,6 @@ public class UI_Enforce : UI_Popup
         return true;
     }
 
-    void UseItem()
-    {
-        for (int i = 0; i < m_NeedItem.Length; i++)
-        {
-            InventoryManager.Instance.m_InvenBase.SetItemCount(m_NeedItem[i].m_ItemName, m_NeedCount[i]);
-        }
-        BaseInfo.playerInfo.Gold -= m_NeedGold;
-        BaseInfo.playerInfo.Fragments -= m_NeedFragCount;
-    }
-
     void EnforceSuccess()
     {
         switch (m_Item.m_ItemPart)
@@ -158,16 +241,26 @@ public class UI_Enforce : UI_Popup
                 break;
         }
 
-        UseItem();
-    }
-
-    void EnforceCheckButton(PointerEventData data)
-    {
         for (int i = 0; i < m_Slots.Length; i++)
         {
             m_Slots[i].SetRefresh();
         }
 
+        SetPlayerAddStat(m_Item.m_ItemPart);
+    }
+
+    void UseItem()
+    {
+        for (int i = 0; i < m_NeedItem.Length; i++)
+        {
+            InventoryManager.Instance.m_InvenBase.SetItemCount(m_NeedItem[i].m_ItemName, m_NeedCount[i]);
+        }
+        BaseInfo.playerInfo.Gold -= m_NeedGold;
+        BaseInfo.playerInfo.Fragments -= m_NeedFragCount;
+    }
+
+    void EnforceCheckButton(PointerEventData data)
+    {
         GetObject((int)GameObjects.UI_CheckBase).SetActive(false);
         GetObject((int)GameObjects.UI_Shop_BackGround).SetActive(false);
     }
@@ -240,5 +333,47 @@ public class UI_Enforce : UI_Popup
 
         GetImage((int)Images.IngreImage_1).sprite = m_NeedItem[0].m_ItemImage;
         GetImage((int)Images.IngreImage_2).sprite = m_NeedItem[1].m_ItemImage;
+    }
+
+    void SetPlayerAddStat(Item.ItemParts item)
+    {
+        for (int i = 0; i < m_Slots.Length; i++)
+        {
+            m_Slots[i].SetItemStat(item);
+        }
+    }
+
+    void TestEnforceSuccess(PointerEventData data)
+    {
+        switch (m_Item.m_ItemPart)
+        {
+            case Item.ItemParts.Helmat:
+                BaseInfo.playerInfo.m_HelmatLevel++;
+                break;
+            case Item.ItemParts.Shoulder:
+                BaseInfo.playerInfo.m_ShoulderLevel++;
+                break;
+            case Item.ItemParts.Top:
+                BaseInfo.playerInfo.m_TopLevel++;
+                break;
+            case Item.ItemParts.Bottom:
+                BaseInfo.playerInfo.m_BottomLevel++;
+                break;
+            case Item.ItemParts.Glove:
+                BaseInfo.playerInfo.m_GloveLevel++;
+                break;
+            case Item.ItemParts.Weapon:
+                BaseInfo.playerInfo.m_WeaponLevel++;
+                BaseInfo.playerInfo.m_WeaponManager.m_Weapon.SetEffect();
+                Debug.Log(BaseInfo.playerInfo.m_WeaponManager);
+                break;
+        }
+
+        for (int i = 0; i < m_Slots.Length; i++)
+        {
+            m_Slots[i].SetRefresh();
+        }
+
+        SetPlayerAddStat(m_Item.m_ItemPart);
     }
 }

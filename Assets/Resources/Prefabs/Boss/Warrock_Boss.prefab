@@ -1365,6 +1365,7 @@ MonoBehaviour:
   m_Attack: 0
   m_Defense: 0
   m_Speed: 1
+  m_Material: {fileID: 0}
   m_Type: 0
   m_name: 
   m_Id: 2001
@@ -1378,6 +1379,10 @@ MonoBehaviour:
   m_AttackRange: 1
   m_CombatRange: 5
   m_ScanRange: 10
+  m_MinFragmentsCount: 0
+  m_MaxFragmentsCount: 0
+  m_RandomDropCount: 3
+  m_ItemDropRange: 1
   m_EffectList:
   - {fileID: 4273490297028515239}
   - {fileID: 8915230755000547141}

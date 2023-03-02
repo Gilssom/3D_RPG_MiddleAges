@@ -14,11 +14,9 @@ public class ObjectsInfo
 public class ObjectPoolManager : SingletomManager<ObjectPoolManager>
 {
     /// <summary>
-    /// 0 :: First Slash Effect
-    /// 1 :: Second Slash Effect
-    /// 2 :: Final Slash Effect
-    /// 3 :: Charge Slash Effect
-    /// 4 :: Mutant Slash Effect
+    /// 0 : 은하계의 레기오로스 히트 이펙트
+    /// 1 : 태양계의 레기오로스 히트 이펙트
+    /// 2 : 미궁의 레기오로스 히트 이펙트
     /// </summary>
 
     public GameObject Pooling

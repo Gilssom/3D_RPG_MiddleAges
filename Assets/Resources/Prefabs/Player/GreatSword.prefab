@@ -103,3 +103,4 @@ MonoBehaviour:
   attackRange: 4
   UltiSkillObject: {fileID: 4103175036243038822, guid: d80a926d8c4479745a37be51540f6bac, type: 3}
   m_CanReInputTime: 1.5
+  m_Effect: {fileID: 11400000, guid: 7d5ae441472bfe3439ac97ddd9dbb6db, type: 2}

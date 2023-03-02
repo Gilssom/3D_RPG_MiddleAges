@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92f69bd718101143a1c6985d96fd7a1, type: 3}
+  m_Name: AncientSpear
+  m_EditorClassIdentifier: 
+  m_ItemId: 9000
+  m_ItemName: "\uACE0\uB300\uC758 \uCC3D"
+  m_ItemInfo: "\uC544\uD06C\uB77C\uC2DC\uC544\uC758 \uC5EC\uC12F \uC2E0\uC774 \uC0AC\uC6A9\uD558\uB358
+    \uAC80\uB4E4\uC758 \uD798\uC744 \uBE4C\uB824 \uC804\uBC29\uC744 \uD5A5\uD574
+    \uB0A0\uB9B0\uB2E4."
+  m_ItemTypeInfo: "\uC81C\uD55C \uB808\uBCA8 2\n\uC2A4\uD0AC \uCFE8\uD0C0\uC784 7\uCD08"
+  m_ItemClassInfo: "\uACF5\uC6A9 \uACF5\uACA9 \uC2A4\uD0AC"
+  m_ItemType: 3
+  m_ItemClass: 0
+  m_ItemImage: {fileID: 21300000, guid: 5e2625d20935b904d9e8d592ca4f1d7e, type: 3}
+  m_ItemPrefabs: {fileID: 0}
+  m_UsedType: 0
+  m_ItemPart: 6
+  m_UsedLevel: 2

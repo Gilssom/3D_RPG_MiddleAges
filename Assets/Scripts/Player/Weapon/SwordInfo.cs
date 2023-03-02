@@ -8,7 +8,9 @@ public class SwordInfo : BaseWeapon
     public readonly int IsAttackAnimation = Animator.StringToHash("isAttack");
     public readonly int IsChargeAnimation = Animator.StringToHash("isCharge");
     public readonly int IsKickAnimation = Animator.StringToHash("isKick");
+    public readonly int IsBladeSkillAnimation = Animator.StringToHash("isBladeSkill");
     public readonly int IsUltiSkillAnimation = Animator.StringToHash("isUltiSkill");
+    public readonly int IsBuffSkillAnimation = Animator.StringToHash("isBuffSkill");
     public readonly int AttackComboAnimation = Animator.StringToHash("AttackCombo");
     public readonly int AttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
 
@@ -49,8 +51,42 @@ public class SwordInfo : BaseWeapon
     {
         Debug.Log("Ultimate Skill On");
         BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
-        BaseInfo.playerInfo.m_Anim.SetBool(IsUltiSkillAnimation, true);
-        ResourcesManager.Instance.Instantiate("Player/Ultimate_Effect");
+        BaseInfo.playerInfo.m_Anim.SetTrigger(IsUltiSkillAnimation);
+        ResourcesManager.Instance.Instantiate("Player/Effect/Skill/Ultimate_Effect");
+    }
+
+    public override void BladeSkill(BaseState state)
+    {
+        Debug.Log("Impale Blade Skill On");
+        BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
+        BaseInfo.playerInfo.m_Anim.SetTrigger(IsBladeSkillAnimation);
+        StartCoroutine(BaseInfo.playerInfo.m_Player.SetEffect(0, 1.5f));
+    }
+
+    public override void DevilSlashSkill(BaseState state)
+    {
+        Debug.Log("Devil Slash Skill On");
+        BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
+        BaseInfo.playerInfo.m_Anim.SetTrigger(IsBladeSkillAnimation);
+        GameObject go = ResourcesManager.Instance.Instantiate("Player/Effect/Skill/DevilSlash", BaseInfo.playerInfo.transform);
+        StartCoroutine(BaseInfo.playerInfo.m_Player.DesSkill(go, 4));
+    }
+
+    public override void LightRefereeSkill(BaseState state)
+    {
+        Debug.Log("Light Referee Skill On");
+        BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
+        BaseInfo.playerInfo.m_Anim.SetTrigger(IsUltiSkillAnimation);
+        GameObject go = ResourcesManager.Instance.Instantiate("Player/Effect/Skill/LightReferee" , BaseInfo.playerInfo.transform);
+        StartCoroutine(BaseInfo.playerInfo.m_Player.DesSkill(go, 10));
+    }
+
+    public override void AngelSkill(BaseState state)
+    {
+        Debug.Log("Angel Skill On");
+        BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 2f);
+        BaseInfo.playerInfo.m_Anim.SetTrigger(IsBuffSkillAnimation);
+        StartCoroutine(BaseInfo.playerInfo.m_Player.SetEffect(1, 5));
     }
 
     public void CheckAttackReInput(float ReInputTime)

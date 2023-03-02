@@ -15,6 +15,7 @@ public class Item : ScriptableObject
     public GameObject m_ItemPrefabs;
     public UsedType m_UsedType;
     public ItemParts m_ItemPart;
+    public int m_UsedLevel;
 
     public enum ItemClass
     {

@@ -389,6 +389,12 @@ MonoBehaviour:
   m_AttackCoolTime: 4
   m_AttackRange: 1
   m_ScanRange: 10
+  m_PotionChance: 0
+  m_PotionCount: 0
+  m_MinFragmentsCount: 0
+  m_MaxFragmentsCount: 0
+  m_RandomDropCount: 1
+  m_ItemDropRange: 0.5
   m_EffectList:
   - {fileID: 4287326520964024342}
   m_DissolveSpeed: 0.003

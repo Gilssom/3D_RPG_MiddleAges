@@ -38,6 +38,10 @@ public class Player : Base
     public bool isNormalAttack { get; private set; }
     public bool isChargeAttack { get; private set; }
 
+    //------- Npc Interaction ---------
+    [Tooltip("상호작용 가능한 Npc")]
+    public NpcInteraction m_NearNpc; 
+
     public override void Init()
     {
         WorldObjectType = Defines.WorldObject.Player;
@@ -57,6 +61,8 @@ public class Player : Base
         // Test
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        InvokeRepeating("AutoIncreaseHp", 0, 5);
     }
 
     #region #기본 시스템
@@ -146,7 +152,18 @@ public class Player : Base
         {
             int QuickNum = int.Parse(context.control.name);
 
-            InventoryManager.Instance.m_QuickSlot.EatItem(QuickNum - 1);
+            if(QuickNum < 5)
+                SkillKeyMap.Instance.KeyPress(QuickNum);
+            else if(QuickNum > 4)
+                InventoryManager.Instance.m_QuickSlot.EatItem(QuickNum - 5);
+        }
+    }
+
+    public void SkillBook(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            InventoryManager.Instance.TryOpenSkillSystem();
         }
     }
     #endregion
@@ -247,7 +264,8 @@ public class Player : Base
             {
                 if (DashState.m_IsDash || InventoryManager.m_InventoryActivated 
                     || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated)
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated)
                 {
                     return;
                 }
@@ -263,7 +281,8 @@ public class Player : Base
                 if (DashState.m_IsDash 
                     || InventoryManager.m_InventoryActivated 
                     || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated)
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated)
                 {
                     return;
                 }
@@ -287,7 +306,8 @@ public class Player : Base
                 if (DashState.m_IsDash && AttackState.isAttack 
                     || InventoryManager.m_InventoryActivated 
                     || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated)
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated)
                 {
                     return;
                 }
@@ -298,24 +318,112 @@ public class Player : Base
         }
     }
 
-    public void UltimateSkill(InputAction.CallbackContext context)
+    public void UltimateSkill()
     {
-        if (context.performed)
+        if (DashState.m_IsDash && AttackState.isAttack
+                       || InventoryManager.m_InventoryActivated
+                       || InventoryManager.m_ShopActivated
+                       || InventoryManager.m_EnforceActivated
+                       || InventoryManager.m_SkillActivated)
         {
-            if (context.interaction is PressInteraction)       // 궁극기 공격
-            {
-                if (DashState.m_IsDash && AttackState.isAttack 
-                    || InventoryManager.m_InventoryActivated 
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated)
-                {
-                    return;
-                }
-
-                AttackState.m_AttackName = AttackState.AttackName.ULTIMATE;
-                playerInfo.stateMachine.ChangeState(StateName.ATTACK);
-            }
+            return;
         }
+
+        AttackState.m_AttackName = AttackState.AttackName.ULTIMATE;
+        playerInfo.stateMachine.ChangeState(StateName.ATTACK);
+    }
+
+    public void BladeSkill()
+    {
+        if (DashState.m_IsDash && AttackState.isAttack
+                       || InventoryManager.m_InventoryActivated
+                       || InventoryManager.m_ShopActivated
+                       || InventoryManager.m_EnforceActivated
+                       || InventoryManager.m_SkillActivated)
+        {
+            return;
+        }
+
+        AttackState.m_AttackName = AttackState.AttackName.Blade;
+        playerInfo.stateMachine.ChangeState(StateName.ATTACK);
+    }
+
+    public void LigthRefereeSkill()
+    {
+        if (DashState.m_IsDash && AttackState.isAttack
+                          || InventoryManager.m_InventoryActivated
+                          || InventoryManager.m_ShopActivated
+                          || InventoryManager.m_EnforceActivated
+                          || InventoryManager.m_SkillActivated)
+        {
+            return;
+        }
+
+        AttackState.m_AttackName = AttackState.AttackName.Referee;
+        playerInfo.stateMachine.ChangeState(StateName.ATTACK);
+    }
+
+    public void DevilSlashSkill()
+    {
+        if (DashState.m_IsDash && AttackState.isAttack
+                          || InventoryManager.m_InventoryActivated
+                          || InventoryManager.m_ShopActivated
+                          || InventoryManager.m_EnforceActivated
+                          || InventoryManager.m_SkillActivated)
+        {
+            return;
+        }
+
+        AttackState.m_AttackName = AttackState.AttackName.Slash;
+        playerInfo.stateMachine.ChangeState(StateName.ATTACK);
+    }
+
+    public void AngelSkill()
+    {
+        if (DashState.m_IsDash && AttackState.isAttack
+                       || InventoryManager.m_InventoryActivated
+                       || InventoryManager.m_ShopActivated
+                       || InventoryManager.m_EnforceActivated
+                       || InventoryManager.m_SkillActivated)
+        {
+            return;
+        }
+
+        AttackState.m_AttackName = AttackState.AttackName.Angel;
+        playerInfo.stateMachine.ChangeState(StateName.ATTACK);
+    }
+
+    public void WhispersSkill()
+    {
+        if (InventoryManager.m_InventoryActivated
+                || InventoryManager.m_ShopActivated
+                || InventoryManager.m_EnforceActivated
+                || InventoryManager.m_SkillActivated)
+        {
+            return;
+        }
+
+        Debug.Log("Whispers Skill On");
+        StartCoroutine(SetEffect(2, 9));
+    }
+    #endregion
+
+    #region #플레이어 스킬 이펙트 관리
+    public IEnumerator SetEffect(int skillNumber, float desTime)
+    {
+        WaitForSeconds time = new WaitForSeconds(desTime);
+
+        BaseInfo.playerInfo.m_EffectList_Obj[skillNumber].SetActive(true);
+        yield return time;
+        BaseInfo.playerInfo.m_EffectList_Obj[skillNumber].SetActive(false);
+    }
+
+    public IEnumerator DesSkill(GameObject go, float desTime)
+    {
+        WaitForSeconds time = new WaitForSeconds(desTime);
+
+        yield return time;
+        ResourcesManager.Instance.Destroy(go);
     }
     #endregion
 
@@ -358,6 +466,34 @@ public class Player : Base
         {
             ItemPickUp(other.gameObject.GetOrAddComponet<ItemPickUp>());
         }
+
+        if (other.tag == "Npc")
+        {
+            m_NearNpc = other.GetComponent<NpcInteraction>();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Npc")
+        {
+            m_NearNpc = null;
+        }
+    }
+    #endregion
+
+    #region #플레이어 상호작용
+    public void NpcInteraction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (m_NearNpc != null)
+            {
+                m_NearNpc.SetTalkData();
+            }
+            else
+                return;
+        }
     }
     #endregion
 
@@ -375,6 +511,16 @@ public class Player : Base
                 GameManager.Instance.Despawn(gameObject);
                 //playerInfo.stateMachine.ChangeState(StateName.DIE);
         }
+    }
+    #endregion
+
+    #region #플레이어 생명 재생 이벤트
+    void AutoIncreaseHp()
+    {
+        if (playerInfo.Hp >= playerInfo.MaxHp)
+            return;
+
+        IncreaseHp(playerInfo.m_Plus_IncreaseHp);
     }
     #endregion
 

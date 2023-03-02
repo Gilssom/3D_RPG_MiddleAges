@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f2d834a01ee7b4080f93ca196a29a7, type: 3}
+  m_Name: WeaponEffect
+  m_EditorClassIdentifier: 
+  m_EffectList:
+  - m_LocalPosition: {x: 0, y: 0, z: 0}
+    m_LocalRotation: {x: 0, y: 0, z: 0}
+    m_LocalScale: {x: 0, y: 0, z: 0}
+    m_EffectPrefab: {fileID: 886364049747334104, guid: dfb378b9146040846a979a37c08e9124, type: 3}
+    m_Description: "\uBB34\uAE30 10\uAC15 \uC774\uD399\uD2B8"
+  - m_LocalPosition: {x: 0, y: 0, z: 0}
+    m_LocalRotation: {x: 0, y: 0, z: 0}
+    m_LocalScale: {x: 0, y: 0, z: 0}
+    m_EffectPrefab: {fileID: 7652835980950152212, guid: 0b950f7293c7e104691f0fd9349e5c54, type: 3}
+    m_Description: "\uBB34\uAE30 11\uAC15 \uC774\uD399\uD2B8"
+  - m_LocalPosition: {x: 0, y: 0, z: 0}
+    m_LocalRotation: {x: 0, y: 0, z: 0}
+    m_LocalScale: {x: 0, y: 0, z: 0}
+    m_EffectPrefab: {fileID: 9190681458001488658, guid: 12dce7529f55d4344b1d4fbb01dd2706, type: 3}
+    m_Description: "\uBB34\uAE30 12\uAC15 \uC774\uD399\uD2B8"
+  - m_LocalPosition: {x: 0, y: 0, z: 0}
+    m_LocalRotation: {x: 0, y: 0, z: 0}
+    m_LocalScale: {x: 0, y: 0, z: 0}
+    m_EffectPrefab: {fileID: 828102640394999327, guid: fd82c7c34327bdb479492caabf3a7197, type: 3}
+    m_Description: "\uBB34\uAE30 13\uAC15 \uC774\uD399\uD2B8"
+  - m_LocalPosition: {x: 0, y: 0, z: 0}
+    m_LocalRotation: {x: 0, y: 0, z: 0}
+    m_LocalScale: {x: 0, y: 0, z: 0}
+    m_EffectPrefab: {fileID: 2174352224942323417, guid: 9f4689f1643578b448f3606456a1e8ca, type: 3}
+    m_Description: "\uBB34\uAE30 14\uAC15 \uC774\uD399\uD2B8"
+  - m_LocalPosition: {x: 0, y: 0, z: 0}
+    m_LocalRotation: {x: 0, y: 0, z: 0}
+    m_LocalScale: {x: 0, y: 0, z: 0}
+    m_EffectPrefab: {fileID: 2075182366254384622, guid: 5d86d8951ae5b4b4581e37b6142b5af1, type: 3}
+    m_Description: "\uBB34\uAE30 15\uAC15 \uC774\uD399\uD2B8"
