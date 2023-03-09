@@ -48,4 +48,13 @@ public class Defines
         Legandary,
         Relics,
     }
+
+    public enum NpcType
+    {
+        Enforce,
+        Smith,
+        Shop,
+        Alchemy,
+        Normal,
+    }
 }

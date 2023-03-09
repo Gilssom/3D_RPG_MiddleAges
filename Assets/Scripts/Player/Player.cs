@@ -6,6 +6,7 @@ using UnityEngine.InputSystem; // New Input System 을 사용한다.
 using UnityEngine.InputSystem.Interactions;
 using CharacterController;
 using DG.Tweening;
+using System.Linq;
 
 // 특정 컴포넌트를 자동적으로 추가해줌. 추후 스탯 관리 스크립트 추가 예정
 [RequireComponent(typeof(PlayerInfo))]
@@ -39,8 +40,11 @@ public class Player : Base
     public bool isChargeAttack { get; private set; }
 
     //------- Npc Interaction ---------
-    [Tooltip("상호작용 가능한 Npc")]
-    public NpcInteraction m_NearNpc; 
+    [Header("상호작용 가능한 Npc")]
+    public NpcInteraction m_NearNpc;
+
+    [Header("Npc와 상호작용 가능한 거리")]
+    public float m_NpcCheckDis;
 
     public override void Init()
     {
@@ -63,6 +67,7 @@ public class Player : Base
         Cursor.visible = false;
 
         InvokeRepeating("AutoIncreaseHp", 0, 5);
+        InvokeRepeating("FindNpc", 0, 0.5f);
     }
 
     #region #기본 시스템
@@ -466,16 +471,35 @@ public class Player : Base
         {
             ItemPickUp(other.gameObject.GetOrAddComponet<ItemPickUp>());
         }
+    }
+    #endregion
 
-        if (other.tag == "Npc")
-        {
-            m_NearNpc = other.GetComponent<NpcInteraction>();
-        }
+    #region #가까운 Npc 찾기
+    private GameObject FindNearObjByTag(string tag)
+    {
+        // 탐색할 오브젝트 목록을 List 로 저장합니다.
+        var objects = GameObject.FindGameObjectsWithTag(tag).ToList();
+
+        // LINQ 메소드를 이용해 가장 가까운 적을 찾습니다.
+        var neareastObject = objects
+            .OrderBy(obj =>
+            {
+                return Vector3.Distance(transform.position, obj.transform.position);
+            })
+        .FirstOrDefault();
+
+        m_NearNpc = neareastObject.GetComponent<NpcInteraction>();
+
+        return neareastObject;
     }
 
-    private void OnTriggerExit(Collider other)
+    void FindNpc()
     {
-        if (other.tag == "Npc")
+        FindNearObjByTag("Npc");
+
+        float Dis = Vector3.Distance(m_NearNpc.transform.position, transform.position);
+
+        if (Dis >= m_NpcCheckDis)
         {
             m_NearNpc = null;
         }
@@ -489,7 +513,10 @@ public class Player : Base
         {
             if (m_NearNpc != null)
             {
-                m_NearNpc.SetTalkData();
+                if (InventoryManager.Instance.m_Dialogue.DoDialogue)
+                    InventoryManager.Instance.m_Dialogue.DialogueNext();
+                else
+                    m_NearNpc.InteractionNpc();
             }
             else
                 return;

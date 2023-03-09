@@ -16,7 +16,7 @@ public class TalkData
 public class Dialogue : MonoBehaviour
 {
     // 대화 이벤트 이름
-    [SerializeField] string m_EventName;
+    [SerializeField] public string m_EventName;
 
     // 위에서 선언한 TalkData 배열 
     [SerializeField] TalkData[] m_TalkDatas;

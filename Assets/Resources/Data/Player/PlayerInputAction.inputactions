@@ -414,6 +414,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "f2ad3f7b-5de2-422a-bfe0-0feec8e20d1f",
+            "actions": [
+                {
+                    "name": "Dialogue",
+                    "type": "Button",
+                    "id": "fcb82dfb-befc-4de0-952d-64eb511dcb4d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5953d986-a814-4116-a888-625887dd0c1b",
+                    "path": "<Keyboard>/g",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Dialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

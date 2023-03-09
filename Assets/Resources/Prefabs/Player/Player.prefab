@@ -1332,6 +1332,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5d05984f-506f-4ee3-b8eb-bedf81560763
     m_ActionName: Player/Interaction[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fcb82dfb-befc-4de0-952d-64eb511dcb4d
+    m_ActionName: UI/Dialogue[/Keyboard/g]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -1355,6 +1359,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 2040460053}
   m_Camera: {fileID: 0}
   m_NearNpc: {fileID: 0}
+  m_NpcCheckDis: 2
 --- !u!114 &6540795610520359834
 MonoBehaviour:
   m_ObjectHideFlags: 0

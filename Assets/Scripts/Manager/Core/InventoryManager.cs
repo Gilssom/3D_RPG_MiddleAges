@@ -24,6 +24,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public UI_Enforce m_EnforceSystem;
     public UI_Skill m_SkillSystem;
     public SkillKeyMap m_SkillQuickSlot;
+    public UI_Dialogue m_Dialogue;
 
     public GameObject[] m_Swords;
 
@@ -44,6 +45,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
         GameObject SkillSystem = ResourcesManager.Instance.Instantiate("UI/Popup/UI_Skill", gameObject.transform);
         GameObject InputField = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ThrowItem", gameObject.transform);
         GameObject ToolTip = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ToolTip", gameObject.transform);
+        GameObject Dialogue = ResourcesManager.Instance.Instantiate("UI/Popup/UI_Dialogue", gameObject.transform);
 
         m_QuickSlot = UIManager.Instance.ShowSceneUI<UI_QuickSlotCtrl>();
         m_SkillQuickSlot = UIManager.Instance.ShowSceneUI<SkillKeyMap>();
@@ -55,6 +57,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
         m_EnforceShop = EnforceShop.GetComponent<UI_Shop>();
         m_EnforceSystem = EnforceSystem.GetComponent<UI_Enforce>();
         m_SkillSystem = SkillSystem.GetComponent<UI_Skill>();
+        m_Dialogue = Dialogue.GetComponent<UI_Dialogue>();
 
         for (int i = 0; i < m_Swords.Length; i++)
         {
