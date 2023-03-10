@@ -55,6 +55,10 @@ public class Quest : ScriptableObject
     private bool m_UseAutoComplete; // 자동 완료 퀘스트인지
     [SerializeField]
     private bool m_IsCancelable; // 취소할 수 없는 퀘스트인지
+    // 세이브를 시킬 퀘스트인지 =
+    //          튜토리얼의 가이드 퀘스트와 비슷하거나 같은 경우는 저장이 되어야 할 필요가 없기 때문
+    [SerializeField]
+    private bool m_IsSavable; 
 
     [Header("퀘스트 수행 및 취소 조건")]
     [SerializeField]
@@ -82,10 +86,11 @@ public class Quest : ScriptableObject
     public bool p_IsCancle => m_State == QuestState.Cancel;
     public virtual bool p_IsCancelable => m_IsCancelable && m_CancelConditions.All(x => x.IsPass(this));
     public bool p_IsAcceptable => m_AcceptionConditions.All(x => x.IsPass(this));
+    public virtual bool p_IsSavable => m_IsSavable;
 
     public event TaskSuccessChangedHandler onTaskSuccessChanged;
     public event CompletedHandler onCompleted;
-    public event CanceldHandler onCanceld;
+    public event CanceldHandler onCanceled;
     public event NewTaskGroupHandler onNewTaskGroup;
 
     // Awake 역활의 함수 > Quest 가 System 에 등록되었을 때 실행
@@ -155,7 +160,7 @@ public class Quest : ScriptableObject
 
         onTaskSuccessChanged = null;
         onCompleted = null;
-        onCanceld = null;
+        onCanceled = null;
         onNewTaskGroup = null;
     }
 
@@ -166,8 +171,48 @@ public class Quest : ScriptableObject
         Debug.Assert(p_IsCancelable, "이 퀘스트는 포기할 수 없는 퀘스트입니다.");
 
         m_State = QuestState.Cancel;
-        onCanceld?.Invoke(this);
+        onCanceled?.Invoke(this);
     }
+
+    // Quest System 에 넘겨줄 Quest 복사본 :: Cloning
+    public Quest Clone()
+    {
+        var clone = Instantiate(this);
+        clone.m_TaskGroup = m_TaskGroup.Select(x => new TaskGroup(x)).ToArray();
+
+        return clone;
+    }
+    #region # Json Save & Load
+    public QuestSaveData ToSaveData()
+    {
+        return new QuestSaveData
+        {
+            m_CodeName = m_CodeName,
+            m_State = m_State,
+            m_TaskGroupIndex = m_CurrentTaskGroupIndex,
+            m_TaskSeccessCounts = p_CurrentTaskGroup.p_Tasks.Select(x => x.p_CurrentSucceses).ToArray()
+        };
+    }
+
+    public void LoadFrom(QuestSaveData saveData)
+    {
+        m_State = saveData.m_State;
+        m_CurrentTaskGroupIndex = saveData.m_TaskGroupIndex;
+
+        for (int i = 0; i < m_CurrentTaskGroupIndex; i++)
+        {
+            var taskGroup = m_TaskGroup[i];
+            taskGroup.Start();
+            taskGroup.Complete();
+        }
+
+        for (int i = 0; i < saveData.m_TaskSeccessCounts.Length; i++)
+        {
+            p_CurrentTaskGroup.Start();
+            p_CurrentTaskGroup.p_Tasks[i].p_CurrentSucceses = saveData.m_TaskSeccessCounts[i];
+        }
+    }
+    #endregion
 
     private void OnSuccessChanged(Task task, int currentSuccess, int prevSuccess)
         => onTaskSuccessChanged?.Invoke(this, task, currentSuccess, prevSuccess);
@@ -179,6 +224,6 @@ public class Quest : ScriptableObject
     {
         Debug.Assert(p_IsRegistered, "이 퀘스트는 이미 등록된 퀘스트입니다.");
         Debug.Assert(!p_IsCancle, "이 퀘스트는 이미 취소된 퀘스트입니다.");
-        Debug.Assert(!p_IsCompletable, "이 퀘스트는 이미 완료된 퀘스트입니다.");
+        Debug.Assert(!p_IsComplete, "이 퀘스트는 이미 완료된 퀘스트입니다.");
     }
 }

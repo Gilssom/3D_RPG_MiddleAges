@@ -26,6 +26,12 @@ public class TaskGroup
 
     public TaskGroupState m_State { get; private set; }
 
+    // Quest 에 넘겨줄 TaskGroup 의 복사본 :: Cloning
+    public TaskGroup(TaskGroup copyTarget)
+    {
+        m_Tasks = copyTarget.p_Tasks.Select(x => Object.Instantiate(x)).ToArray();
+    }
+
     public void Setup(Quest owner)
     {
         m_Owner = owner;
