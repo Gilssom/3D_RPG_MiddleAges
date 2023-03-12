@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 5551044739138421808}
   - component: {fileID: 5551044739138421809}
   - component: {fileID: 919132149518501448}
+  - component: {fileID: 6557980677879573453}
   m_Layer: 0
   m_Name: ChiefNpc
   m_TagString: Npc
@@ -774,8 +775,23 @@ MonoBehaviour:
     AnimTrigger: 0
     curTalkIndex: 0
     TalkEventData:
-    - "\uD14C\uC2A4\uD2B8 \uCCAB \uB300\uD654"
-    - "\uD14C\uC2A4\uD2B8 \uB450\uBC88\uC9F8 \uB300\uD654"
+    - "\uB9C8\uC744 \uC774\uC7A5\uACFC\uC758 \uB9CC\uB0A8"
+    - "\uB9C8\uC744 \uC774\uC7A5\uC758 \uBD80\uD0C1"
+  onTalkEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6557980677879573453}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5551044739138421809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,8 +822,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a11ee1edb278342bcd1daba073225d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EventName: "\uD14C\uC2A4\uD2B8 \uCCAB \uB300\uD654"
+  m_EventName: 
   m_TalkDatas: []
+--- !u!114 &6557980677879573453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4740087082765564270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c323a29dc01e63439d09e61bc308988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
+  m_Target: {fileID: 11400000, guid: 52276f4d59e00294bac4e4c08ab1169a, type: 2}
+  m_SuccessCount: 1
+  m_ColliderTags: []
 --- !u!1 &4759255164052396597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,6 +1712,10 @@ PrefabInstance:
     - target: {fileID: 6643873574073408174, guid: c7c64960d103a2942ac1ab90ba8a31e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643873574073408175, guid: c7c64960d103a2942ac1ab90ba8a31e8, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9186022324812162629, guid: c7c64960d103a2942ac1ab90ba8a31e8, type: 3}
       propertyPath: m_Text

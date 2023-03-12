@@ -48,7 +48,10 @@ public class QuestSystem : SingletomManager<QuestSystem>
     private void Awake()
     {
         m_QuestDataBase = ResourcesManager.Instance.Load<QuestDataBase>("Quest Data Base");
-        m_AchievementDataBase = ResourcesManager.Instance.Load<QuestDataBase>("Quest Data Base");
+        m_AchievementDataBase = ResourcesManager.Instance.Load<QuestDataBase>("Achievement Data Base");
+
+        //foreach (var achievement in m_AchievementDataBase.p_Quests)
+            //Register(achievement);
 
         if (!Load())
         {
@@ -63,6 +66,9 @@ public class QuestSystem : SingletomManager<QuestSystem>
         // 게임이 오류나 버그로 강제 종료가 되었을 때 저장이 안됨
         // 어느 시점에 저장을 할 것인지 설계를 하고 적용을 해야함.
         isApplicationQuitting = true;
+
+        // questReporter.Report() : 마지막 구간 End Check
+        CompleteWaitingQuests();
         Save();
     }
 
@@ -117,13 +123,22 @@ public class QuestSystem : SingletomManager<QuestSystem>
         }
     }
 
+    public void CompleteWaitingQuests()
+    {
+        foreach (var quest in m_ActiveQuests.ToList())
+        {
+            if (quest.p_IsCompletable)
+                quest.Complete();
+        }
+    }
+
     public bool ContainsInActiveQuests(Quest quest) => m_ActiveQuests.Any(x => x.p_CodeName == quest.p_CodeName);
     public bool ContainsInCompleteQuests(Quest quest) => m_CompletedQuests.Any(x => x.p_CodeName == quest.p_CodeName);
     public bool ContainsInActiveAchievements(Quest quest) => m_ActiveAchievements.Any(x => x.p_CodeName == quest.p_CodeName);
     public bool ContainsInCompletedAchievements(Quest quest) => m_CompletedAchievements.Any(x => x.p_CodeName == quest.p_CodeName);
 
     #region # Save & Load
-    private void Save()
+    public void Save()
     {
         var root = new JObject();
         root.Add(k_ActiveQuestsSavePath, CreateSaveDatas(m_ActiveQuests));
@@ -135,7 +150,7 @@ public class QuestSystem : SingletomManager<QuestSystem>
         PlayerPrefs.Save();
     }
 
-    private bool Load()
+    public bool Load()
     {
         if (PlayerPrefs.HasKey(k_SaveRootPath))
         {
@@ -144,8 +159,8 @@ public class QuestSystem : SingletomManager<QuestSystem>
             LoadSaveDatas(root[k_ActiveQuestsSavePath], m_QuestDataBase, LoadActiveQuest);
             LoadSaveDatas(root[k_CompletedQuestsSavePath], m_QuestDataBase, LoadCompletedQuest);
 
-            LoadSaveDatas(root[k_ActiveAchievementsSavePath], m_QuestDataBase, LoadActiveQuest);
-            LoadSaveDatas(root[k_CompletedAchievementsSavePath], m_QuestDataBase, LoadActiveQuest);
+            LoadSaveDatas(root[k_ActiveAchievementsSavePath], m_AchievementDataBase, LoadActiveQuest);
+            LoadSaveDatas(root[k_CompletedAchievementsSavePath], m_AchievementDataBase, LoadActiveQuest);
 
             return true;
         }

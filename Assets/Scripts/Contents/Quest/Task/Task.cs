@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum TaskState
 {
-    Inactivem,
+    Inactive,
     Running,
     Complete,
 }
@@ -126,4 +126,7 @@ public class Task : ScriptableObject
         => p_Category == category 
         && m_Targets.Any(x => x.IsEqual(target))
         && (!IsComplete || (IsComplete && m_CanReceiveReportsDuringComplete));
+
+    public bool ContainsTarget(object target)
+        => m_Targets.Any(x => x.IsEqual(target));
 }

@@ -32,7 +32,7 @@ public class QuestSystemSaveTest : MonoBehaviour
     }
 
     public void Test()
-    {;
+    {
         QuestSystem.Instance.ReceiveReport(m_Category, m_Target, 1);
     }
 }

@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 8127424674784612379}
   - component: {fileID: 3048869240888604627}
   - component: {fileID: 8482938777191912800}
+  - component: {fileID: 9175880038740367294}
   m_Layer: 12
   m_Name: Main Tier 1
   m_TagString: Item
@@ -344,3 +345,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Item: {fileID: 11400000, guid: 3b198b380aae2a54e8a328ea845fc01e, type: 2}
+--- !u!114 &9175880038740367294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288905791690696537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c323a29dc01e63439d09e61bc308988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: 98d89fdc4366b29479d510bc8eae36cf, type: 2}
+  m_Target: {fileID: 11400000, guid: 861c4d698e02a9d428ea30f6cc96d881, type: 2}
+  m_SuccessCount: 1
+  m_ColliderTags:
+  - Player

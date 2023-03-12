@@ -124,6 +124,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Quest",
+                    "type": "Button",
+                    "id": "5f1ecc83-6f13-4dd1-9179-acf697f82ae9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Achievement",
+                    "type": "Button",
+                    "id": "e3f2e8c3-1421-4d99-ac41-95f3fd51ef2d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -410,6 +426,28 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b972defa-3f4a-4940-9332-32d662fd9769",
+                    "path": "<Keyboard>/j",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Quest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8190d38f-4031-4637-90f9-6deb1ae2c185",
+                    "path": "<Keyboard>/o",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Achievement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

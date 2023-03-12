@@ -723,6 +723,7 @@ GameObject:
   - component: {fileID: 1338136914257244665}
   - component: {fileID: 1338136914257244664}
   - component: {fileID: 1338136914257244647}
+  - component: {fileID: -8667065429055632877}
   m_Layer: 0
   m_Name: GatekeeperNpc
   m_TagString: Npc
@@ -800,7 +801,23 @@ MonoBehaviour:
     isNearPlayer: 0
     AnimTrigger: 0
     curTalkIndex: 0
-    TalkEventData: []
+    TalkEventData:
+    - "\uB9C8\uC744\uC5D0 \uB300\uD55C \uC815\uBCF4 \uC54C\uC544\uBCF4\uAE30"
+  onTalkEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8667065429055632877}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1338136914257244664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +850,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EventName: 
   m_TalkDatas: []
+--- !u!114 &-8667065429055632877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185210911028858036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c323a29dc01e63439d09e61bc308988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
+  m_Target: {fileID: 11400000, guid: c4245437994605b4a93fe073dc9fae9a, type: 2}
+  m_SuccessCount: 1
+  m_ColliderTags: []
 --- !u!1 &2324810939480674674
 GameObject:
   m_ObjectHideFlags: 0

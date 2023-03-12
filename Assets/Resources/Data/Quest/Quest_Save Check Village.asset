@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60d897cdee8eea4bbeb89efb6c4a35e, type: 3}
+  m_Name: Quest_Save Check Village
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
+  m_Icon: {fileID: 0}
+  m_CodeName: SAVE_CHECK_VILLAGE
+  m_DisPlayName: "\uB9C8\uC744\uC758 \uC548\uC804"
+  m_Description: "\uD604\uC7AC \uB9C8\uC744\uC774 \uC548\uC804\uD55C\uC9C0 \uC0B4\uD3B4\uBCF4\uC790."
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: 5da63ab34ef4fa74b9d4e3246dee74d6, type: 2}
+  - m_Tasks:
+    - {fileID: 11400000, guid: 1a91ef264febedb4aa1b62adf206b483, type: 2}
+  - m_Tasks:
+    - {fileID: 11400000, guid: d496212f4e7566d4bb37af9e17d809e1, type: 2}
+  - m_Tasks:
+    - {fileID: 11400000, guid: f4287db71d90d3348a5618c8c3890af2, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: cd6aea77e2560c145b9207a8037f9f17, type: 2}
+  - {fileID: 11400000, guid: a259dc154f7f13342b1b70ef898a07dd, type: 2}
+  m_UseAutoComplete: 0
+  m_IsCancelable: 0
+  m_IsSavable: 0
+  m_AcceptionConditions:
+  - {fileID: 11400000, guid: 76afff05e3438dc4f91c58c6e9d1a4ca, type: 2}
+  m_CancelConditions: []

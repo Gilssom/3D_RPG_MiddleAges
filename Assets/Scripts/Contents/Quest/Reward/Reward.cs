@@ -7,6 +7,8 @@ public abstract class Reward : ScriptableObject
     [SerializeField]
     private Sprite m_Icon;
     [SerializeField]
+    private Item m_Item;
+    [SerializeField]
     private string m_Description;
     [SerializeField]
     private int m_Quantity;
@@ -14,6 +16,7 @@ public abstract class Reward : ScriptableObject
     public Sprite p_Icon => m_Icon;
     public string p_Description => m_Description;
     public int p_Quantity => m_Quantity;
+    public Item p_Item => m_Item;
 
     public abstract void Give(Quest quest);
 }

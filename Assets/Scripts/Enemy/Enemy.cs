@@ -17,6 +17,9 @@ public class Enemy : Base
 
     private WaitForSeconds m_OnDamageColor;
 
+    [Header("퀘스트 진행 관련 Event")]
+    public UnityEngine.Events.UnityEvent onDead;
+
     public override void Init()
     {
         WorldObjectType = Defines.WorldObject.Monster;
@@ -179,6 +182,7 @@ public class Enemy : Base
                 player.Exp += enemyInfo.DropExp;
                 player.Gold += enemyInfo.DropGold;
                 player.Fragments += Random.Range(enemyInfo.MinFargCount, enemyInfo.MaxFragCount + 1);
+                onDead.Invoke();
                 enemyInfo.stateMachine.ChangeState(StateName.DIE);
             }
         }

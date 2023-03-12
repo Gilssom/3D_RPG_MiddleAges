@@ -2578,6 +2578,7 @@ GameObject:
   - component: {fileID: 50054272744460306}
   - component: {fileID: 1533609788370437617}
   - component: {fileID: 3314302437409172780}
+  - component: {fileID: -5674766271208482708}
   m_Layer: 10
   m_Name: Warrock
   m_TagString: Untagged
@@ -2693,6 +2694,9 @@ MonoBehaviour:
   m_RaycastOrigin: {fileID: 8045833078602031705}
   m_GroundCheck: {fileID: 7156091498998026053}
   m_Target: {fileID: 0}
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1533609788370437617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2745,6 +2749,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttackArea: {fileID: 1449487819010400343}
   m_HitCheckTime: 0.2
+  m_BladeHitArea: {fileID: 0}
+  m_BladeHitCheckTime: 0
+--- !u!114 &-5674766271208482708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048709265625609680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c323a29dc01e63439d09e61bc308988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Target: {fileID: 11400000, guid: 0ca0f4dae134e1f458f37dd091669cad, type: 2}
+  m_SuccessCount: 1
+  m_ColliderTags: []
 --- !u!1 &8207488133881413484
 GameObject:
   m_ObjectHideFlags: 0

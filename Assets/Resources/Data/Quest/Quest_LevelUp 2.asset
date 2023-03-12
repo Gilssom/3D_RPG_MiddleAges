@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60d897cdee8eea4bbeb89efb6c4a35e, type: 3}
+  m_Name: Quest_LevelUp 2
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: e4daa25f93d61ec4b9be07aa60ae85cf, type: 2}
+  m_Icon: {fileID: 0}
+  m_CodeName: PLAYER_LEVEL_UP_2
+  m_DisPlayName: "\uC2A4\uD0AC \uBC30\uC6B0\uAE30 (1)"
+  m_Description: "\uB808\uBCA8 2 \uB2EC\uC131\uD558\uAE30"
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: 066dcb89bd1a66a42a18600c4546b582, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: e13a23c51ea7351458cadf93102c64b2, type: 2}
+  m_UseAutoComplete: 0
+  m_IsCancelable: 0
+  m_IsSavable: 0
+  m_AcceptionConditions: []
+  m_CancelConditions: []

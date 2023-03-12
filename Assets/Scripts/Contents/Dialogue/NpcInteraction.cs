@@ -18,6 +18,12 @@ public class NpcInteraction : MonoBehaviour
     private Dialogue m_TalkData;
     public NpcInfo m_NpcInfo;
 
+    [Header("퀘스트 진행 관련 Event")]
+    public bool isQuestNpc;
+    public Quest[] m_Quest;
+    public int m_QuestIndex;
+    public UnityEngine.Events.UnityEvent onTalkEnd;
+
     void Start()
     {
         m_Anim = GetComponent<Animator>();
@@ -66,6 +72,13 @@ public class NpcInteraction : MonoBehaviour
     public void EndTalk()
     {
         m_NpcInfo.curTalkIndex++;
+        onTalkEnd.Invoke();
+
+        if (isQuestNpc)
+        {
+            SetQuest(m_Quest[m_QuestIndex]);
+            m_QuestIndex++;
+        }
 
         if (m_NpcInfo.TalkEventData.Length > m_NpcInfo.curTalkIndex)
             m_TalkData.m_EventName = m_NpcInfo.TalkEventData[m_NpcInfo.curTalkIndex];
@@ -126,5 +139,11 @@ public class NpcInteraction : MonoBehaviour
         {
             GetComponent<Outline>().enabled = false;
         }
+    }
+
+    void SetQuest(Quest quest)
+    {
+        if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
+            QuestSystem.Instance.Register(quest);
     }
 }

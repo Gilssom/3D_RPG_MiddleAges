@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 1074112797}
   - component: {fileID: 1074112800}
   - component: {fileID: 1074112801}
+  - component: {fileID: -7742669609677378771}
   m_Layer: 10
   m_Name: Mutant
   m_TagString: Untagged
@@ -824,6 +825,21 @@ MonoBehaviour:
   m_RaycastOrigin: {fileID: 997779823}
   m_GroundCheck: {fileID: 2063771425}
   m_Target: {fileID: 0}
+  onDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7742669609677378771}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1074112800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,7 +858,6 @@ MonoBehaviour:
   m_Attack: 0
   m_Defense: 0
   m_Speed: 1
-  m_LootDrop: {fileID: 0}
   m_Type: 0
   m_name: 
   m_Id: 1000
@@ -877,6 +892,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttackArea: {fileID: 1667079360}
   m_HitCheckTime: 0.2
+  m_BladeHitArea: {fileID: 0}
+  m_BladeHitCheckTime: 0
+--- !u!114 &-7742669609677378771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362502693880940182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c323a29dc01e63439d09e61bc308988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Target: {fileID: 11400000, guid: 003cf505a4737bd4596279b43fffb506, type: 2}
+  m_SuccessCount: 1
+  m_ColliderTags: []
 --- !u!1 &5986244838373496700
 GameObject:
   m_ObjectHideFlags: 0

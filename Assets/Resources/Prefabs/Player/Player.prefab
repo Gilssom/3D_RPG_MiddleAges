@@ -991,6 +991,7 @@ GameObject:
   - component: {fileID: 3015626511609478910}
   - component: {fileID: 6540795610520359834}
   - component: {fileID: 1465492712374253103}
+  - component: {fileID: 7172305698007890683}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1336,6 +1337,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fcb82dfb-befc-4de0-952d-64eb511dcb4d
     m_ActionName: UI/Dialogue[/Keyboard/g]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3015626511609478910}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: QuestUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5f1ecc83-6f13-4dd1-9179-acf697f82ae9
+    m_ActionName: Player/Quest[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3015626511609478910}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AchievementUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3f2e8c3-1421-4d99-ac41-95f3fd51ef2d
+    m_ActionName: Player/Achievement[/Keyboard/o]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
@@ -1379,6 +1412,21 @@ MonoBehaviour:
   m_Defense: 0
   m_Speed: 1
   m_Player: {fileID: 0}
+  onLevelUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7172305698007890683}
+        m_TargetAssemblyTypeName: QuestReporter, Assembly-CSharp
+        m_MethodName: Report
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_RightHand: {fileID: 176566475}
   m_CriticalChance: 0
   m_CriticalDamage: 0
@@ -1434,6 +1482,22 @@ MonoBehaviour:
   m_HitCheckTime: 0.2
   m_BladeHitArea: {fileID: 8387420652688375807}
   m_BladeHitCheckTime: 0.18
+--- !u!114 &7172305698007890683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2673099151991539981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c323a29dc01e63439d09e61bc308988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: e4daa25f93d61ec4b9be07aa60ae85cf, type: 2}
+  m_Target: {fileID: 11400000, guid: 49abb6716a99d314f85aed6efc3d618d, type: 2}
+  m_SuccessCount: 1
+  m_ColliderTags: []
 --- !u!1 &2710598400500064412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4087,14 +4151,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8a7f1a5270b52346889d2b1e0cbb61a, type: 3}
---- !u!4 &8818433399194956713 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7663166451579704121, guid: e8a7f1a5270b52346889d2b1e0cbb61a, type: 3}
-  m_PrefabInstance: {fileID: 1168780022864797840}
-  m_PrefabAsset: {fileID: 0}
 --- !u!2083052967 &8818433398153091012 stripped
 VisualEffect:
   m_CorrespondingSourceObject: {fileID: 7663166450608568148, guid: e8a7f1a5270b52346889d2b1e0cbb61a, type: 3}
+  m_PrefabInstance: {fileID: 1168780022864797840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8818433399194956713 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7663166451579704121, guid: e8a7f1a5270b52346889d2b1e0cbb61a, type: 3}
   m_PrefabInstance: {fileID: 1168780022864797840}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1963431578121696305
@@ -4573,13 +4637,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f455a84aac0a1e44d87ee4ac053f3a26, type: 3}
---- !u!2083052967 &8257907862647740427 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 1628595048637733016, guid: f455a84aac0a1e44d87ee4ac053f3a26, type: 3}
-  m_PrefabInstance: {fileID: 7205783470776582291}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8257907861542780006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1628595047533165813, guid: f455a84aac0a1e44d87ee4ac053f3a26, type: 3}
+  m_PrefabInstance: {fileID: 7205783470776582291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &8257907862647740427 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 1628595048637733016, guid: f455a84aac0a1e44d87ee4ac053f3a26, type: 3}
   m_PrefabInstance: {fileID: 7205783470776582291}
   m_PrefabAsset: {fileID: 0}

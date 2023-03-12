@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 919132148596668042}
   - component: {fileID: 919132148596668041}
   - component: {fileID: 919132148596668043}
+  - component: {fileID: -5422266463960063226}
   m_Layer: 0
   m_Name: Maw
   m_TagString: Untagged
@@ -361,6 +362,9 @@ MonoBehaviour:
   m_RaycastOrigin: {fileID: 508995021755545420}
   m_GroundCheck: {fileID: 508995021808377820}
   m_Target: {fileID: 0}
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &919132148596668041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +417,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttackArea: {fileID: 508995021702582848}
   m_HitCheckTime: 0.2
+  m_BladeHitArea: {fileID: 0}
+  m_BladeHitCheckTime: 0
+--- !u!114 &-5422266463960063226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851525126015991263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c323a29dc01e63439d09e61bc308988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Target: {fileID: 11400000, guid: 3dfbcdab94deb074b80ceef32607a215, type: 2}
+  m_SuccessCount: 1
+  m_ColliderTags: []
 --- !u!1 &1096056025710695392
 GameObject:
   m_ObjectHideFlags: 0

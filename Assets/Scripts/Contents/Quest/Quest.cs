@@ -174,6 +174,11 @@ public class Quest : ScriptableObject
         onCanceled?.Invoke(this);
     }
 
+    // Target 을 가진 Task 가 있는지 확인
+    public bool ContainsTarget(object target) => m_TaskGroup.Any(x => x.ContainsTarget(target));
+
+    public bool ContainsTarget(TaskTarget target) => ContainsTarget(target.Value);
+
     // Quest System 에 넘겨줄 Quest 복사본 :: Cloning
     public Quest Clone()
     {

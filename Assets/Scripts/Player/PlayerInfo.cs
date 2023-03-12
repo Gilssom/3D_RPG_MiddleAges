@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using CharacterController;
+using UnityEngine.Events;
 
 public class PlayerInfo : BaseInfo
 {
@@ -14,6 +15,7 @@ public class PlayerInfo : BaseInfo
     public CapsuleCollider m_CapsuleCollider { get; private set; }
     public UI_Inven m_UIInven                { get; private set; }
     public Player m_Player;
+    public UnityEvent onLevelUp;
 
     [SerializeField]
     private Transform m_RightHand;
@@ -60,6 +62,7 @@ public class PlayerInfo : BaseInfo
             {
                 Debug.Log("Level Up!");
                 Level = level;
+                onLevelUp.Invoke();
                 SetStat(level);
             }
         } 

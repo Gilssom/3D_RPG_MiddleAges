@@ -171,6 +171,22 @@ public class Player : Base
             InventoryManager.Instance.TryOpenSkillSystem();
         }
     }
+
+    public void QuestUI(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            InventoryManager.Instance.TryOpenQuestSystem();
+        }
+    }
+
+    public void AchievementUI(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            InventoryManager.Instance.TryOpenAchievementSystem();
+        }
+    }
     #endregion
 
     #region #플레이어 이동 시스템
@@ -270,7 +286,9 @@ public class Player : Base
                 if (DashState.m_IsDash || InventoryManager.m_InventoryActivated 
                     || InventoryManager.m_ShopActivated
                     || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
                 {
                     return;
                 }
@@ -287,7 +305,9 @@ public class Player : Base
                     || InventoryManager.m_InventoryActivated 
                     || InventoryManager.m_ShopActivated
                     || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
                 {
                     return;
                 }
@@ -312,7 +332,9 @@ public class Player : Base
                     || InventoryManager.m_InventoryActivated 
                     || InventoryManager.m_ShopActivated
                     || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
                 {
                     return;
                 }
@@ -326,10 +348,12 @@ public class Player : Base
     public void UltimateSkill()
     {
         if (DashState.m_IsDash && AttackState.isAttack
-                       || InventoryManager.m_InventoryActivated
-                       || InventoryManager.m_ShopActivated
-                       || InventoryManager.m_EnforceActivated
-                       || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_InventoryActivated
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
         {
             return;
         }
@@ -341,10 +365,12 @@ public class Player : Base
     public void BladeSkill()
     {
         if (DashState.m_IsDash && AttackState.isAttack
-                       || InventoryManager.m_InventoryActivated
-                       || InventoryManager.m_ShopActivated
-                       || InventoryManager.m_EnforceActivated
-                       || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_InventoryActivated
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
         {
             return;
         }
@@ -356,10 +382,12 @@ public class Player : Base
     public void LigthRefereeSkill()
     {
         if (DashState.m_IsDash && AttackState.isAttack
-                          || InventoryManager.m_InventoryActivated
-                          || InventoryManager.m_ShopActivated
-                          || InventoryManager.m_EnforceActivated
-                          || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_InventoryActivated
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
         {
             return;
         }
@@ -371,10 +399,12 @@ public class Player : Base
     public void DevilSlashSkill()
     {
         if (DashState.m_IsDash && AttackState.isAttack
-                          || InventoryManager.m_InventoryActivated
-                          || InventoryManager.m_ShopActivated
-                          || InventoryManager.m_EnforceActivated
-                          || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_InventoryActivated
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
         {
             return;
         }
@@ -386,10 +416,12 @@ public class Player : Base
     public void AngelSkill()
     {
         if (DashState.m_IsDash && AttackState.isAttack
-                       || InventoryManager.m_InventoryActivated
-                       || InventoryManager.m_ShopActivated
-                       || InventoryManager.m_EnforceActivated
-                       || InventoryManager.m_SkillActivated)
+                    || InventoryManager.m_InventoryActivated
+                    || InventoryManager.m_ShopActivated
+                    || InventoryManager.m_EnforceActivated
+                    || InventoryManager.m_SkillActivated
+                    || InventoryManager.m_QuestActivated
+                    || InventoryManager.m_AchievementActivated)
         {
             return;
         }
@@ -403,7 +435,9 @@ public class Player : Base
         if (InventoryManager.m_InventoryActivated
                 || InventoryManager.m_ShopActivated
                 || InventoryManager.m_EnforceActivated
-                || InventoryManager.m_SkillActivated)
+                || InventoryManager.m_SkillActivated
+                || InventoryManager.m_QuestActivated
+                || InventoryManager.m_AchievementActivated)
         {
             return;
         }
