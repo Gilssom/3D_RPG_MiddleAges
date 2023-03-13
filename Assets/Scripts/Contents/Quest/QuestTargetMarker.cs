@@ -10,6 +10,8 @@ public class QuestTargetMarker : MonoBehaviour
     [SerializeField]
     private MarkerMaterialData[] m_MarkerMaterialDatas;
 
+    public bool isQuestTarget;
+
     private Dictionary<Quest, Task> m_TargetTasksByQuest = new Dictionary<Quest, Task>();
     private Transform m_CameraTransform;
     //private Renderer m_Renderer;
@@ -96,6 +98,7 @@ public class QuestTargetMarker : MonoBehaviour
             m_CurrentRunningTargetTaskCount--;
 
         gameObject.SetActive(m_CurrentRunningTargetTaskCount != 0);
+        isQuestTarget = (m_CurrentRunningTargetTaskCount != 0);
     }
 
     [System.Serializable]

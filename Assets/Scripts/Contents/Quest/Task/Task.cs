@@ -46,7 +46,7 @@ public class Task : ScriptableObject
     private bool m_CanReceiveReportsDuringComplete;
 
     private TaskState m_State;
-    public int m_CurrentSuccess;
+    private int m_CurrentSuccess;
 
     public event StateChangedHandler onStateChanged;
     public event SuccessChangedHandler onSuccessChanged;

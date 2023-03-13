@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -439,6 +439,8 @@ MonoBehaviour:
   m_MutantSpawnPoint: {fileID: 647676464}
   m_WarrockSpawnPoint: {fileID: 1496022884}
   m_MawSpawnPoint: {fileID: 1101043195}
+  m_CurQuest: {fileID: 0}
+  m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
 --- !u!4 &51619619
 Transform:
   m_ObjectHideFlags: 0
@@ -6054,6 +6056,10 @@ PrefabInstance:
       propertyPath: m_Quest.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 9631e7215b86db646a5139e25a464cef, type: 2}
+    - target: {fileID: 1338136914257244665, guid: d2fd886fa41fa3448b0ffcd3327a92f8, type: 3}
+      propertyPath: m_CompleteableMarkerPrefab
+      value: 
+      objectReference: {fileID: 3641438501036199600, guid: dd363d2e215ca4a4f86f8d1d7e9b8e3a, type: 3}
     - target: {fileID: 1520172761217930766, guid: d2fd886fa41fa3448b0ffcd3327a92f8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6216,6 +6222,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5551044739138421808, guid: ab07f2ee3f6362441b754ea7d9131363, type: 3}
+      propertyPath: isQuestNpc
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551044739138421808, guid: ab07f2ee3f6362441b754ea7d9131363, type: 3}
+      propertyPath: m_Quest.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551044739138421808, guid: ab07f2ee3f6362441b754ea7d9131363, type: 3}
+      propertyPath: m_Quest.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 78e05481162bdc943bf29087714a4deb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab07f2ee3f6362441b754ea7d9131363, type: 3}
 --- !u!1001 &7988915119753796541

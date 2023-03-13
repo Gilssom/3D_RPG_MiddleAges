@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScene : MonoBehaviour
+public class GameScene : SingletomManager<GameScene>
 {
     [SerializeField]
     [Header("각각 몬스터 스폰 위치 ( 테스트 )")]
     Transform m_MutantSpawnPoint, m_WarrockSpawnPoint, m_MawSpawnPoint;
+
+    [Header("현재 진행 퀘스트")]
+    public Quest m_CurQuest;
+    [SerializeField]
+    private Category m_Category;
 
     void Start()
     {
@@ -25,5 +30,16 @@ public class GameScene : MonoBehaviour
         Mawpool.SetPosition(m_MawSpawnPoint.position);
 
         UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
+
+        UpdateCheckCurrentQuest();
+    }
+
+    public void UpdateCheckCurrentQuest()
+    {
+        foreach (var quest in QuestSystem.Instance.p_ActiveQuests)
+        {
+            if (quest.p_Category == m_Category)
+                m_CurQuest = quest;
+        }
     }
 }

@@ -22,6 +22,8 @@ public class NpcInteraction : MonoBehaviour
     public bool isQuestNpc;
     public Quest[] m_Quest;
     public int m_QuestIndex;
+    public bool isQuestComplete;
+    public GameObject m_CompleteableMarkerPrefab;
     public UnityEngine.Events.UnityEvent onTalkEnd;
 
     void Start()
@@ -61,6 +63,19 @@ public class NpcInteraction : MonoBehaviour
 
     void SetTalkData()
     {
+        // isQuestComplete 가 활성화 되면 대화를 한번 더 걸어서 완료 시킨다.
+        var targetMarker = GetComponentInChildren<QuestTargetMarker>();
+
+        if (targetMarker)
+        {
+            bool tryTalk = targetMarker.isQuestTarget;
+
+            if (!tryTalk)
+                return;
+        }
+        else
+            return;
+        
         TalkData[] talkDatas = GetComponent<Dialogue>().GetObejctDialogue();
 
         InventoryManager.Instance.m_Dialogue.ShowDialogue(talkDatas, this);
@@ -73,6 +88,16 @@ public class NpcInteraction : MonoBehaviour
     {
         m_NpcInfo.curTalkIndex++;
         onTalkEnd.Invoke();
+
+        // Npc 위에 물음표 마커를 띄운다.
+        // 대화를 걸면 완료하는 대화창이 뜨고,
+        // 대화가 끝나면 퀘스트를 완료 시킨다.
+        if (GameScene.Instance.m_CurQuest.p_IsCompletable)
+        {
+            Debug.Log("완료할 수 있는 퀘스트가 존재합니다");
+            Instantiate(m_CompleteableMarkerPrefab, transform);
+            isQuestComplete = true;
+        }
 
         if (isQuestNpc)
         {
