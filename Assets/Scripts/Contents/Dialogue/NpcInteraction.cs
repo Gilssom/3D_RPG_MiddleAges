@@ -19,12 +19,18 @@ public class NpcInteraction : MonoBehaviour
     public NpcInfo m_NpcInfo;
 
     [Header("퀘스트 진행 관련 Event")]
-    public bool isQuestNpc;
-    public Quest[] m_Quest;
-    public int m_QuestIndex;
+    //public bool isQuestNpc;
+    //public Quest[] m_Quest;
+    //public int m_QuestIndex;
     public bool isQuestComplete;
     public GameObject m_CompleteableMarkerPrefab;
+
+    [Header("대화 시작 / 종료 이벤트")]
+    public UnityEngine.Events.UnityEvent onTalkStart;
     public UnityEngine.Events.UnityEvent onTalkEnd;
+
+    [Header("대화 관련 오브젝트")]
+    public GameObject m_TalkCamera;
 
     void Start()
     {
@@ -70,12 +76,20 @@ public class NpcInteraction : MonoBehaviour
         {
             bool tryTalk = targetMarker.isQuestTarget;
 
-            if (!tryTalk)
-                return;
+            if (tryTalk)
+                TalkEvent();
         }
         else
-            return;
-        
+        {
+            if(isQuestComplete)
+                TalkEvent();
+        }
+    }
+
+    void TalkEvent()
+    {
+        onTalkStart.Invoke();
+
         TalkData[] talkDatas = GetComponent<Dialogue>().GetObejctDialogue();
 
         InventoryManager.Instance.m_Dialogue.ShowDialogue(talkDatas, this);
@@ -89,20 +103,21 @@ public class NpcInteraction : MonoBehaviour
         m_NpcInfo.curTalkIndex++;
         onTalkEnd.Invoke();
 
+        if (isQuestComplete)
+        {
+            GameScene.Instance.m_CurQuest.Complete();
+            isQuestComplete = false;
+            m_CompleteableMarkerPrefab.SetActive(false);
+        }
+
         // Npc 위에 물음표 마커를 띄운다.
         // 대화를 걸면 완료하는 대화창이 뜨고,
         // 대화가 끝나면 퀘스트를 완료 시킨다.
         if (GameScene.Instance.m_CurQuest.p_IsCompletable)
         {
             Debug.Log("완료할 수 있는 퀘스트가 존재합니다");
-            Instantiate(m_CompleteableMarkerPrefab, transform);
+            m_CompleteableMarkerPrefab.SetActive(true);
             isQuestComplete = true;
-        }
-
-        if (isQuestNpc)
-        {
-            SetQuest(m_Quest[m_QuestIndex]);
-            m_QuestIndex++;
         }
 
         if (m_NpcInfo.TalkEventData.Length > m_NpcInfo.curTalkIndex)
@@ -166,9 +181,8 @@ public class NpcInteraction : MonoBehaviour
         }
     }
 
-    void SetQuest(Quest quest)
+    public void SetCamera(bool isTalk)
     {
-        if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
-            QuestSystem.Instance.Register(quest);
+        m_TalkCamera.SetActive(isTalk);
     }
 }

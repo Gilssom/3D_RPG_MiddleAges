@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6c9bc993f87d849ba528b4755ff647, type: 3}
+  m_Name: Task_Talk GateKeeper 2
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
+  m_CodeName: TALK_GATEKEEPER_3
+  m_Description: "\uC678\uACFD \uBB38\uC9C0\uAE30\uC5D0\uAC8C \uC54C\uB824\uC8FC\uAE30"
+  m_Action: {fileID: 11400000, guid: dd267cc195f4e2a42869b0e7938f6f5f, type: 2}
+  m_Targets:
+  - {fileID: 11400000, guid: c4245437994605b4a93fe073dc9fae9a, type: 2}
+  m_InitialSuccessValue: {fileID: 0}
+  m_NeedSuccessToComplete: 1
+  m_CanReceiveReportsDuringComplete: 0

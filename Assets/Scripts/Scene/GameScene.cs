@@ -13,6 +13,10 @@ public class GameScene : SingletomManager<GameScene>
     [SerializeField]
     private Category m_Category;
 
+    [Header("메인 퀘스트 진행도")]
+    public Quest[] m_MainQuest;
+    public int m_MainQuestIndex;
+
     void Start()
     {
         GameObject player = GameManager.Instance.Spwan(Defines.WorldObject.Player, "Player/Player");
@@ -31,7 +35,22 @@ public class GameScene : SingletomManager<GameScene>
 
         UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
 
+        StartQuest();
         UpdateCheckCurrentQuest();
+    }
+
+    public void StartQuest()
+    {
+        foreach (var quest in m_MainQuest)
+        {
+            Debug.Log($"{quest} / {quest.p_IsAcceptable} / {!QuestSystem.Instance.ContainsInCompleteQuests(quest)}");
+            if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
+            {
+                QuestSystem.Instance.Register(quest);
+                UpdateCheckCurrentQuest();
+                break;
+            }
+        }
     }
 
     public void UpdateCheckCurrentQuest()

@@ -162,6 +162,10 @@ public class Quest : ScriptableObject
         onCompleted = null;
         onCanceled = null;
         onNewTaskGroup = null;
+
+        // Main 퀘스트 진도를 나아가야 할때 사용
+        if (p_Category == GameScene.Instance.m_CurQuest.p_Category)
+            GameScene.Instance.StartQuest();
     }
 
     // 퀘스트를 취소하는 함수

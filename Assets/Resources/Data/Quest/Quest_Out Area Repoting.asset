@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60d897cdee8eea4bbeb89efb6c4a35e, type: 3}
+  m_Name: Quest_Out Area Repoting
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
+  m_Icon: {fileID: 0}
+  m_CodeName: OUT_AREA_REPORTING
+  m_DisPlayName: "\uC678\uACFD \uC21C\uCC30 \uBCF4\uACE0\uD558\uAE30"
+  m_Description: "\uC678\uACFD \uC9C0\uC5ED\uC5D0 \uB300\uD55C \uC815\uBCF4\uB97C
+    \uC54C\uB824\uC8FC\uC790."
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: 11adbbf19626aec48b61d34e23b384da, type: 2}
+  - m_Tasks:
+    - {fileID: 11400000, guid: 3f85d5f7679462041b5c1c5feaa877e0, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: a259dc154f7f13342b1b70ef898a07dd, type: 2}
+  - {fileID: 11400000, guid: e13a23c51ea7351458cadf93102c64b2, type: 2}
+  m_UseAutoComplete: 1
+  m_IsCancelable: 0
+  m_IsSavable: 0
+  m_AcceptionConditions:
+  - {fileID: 11400000, guid: 8f123a7c27f701541986ec73d0dd5d04, type: 2}
+  m_CancelConditions: []
