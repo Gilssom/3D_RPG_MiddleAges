@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e6c9bc993f87d849ba528b4755ff647, type: 3}
-  m_Name: Task_Kill The Monster4
+  m_Name: Task_Collect EP Food
   m_EditorClassIdentifier: 
-  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
-  m_CodeName: KILL_THE_MUTANT_4
-  m_Description: "\uB3CC\uC5F0\uBCC0\uC774 \uCC98\uCE58\uD558\uAE30"
+  m_Category: {fileID: 11400000, guid: 98d89fdc4366b29479d510bc8eae36cf, type: 2}
+  m_CodeName: COLLECT_EP_FOOD
+  m_Description: "??? \uC74C\uC2DD \uB9CC\uB4E4\uC5B4\uBCF4\uAE30"
   m_Action: {fileID: 11400000, guid: dd267cc195f4e2a42869b0e7938f6f5f, type: 2}
   m_Targets:
-  - {fileID: 11400000, guid: 003cf505a4737bd4596279b43fffb506, type: 2}
+  - {fileID: 11400000, guid: eaa246343d6ed614cb620eb5e102b959, type: 2}
   m_InitialSuccessValue: {fileID: 0}
-  m_NeedSuccessToComplete: 4
+  m_NeedSuccessToComplete: 1
   m_CanReceiveReportsDuringComplete: 0
-  m_CurrentSuccess: 0

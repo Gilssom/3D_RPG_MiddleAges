@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119fca60034e1de439c59fc3d428c07c, type: 3}
+  m_Name: Achievement_Kill The Warrock 30
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Icon: {fileID: 21300000, guid: 212d560265f56ab97254225db2b520a7, type: 3}
+  m_CodeName: KILL_THE_WARROCK_30
+  m_DisPlayName: "\uB098\uB3C4 \uBCA0\uD14C\uB791 \uBAA8\uD5D8\uAC00!"
+  m_Description: "\uD0DC\uC591\uACC4\uC758 \uC218\uD638\uC790 30\uD68C \uCC98\uCE58\uD558\uAE30"
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: ac5ba05720b4b624e85095dea2b4335b, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: e35e31830f96f944ba41919edb81f6c2, type: 2}
+  m_UseAutoComplete: 1
+  m_IsCancelable: 0
+  m_IsSavable: 1
+  m_AcceptionConditions: []
+  m_CancelConditions: []

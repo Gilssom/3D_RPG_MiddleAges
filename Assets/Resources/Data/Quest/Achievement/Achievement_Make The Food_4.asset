@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119fca60034e1de439c59fc3d428c07c, type: 3}
+  m_Name: Achievement_Make The Food_4
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: 98d89fdc4366b29479d510bc8eae36cf, type: 2}
+  m_Icon: {fileID: 21300000, guid: 3510c29155a78c2b6333ef3ab03373e1, type: 3}
+  m_CodeName: MAKE_THE_FOOD_4
+  m_DisPlayName: "\uC2E0\uB4E4\uC758 \uB9CC\uCC2C"
+  m_Description: "??? \uC74C\uC2DD \uB9CC\uB4E4\uC5B4\uBCF4\uAE30"
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: 1c65cff5352b6ad4e9ea877a643c7c52, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: 8d2842e5a2a23a44ca64f97cb85d5cec, type: 2}
+  m_UseAutoComplete: 1
+  m_IsCancelable: 0
+  m_IsSavable: 1
+  m_AcceptionConditions: []
+  m_CancelConditions: []

@@ -16,7 +16,8 @@ MonoBehaviour:
   m_Icon: {fileID: 21300000, guid: b9435aed30a3b4f07518ebf9f7ef0b8e, type: 3}
   m_CodeName: KILL_THE_MUTANT_1
   m_DisPlayName: "\uCCAB\uBC88\uC9F8 \uBAA8\uD5D8, \uCCAB\uBC88\uC9F8 \uC0AC\uB0E5"
-  m_Description: "\uB3CC\uC5F0\uBCC0\uC774\uB97C \uCC98\uCE58\uD558\uAE30"
+  m_Description: "\uC740\uD558\uACC4\uC758 \uB808\uAE30\uC624\uB85C\uC2A4 1\uD68C
+    \uCC98\uCE58\uD558\uAE30"
   m_TaskGroup:
   - m_Tasks:
     - {fileID: 11400000, guid: 6a9cd1a9318fb4d469feabb0911b1edd, type: 2}

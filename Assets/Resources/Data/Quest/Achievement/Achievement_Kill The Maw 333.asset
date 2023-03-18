@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119fca60034e1de439c59fc3d428c07c, type: 3}
+  m_Name: Achievement_Kill The Maw 333
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Icon: {fileID: 21300000, guid: 438333023452f45ada116d8c907df98c, type: 3}
+  m_CodeName: KILL_THE_MAW_333
+  m_DisPlayName: "\uD3ED\uD48D\uC758 \uC2DC\uACF5 \uC18D\uC73C\uB85C!"
+  m_Description: "\uBBF8\uAD81\uC758 \uAE30\uC0AC\uB2E8 333\uD68C \uCC98\uCE58\uD558\uAE30"
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: b0803ad768033194fa80f8a94bf20dda, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: 16acd8884865e3f41931cf7fbf5b28e3, type: 2}
+  m_UseAutoComplete: 1
+  m_IsCancelable: 0
+  m_IsSavable: 1
+  m_AcceptionConditions: []
+  m_CancelConditions: []

@@ -14,3 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Quests:
   - {fileID: 11400000, guid: 88069ae4029f5f04bb32d76ac621f362, type: 2}
+  - {fileID: 11400000, guid: 7875ecf9f2a556f4fbb483cb0235dd2c, type: 2}
+  - {fileID: 11400000, guid: 977292b15c245f44b9cc4ab39cc51fec, type: 2}
+  - {fileID: 11400000, guid: 0d339ce2198b63d409b568548f281c7f, type: 2}
+  - {fileID: 11400000, guid: 9f78da517f62acf4984370bfe194c015, type: 2}
+  - {fileID: 11400000, guid: fe847de6db4af554b9352282f5006cfd, type: 2}
+  - {fileID: 11400000, guid: e94919166a793934789426887efdd2d4, type: 2}
+  - {fileID: 11400000, guid: 3f53d73d7b181494aa5d08def11fe1df, type: 2}
+  - {fileID: 11400000, guid: 70a62fca9f7a1d5429696eda35848f9c, type: 2}
+  - {fileID: 11400000, guid: 7a356dc8fcede2847a0c2234d5734d3d, type: 2}
+  - {fileID: 11400000, guid: cbc72cb5ea7c200479405be2123b8109, type: 2}
+  - {fileID: 11400000, guid: 6fce80756e7c8f94fada5647102ce3ea, type: 2}
+  - {fileID: 11400000, guid: f6878f492b6a7a04a9afb3efbd7dc125, type: 2}
+  - {fileID: 11400000, guid: e0a3f70b77bc9d1438428d0ab850dddf, type: 2}
+  - {fileID: 11400000, guid: 1a0d440ef2d36174aa636b39879fc0be, type: 2}
+  - {fileID: 11400000, guid: 881546cb55ae41640967f1c3637004b0, type: 2}
+  - {fileID: 11400000, guid: 78d23335379f7284cb7d079eece44403, type: 2}

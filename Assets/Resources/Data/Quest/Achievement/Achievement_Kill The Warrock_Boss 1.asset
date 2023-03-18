@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119fca60034e1de439c59fc3d428c07c, type: 3}
+  m_Name: Achievement_Kill The Warrock_Boss 1
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Icon: {fileID: 21300000, guid: b03e2ade45987801bd3339a2662445cb, type: 3}
+  m_CodeName: KILL_THE_WARROCK_BOSS_1
+  m_DisPlayName: "\uD0DC\uC591\uACC4\uB97C \uC815\uBCF5\uD558\uC790"
+  m_Description: "\uD0DC\uC591\uACC4\uC758 \uC218\uD638\uB2E8\uC7A5 1\uD68C \uCC98\uCE58\uD558\uAE30"
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: 9f7765516740619479f8260813676a8c, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: f0dc60fb6aee8e04799044e1d207626a, type: 2}
+  m_UseAutoComplete: 1
+  m_IsCancelable: 0
+  m_IsSavable: 1
+  m_AcceptionConditions: []
+  m_CancelConditions: []

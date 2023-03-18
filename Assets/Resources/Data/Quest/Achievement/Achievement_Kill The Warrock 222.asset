@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119fca60034e1de439c59fc3d428c07c, type: 3}
+  m_Name: Achievement_Kill The Warrock 222
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Icon: {fileID: 21300000, guid: 491ff5a210770d406a2f2ce0301e6ae7, type: 3}
+  m_CodeName: KILL_THE_WARROCK_222
+  m_DisPlayName: "\uD0DC\uC591\uACC4\uB294 \uB108\uBB34 \uC791\uC544"
+  m_Description: "\uD0DC\uC591\uACC4\uC758 \uC218\uD638\uC790 222\uD68C \uCC98\uCE58\uD558\uAE30"
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: 3baa7c407f2bb414c825baa09ca6b4f5, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: b5269de84ecc8ce409903d45860df781, type: 2}
+  m_UseAutoComplete: 1
+  m_IsCancelable: 0
+  m_IsSavable: 1
+  m_AcceptionConditions: []
+  m_CancelConditions: []

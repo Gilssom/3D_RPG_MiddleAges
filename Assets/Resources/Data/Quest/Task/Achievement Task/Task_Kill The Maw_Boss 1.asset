@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e6c9bc993f87d849ba528b4755ff647, type: 3}
-  m_Name: Task_Kill The Mutant1
+  m_Name: Task_Kill The Maw_Boss 1
   m_EditorClassIdentifier: 
   m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
-  m_CodeName: KILL_THE_MUTANT_1
-  m_Description: "\uB3CC\uC5F0\uBCC0\uC774 \uCC98\uCE58\uD558\uAE30"
+  m_CodeName: KILL_THE_MAW_BOSS_1
+  m_Description: "\uBBF8\uAD81\uC758 \uAE30\uC0AC\uB2E8\uC7A5 \uCC98\uCE58\uD558\uAE30"
   m_Action: {fileID: 11400000, guid: dd267cc195f4e2a42869b0e7938f6f5f, type: 2}
   m_Targets:
-  - {fileID: 11400000, guid: 003cf505a4737bd4596279b43fffb506, type: 2}
+  - {fileID: 11400000, guid: be55e08d3d499824d933d3cd496b3d64, type: 2}
   m_InitialSuccessValue: {fileID: 0}
   m_NeedSuccessToComplete: 1
   m_CanReceiveReportsDuringComplete: 0
-  m_CurrentSuccess: 0
