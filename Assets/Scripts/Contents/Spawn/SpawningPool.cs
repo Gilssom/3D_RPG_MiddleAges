@@ -29,11 +29,11 @@ public class SpawningPool : MonoBehaviour
     protected Vector3 m_SpawnPos;
 
     [SerializeField]
-    protected float m_SpawnRadius = 7.5f;
+    protected float m_SpawnRadius = 6.5f;
     [SerializeField]
     protected float m_SpawnTime = 5.0f;
     [SerializeField]
-    protected float m_BossSpawnTime = 3.0f;
+    protected float m_BossSpawnTime = 30.0f;
 
     void Start() { Init(); }
     protected virtual void Init(){ }
@@ -66,25 +66,29 @@ public class SpawningPool : MonoBehaviour
     protected virtual IEnumerator ResuerveSpawn(string MonsterType)
     {
         m_ReserveCount++;
-        yield return new WaitForSeconds(Random.Range(2, m_SpawnTime));
+        WaitForSeconds ranTime = new WaitForSeconds(Random.Range(3, m_SpawnTime));
+        yield return ranTime;
         GameObject obj = GameManager.Instance.Spwan(Defines.WorldObject.Monster, $"Enemy/{MonsterType}");
         NavMeshAgent Nma = obj.GetOrAddComponet<NavMeshAgent>();
 
         Vector3 randPos;
 
+        Vector3 randDir = Random.insideUnitSphere * Random.Range(0, m_SpawnRadius);
+        randDir.y = 0;
+        randPos = m_SpawnPos + randDir;
+
         while (true)
         {
-            Vector3 randDir = Random.insideUnitSphere * Random.Range(0, m_SpawnRadius);
-            randDir.y = 0;
-            randPos = m_SpawnPos + randDir;
-
             // 갈 수 있는 곳인지 체크
             NavMeshPath path = new NavMeshPath();
             if (Nma.CalculatePath(randPos, path))
                 break;
         }
 
+        Nma.enabled = false;
         obj.transform.position = randPos;
+
+        Nma.enabled = true;
         m_ReserveCount--;
     }
 
@@ -93,7 +97,12 @@ public class SpawningPool : MonoBehaviour
         m_BossReserveCount++;
         yield return new WaitForSeconds(m_BossSpawnTime);
         GameObject obj = GameManager.Instance.Spwan(Defines.WorldObject.Boss, $"Boss/{BossType}");
+        NavMeshAgent Nma = obj.GetOrAddComponet<NavMeshAgent>();
+
+        Nma.enabled = false;
         obj.transform.position = m_SpawnPos;
+
+        Nma.enabled = true;
         m_BossReserveCount--;
     }
 }

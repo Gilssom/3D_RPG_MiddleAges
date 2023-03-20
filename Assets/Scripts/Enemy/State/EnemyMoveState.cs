@@ -26,8 +26,13 @@ namespace CharacterController
             float curMoveSpeed = m_EnemyController.enemyInfo.MoveSpeed;
 
             m_EnemyController.enemyInfo.m_Anim.SetFloat(IsMoveSpeed, curMoveSpeed);
-            m_EnemyController.Move();
             m_EnemyController.PlayerCheck();
+
+            if (m_EnemyController.m_Target)
+                m_EnemyController.Move(m_EnemyController.m_Target.transform.position);
+            else
+                m_EnemyController.Move(m_EnemyController.m_SpawnTransform);
+
         }
 
         public override void OnFixedUpdateState()

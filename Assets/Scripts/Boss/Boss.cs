@@ -18,6 +18,16 @@ public class Boss : Base
 
     private WaitForSeconds m_OnDamageColor;
 
+    private UI_Boss_HPBar m_HpBarUI;
+
+    [Header("최초 스폰 위치")]
+    public Vector3 m_SpawnTransform;
+    [SerializeField]
+    private bool isReturn;
+
+    [Header("퀘스트 진행 관련 Event")]
+    public UnityEngine.Events.UnityEvent onDead;
+
     public override void Init()
     {
         WorldObjectType = Defines.WorldObject.Boss;
@@ -26,17 +36,29 @@ public class Boss : Base
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
         m_OnDamageColor = new WaitForSeconds(0.2f);
 
-        // 보스는 추가로 씬UI 에서 관리할 예정
-        //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
-            //UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
+        m_SpawnTransform = this.transform.position;
     }
 
     #region #기본 이동 시스템
     public void Move(Vector3 target)
     {
-        MoveStop(false);
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
+        MoveStop(false);
         navmesh.SetDestination(target);
+
+        if (isReturn)
+        {
+            navmesh.speed = 2;
+
+            if (navmesh.remainingDistance < 0.5f)
+            {
+                isReturn = false;
+                MoveStop(true);
+                return;
+            }
+            return;
+        }
+
         navmesh.speed = bossInfo.MoveSpeed;
 
         LookAt(target);
@@ -46,6 +68,7 @@ public class Boss : Base
     {
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
         navmesh.isStopped = isStop;
+        navmesh.speed = bossInfo.MoveSpeed;
         bossInfo.m_Rigid.velocity = Vector3.zero;
         bossInfo.m_Rigid.angularVelocity = Vector3.zero;
     }
@@ -78,7 +101,7 @@ public class Boss : Base
         {
             // 플레이어 체크
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player == null)
+            if (player == null || isReturn)
             {
                 return;
             }
@@ -130,21 +153,28 @@ public class Boss : Base
         }
     }
 
+    // 보스가 전투 지역을 벗어 났을때
+    void ReturnPosition()
+    {
+        isReturn = true;
+        // 몬스터 위치 초기화
+        bossInfo.CheckPlayer = false;
+        bossInfo.ReadyAttack = false;
+        m_Target = null;
+        UIManager.Instance.ClosePopupUI(m_HpBarUI);
+        UIManager.Instance.isBossHPOpen = false;
+
+        bossInfo.stateMachine.ChangeState(StateName.MOVE);
+    }
+
     void SetHpBar()
     {
-        if (UIManager.Instance.isBossHPOpen)
+        if (UIManager.Instance.isBossHPOpen || !m_Target)
             return;
 
         UIManager.Instance.isBossHPOpen = true;
-        UI_Boss_HPBar HpBarObj = UIManager.Instance.ShowPopupUI<UI_Boss_HPBar>();
-        HpBarObj.m_BossInfo = bossInfo;
-
-        if (!m_Target)
-        {
-            UIManager.Instance.ClosePopupUI(HpBarObj);
-            UIManager.Instance.isBossHPOpen = false;
-            return;
-        }
+        m_HpBarUI = UIManager.Instance.ShowPopupUI<UI_Boss_HPBar>();
+        m_HpBarUI.m_BossInfo = bossInfo;     
     }
     #endregion
 
@@ -165,13 +195,6 @@ public class Boss : Base
         Vector3 randDir = Random.insideUnitSphere * Random.Range(3, 7);
         randDir.y = 0;
         randPos = transform.position + randDir;
-
-        //NavMeshPath path = new NavMeshPath();
-        //if (navmesh.CalculatePath(randPos, path))
-        //{        
-        //}
-        //else
-        //    return;
 
         m_RunAwayPos = randPos;
         bossInfo.stateMachine.ChangeState(StateName.RUN);
@@ -223,6 +246,9 @@ public class Boss : Base
     {
         if (other.tag == "PlayerHitBox")
             OnHitEvent(BaseInfo.playerInfo);
+
+        if (other.tag == "OutOfArea")
+            ReturnPosition();
     }
 
     void OnHitEvent(PlayerInfo player)
@@ -243,6 +269,11 @@ public class Boss : Base
             DamageText(damage, isCritical);
             bossInfo.Hp -= damage;
             StartCoroutine(OnDamageEvent());
+
+            // 랜덤 회피
+            int ranRunAway = Random.Range(0, 10);
+            if (ranRunAway < 2)
+                MoveRanTarget();
 
             // 몬스터 사망
             if (bossInfo.Hp <= 0)

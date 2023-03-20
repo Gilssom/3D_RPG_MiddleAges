@@ -806,7 +806,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5362502693880940182}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -819,7 +819,7 @@ Transform:
   - {fileID: 5524832574139440358}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!95 &919132148138311024
 Animator:
   serializedVersion: 3
@@ -862,7 +862,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5362502693880940182}
-  m_Material: {fileID: 13400000, guid: 431aa3abf29208f40abc7e0c03daa421, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.47
@@ -908,6 +908,7 @@ MonoBehaviour:
   m_RaycastOrigin: {fileID: 997779823}
   m_GroundCheck: {fileID: 2063771425}
   m_Target: {fileID: 0}
+  m_SpawnTransform: {x: 0, y: 0, z: 0}
   onDead:
     m_PersistentCalls:
       m_Calls:
@@ -950,7 +951,7 @@ MonoBehaviour:
   m_ReadyAttack: 0
   m_AttackCoolTime: 4
   m_AttackRange: 1
-  m_ScanRange: 10
+  m_ScanRange: 6
   m_PotionChance: 0
   m_PotionCount: 0
   m_MinFragmentsCount: 0

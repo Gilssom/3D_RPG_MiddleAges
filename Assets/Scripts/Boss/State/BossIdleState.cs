@@ -15,10 +15,7 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
-            int ranRunAway = Random.Range(0, 10);
-            Debug.Log($"{m_BossController.bossInfo.Name}의 현재 상태는 Idle !");
-            if(ranRunAway < 1)
-                m_BossController.MoveRanTarget();
+            m_BossController.MoveStop(true);
         }
 
         public override void OnUpdateState()

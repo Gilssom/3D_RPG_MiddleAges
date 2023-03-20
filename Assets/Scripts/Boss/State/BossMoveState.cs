@@ -16,7 +16,6 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
-            Debug.Log($"{m_BossController.bossInfo.Name}의 현재 상태는 Move !");
             m_BossController.bossInfo.MoveSpeed = 1;
             m_BossController.bossInfo.m_Anim.SetBool(IsWalkAnimation, true);
         }
@@ -28,7 +27,12 @@ namespace CharacterController
             m_BossController.bossInfo.m_Anim.SetFloat(IsMoveSpeed, curMoveSpeed);
 
             if (!m_BossController.bossInfo.RunAway)
-                m_BossController.Move(m_BossController.m_Target.transform.position);
+            {
+                if (m_BossController.m_Target)
+                    m_BossController.Move(m_BossController.m_Target.transform.position);
+                else
+                    m_BossController.Move(m_BossController.m_SpawnTransform);
+            }
 
             m_BossController.PlayerCheck();
         }

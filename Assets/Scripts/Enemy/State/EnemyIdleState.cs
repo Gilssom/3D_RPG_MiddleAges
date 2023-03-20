@@ -13,7 +13,7 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
-            Debug.Log($"{m_EnemyController.enemyInfo.Name}의 현재 상태는 Idle !");
+            m_EnemyController.MoveStop(true);
         }
 
         public override void OnUpdateState()
@@ -28,7 +28,7 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            Debug.Log("Idle Exit State");
+
         }
     }
 }

@@ -1430,6 +1430,11 @@ MonoBehaviour:
   m_RaycastOrigin: {fileID: 1010213146}
   m_GroundCheck: {fileID: 2136305531}
   m_RunAwayPos: {x: 0, y: 0, z: 0}
+  m_SpawnTransform: {x: 0, y: 0, z: 0}
+  isReturn: 0
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1184103251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,8 +1465,8 @@ MonoBehaviour:
   m_Cover: 0
   m_AttackCoolTime: 4
   m_AttackRange: 1
-  m_CombatRange: 5
-  m_ScanRange: 10
+  m_CombatRange: 4
+  m_ScanRange: 7
   m_MinFragmentsCount: 0
   m_MaxFragmentsCount: 0
   m_RandomDropCount: 3

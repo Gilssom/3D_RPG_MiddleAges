@@ -2722,7 +2722,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &7166260268938250492
 CapsuleCollider:
@@ -2731,7 +2731,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8048709265625609680}
-  m_Material: {fileID: 13400000, guid: 431aa3abf29208f40abc7e0c03daa421, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.47
@@ -2777,6 +2777,7 @@ MonoBehaviour:
   m_RaycastOrigin: {fileID: 8045833078602031705}
   m_GroundCheck: {fileID: 7156091498998026053}
   m_Target: {fileID: 0}
+  m_SpawnTransform: {x: 0, y: 0, z: 0}
   onDead:
     m_PersistentCalls:
       m_Calls: []
@@ -2807,7 +2808,7 @@ MonoBehaviour:
   m_ReadyAttack: 0
   m_AttackCoolTime: 4
   m_AttackRange: 1
-  m_ScanRange: 10
+  m_ScanRange: 6
   m_PotionChance: 0
   m_PotionCount: 0
   m_MinFragmentsCount: 0

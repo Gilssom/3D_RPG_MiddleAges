@@ -11,11 +11,15 @@ public class Enemy : Base
     public EnemyInfo enemyInfo { get; private set; }
 
     private Transform m_Chracter;
-    [SerializeField]
-    private GameObject m_Target;
+    public GameObject m_Target;
     private Vector3 m_Pos;
 
     private WaitForSeconds m_OnDamageColor;
+
+    [Header("최초 스폰 위치")]
+    public Vector3 m_SpawnTransform;
+    [SerializeField]
+    private bool isReturn;
 
     [Header("퀘스트 진행 관련 Event")]
     public UnityEngine.Events.UnityEvent onDead;
@@ -28,16 +32,32 @@ public class Enemy : Base
         m_GroundLayer = 1 << LayerMask.NameToLayer("Ground");
         m_OnDamageColor = new WaitForSeconds(0.2f);
 
+        m_SpawnTransform = this.transform.position;
+
         if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
             UIManager.Instance.MakeWorldSpaceUI<UI_HPBar>(transform);
     }
 
     #region #기본 이동 시스템
-    public void Move()
+    public void Move(Vector3 Target)
     {
-        MoveStop(false);
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
-        navmesh.SetDestination(m_Target.transform.position);
+        MoveStop(false);
+        navmesh.SetDestination(Target);
+
+        if (isReturn)
+        {
+            navmesh.speed = 2;
+
+            if (navmesh.remainingDistance < 0.5f)
+            {
+                isReturn = false;
+                MoveStop(true);
+                return;
+            }
+            return;
+        }
+        
         navmesh.speed = enemyInfo.MoveSpeed;
 
         LookAt();
@@ -47,6 +67,7 @@ public class Enemy : Base
     {
         NavMeshAgent navmesh = gameObject.GetOrAddComponet<NavMeshAgent>();
         navmesh.isStopped = isStop;
+        navmesh.speed = enemyInfo.MoveSpeed;
         enemyInfo.m_Rigid.velocity = Vector3.zero;
         enemyInfo.m_Rigid.angularVelocity = Vector3.zero;
     }
@@ -77,7 +98,7 @@ public class Enemy : Base
     {
         // 플레이어 체크
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
+        if (player == null || isReturn)
             return;
 
         m_Pos = transform.position;
@@ -118,6 +139,18 @@ public class Enemy : Base
             return;
         }
     }
+
+    // 몬스터가 전투 지역을 벗어 났을때
+    void ReturnPosition()
+    {
+        isReturn = true;
+        // 몬스터 위치 초기화
+        enemyInfo.CheckPlayer = false;
+        enemyInfo.ReadyAttack = false;
+        m_Target = null;
+
+        enemyInfo.stateMachine.ChangeState(StateName.MOVE);
+    }
     #endregion
 
     #region #몬스터 공격 시스템
@@ -154,7 +187,8 @@ public class Enemy : Base
         if (other.tag == "PlayerHitBox")
             OnHitEvent(BaseInfo.playerInfo);
 
-        //other.transform.parent.gameObject.GetComponent<PlayerInfo>()
+        if (other.tag == "OutOfArea")
+            ReturnPosition();
     }
 
     void OnHitEvent(PlayerInfo player)

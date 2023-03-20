@@ -17,7 +17,7 @@ public class GameScene : SingletomManager<GameScene>
     public Quest[] m_MainQuest;
     public int m_MainQuestIndex;
 
-    void Start()
+    void Awake()
     {
         GameObject player = GameManager.Instance.Spwan(Defines.WorldObject.Player, "Player/Player");
         Camera.main.gameObject.GetOrAddComponet<CameraManager>().SetPlayer(player);
