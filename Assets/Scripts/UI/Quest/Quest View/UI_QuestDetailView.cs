@@ -66,7 +66,7 @@ public class UI_QuestDetailView : MonoBehaviour
             m_Target.Cancel();
     }
 
-    public void Show(Quest quest)
+    public virtual void Show(Quest quest)
     {
         m_DisplayGroup.SetActive(true);
         m_Target = quest;

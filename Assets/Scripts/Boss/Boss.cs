@@ -116,7 +116,6 @@ public class Boss : Base
                 //EnemyAttackState.isAttack == false && 
                 if (bossInfo.CheckPlayer && bossInfo.ReadyAttack)
                 {
-                    Debug.LogWarning("공격 상태로 전환");
                     // Attack 로 변경
                     bossInfo.stateMachine.ChangeState(StateName.ATTACK);
                     return;
@@ -124,7 +123,6 @@ public class Boss : Base
             }
             else if (distance <= bossInfo.CombotRange)
             {
-                Debug.LogWarning("경계 상태로 전환");
                 bossInfo.ReadyAttack = true;
                 bossInfo.CheckPlayer = true;
                 m_Target = player;
@@ -133,7 +131,6 @@ public class Boss : Base
             // 2번 추적 전환
             else if (distance <= bossInfo.ScanRange)
             {
-                Debug.LogWarning("추적 상태로 전환");
                 m_Target = player;
                 // Move 로 변경
                 bossInfo.stateMachine.ChangeState(StateName.RUN);
@@ -142,7 +139,6 @@ public class Boss : Base
             // 3번 기본 자세 전환
             else
             {
-                Debug.LogWarning("기본 상태로 전환");
                 bossInfo.CheckPlayer = false;
                 bossInfo.ReadyAttack = false;
                 m_Target = null;

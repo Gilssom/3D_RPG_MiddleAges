@@ -19,11 +19,12 @@ public class NpcInteraction : MonoBehaviour
     public NpcInfo m_NpcInfo;
 
     [Header("퀘스트 진행 관련 Event")]
-    //public bool isQuestNpc;
-    //public Quest[] m_Quest;
-    //public int m_QuestIndex;
     public bool isQuestComplete;
     public GameObject m_CompleteableMarkerPrefab;
+
+    [Header("서브 퀘스트 관련 Event")]
+    public bool isSubQuest;
+    public Quest[] m_SubQuest;
 
     [Header("대화 시작 / 종료 이벤트")]
     public UnityEngine.Events.UnityEvent onTalkStart;
@@ -48,6 +49,18 @@ public class NpcInteraction : MonoBehaviour
 
     public void InteractionNpc()
     {
+        if (isSubQuest)
+        {
+            foreach (var quest in m_SubQuest)
+            {
+                if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
+                    InventoryManager.Instance.TryOpenSubQuestSystem(quest);
+                    //QuestSystem.Instance.Register(quest);
+            }
+
+            return;
+        }
+
         switch (m_NpcInfo.m_NpcType)
         {
             case Defines.NpcType.Enforce:

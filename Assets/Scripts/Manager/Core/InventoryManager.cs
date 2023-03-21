@@ -12,6 +12,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public static bool m_EnforceActivated = false;
     public static bool m_SkillActivated = false;
     public static bool m_QuestActivated = false;
+    public static bool m_SubQuestActivated = false;
     public static bool m_AchievementActivated = false;
 
     [SerializeField]
@@ -28,6 +29,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public SkillKeyMap m_SkillQuickSlot;
     public UI_Dialogue m_Dialogue;
     public UI_QuestView m_QuestView;
+    public UI_SubQuestView m_SubQuestView;
     public UI_AchievementView m_AchievementView;
 
     public GameObject[] m_Swords;
@@ -50,6 +52,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
         GameObject InputField = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ThrowItem", gameObject.transform);
         GameObject Dialogue = ResourcesManager.Instance.Instantiate("UI/Popup/UI_Dialogue", gameObject.transform);
         GameObject Quest = ResourcesManager.Instance.Instantiate("UI/Popup/UI_QuestView", gameObject.transform);
+        GameObject SubQuest = ResourcesManager.Instance.Instantiate("UI/Popup/UI_SubQuestView", gameObject.transform);
         GameObject Achievement = ResourcesManager.Instance.Instantiate("UI/Popup/UI_AchievementView", gameObject.transform);
         GameObject ToolTip = ResourcesManager.Instance.Instantiate("UI/Popup/UI_ToolTip", gameObject.transform);
 
@@ -65,6 +68,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
         m_SkillSystem = SkillSystem.GetComponent<UI_Skill>();
         m_Dialogue = Dialogue.GetComponent<UI_Dialogue>();
         m_QuestView = Quest.GetComponent<UI_QuestView>();
+        m_SubQuestView = SubQuest.GetComponent<UI_SubQuestView>();
         m_AchievementView = Achievement.GetComponent<UI_AchievementView>();
 
         for (int i = 0; i < m_Swords.Length; i++)
@@ -207,6 +211,25 @@ public class InventoryManager : SingletomManager<InventoryManager>
         else
         {
             m_QuestView.CloseQuest();
+            HideToolTip();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void TryOpenSubQuestSystem(Quest quest = null)
+    {
+        m_SubQuestActivated = !m_SubQuestActivated;
+
+        if (m_SubQuestActivated)
+        {
+            m_SubQuestView.OpenQuest(quest);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            m_SubQuestView.CloseQuest();
             HideToolTip();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

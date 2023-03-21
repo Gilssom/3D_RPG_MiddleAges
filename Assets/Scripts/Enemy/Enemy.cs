@@ -110,7 +110,6 @@ public class Enemy : Base
             //EnemyAttackState.isAttack == false && 
             if (enemyInfo.CheckPlayer && enemyInfo.ReadyAttack)
             {
-                Debug.LogWarning("공격 상태로 전환");
                 // Attack 로 변경
                 enemyInfo.stateMachine.ChangeState(StateName.ATTACK);
                 return;
@@ -119,7 +118,6 @@ public class Enemy : Base
         // 2번 추적 전환
         else if (distance <= enemyInfo.ScanRange)
         {
-            Debug.LogWarning("추적 상태로 전환");
             enemyInfo.CheckPlayer = true;
             enemyInfo.ReadyAttack = true;
             m_Target = player;
@@ -130,7 +128,6 @@ public class Enemy : Base
         // 3번 기본 자세 전환
         else
         {
-            Debug.LogWarning("기본 상태로 전환");
             enemyInfo.CheckPlayer = false;
             enemyInfo.ReadyAttack = false;
             m_Target = null;
