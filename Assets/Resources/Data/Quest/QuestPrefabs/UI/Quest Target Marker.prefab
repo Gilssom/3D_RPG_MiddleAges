@@ -51,5 +51,8 @@ MonoBehaviour:
     m_MarkerPrefab: {fileID: 6498413594631172835, guid: 30670575d4edb8f44821cfa07e1c1a3a, type: 3}
   - m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
     m_MarkerPrefab: {fileID: 7713849325122206617, guid: a1636f2ac116a3541bb7cbaf0e18cc7e, type: 3}
+  - m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
+    m_MarkerPrefab: {fileID: 7713849325122206617, guid: a1636f2ac116a3541bb7cbaf0e18cc7e, type: 3}
+  - m_Category: {fileID: 11400000, guid: 2adc9e57758dc2d4fab5fab883b87c6b, type: 2}
+    m_MarkerPrefab: {fileID: 7713849325122206617, guid: 2c7cdc3bfa1120f48bdf375c3e306a10, type: 3}
   isQuestTarget: 0
-  m_CompleteableMarkerPrefab: {fileID: 3641438501036199600, guid: dd363d2e215ca4a4f86f8d1d7e9b8e3a, type: 3}

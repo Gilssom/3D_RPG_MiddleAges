@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203ab7d685f95d94299dfbfebe7da31e, type: 3}
   m_Name: ItemReward_Main Tier 2_20
   m_EditorClassIdentifier: 
-  m_Icon: {fileID: 21300000, guid: d99b4df9e9e199e4aa2a929e74ab61c2, type: 3}
+  m_Icon: {fileID: 21300000, guid: afbf2a312cb14f941a8c7b6656b06e79, type: 3}
   m_Item: {fileID: 11400000, guid: 51226d9043ad7e7418c35d25ee996544, type: 2}
   m_Description: "\uC544\uC774\uD15C \uBCF4\uC0C1"
   m_Quantity: 20

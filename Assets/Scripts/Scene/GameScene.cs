@@ -17,6 +17,9 @@ public class GameScene : SingletomManager<GameScene>
     public Quest[] m_MainQuest;
     public int m_MainQuestIndex;
 
+    [Header("Npc °ü¸®")]
+    public NpcInteraction[] m_Npc;
+
     void Awake()
     {
         GameObject player = GameManager.Instance.Spwan(Defines.WorldObject.Player, "Player/Player");
@@ -37,8 +40,10 @@ public class GameScene : SingletomManager<GameScene>
 
         StartQuest();
         UpdateCheckCurrentQuest();
+        UpdateNpcState();
     }
 
+    // Main Quest State Update
     public void StartQuest()
     {
         foreach (var quest in m_MainQuest)
@@ -59,6 +64,15 @@ public class GameScene : SingletomManager<GameScene>
         {
             if (quest.p_Category == m_Category)
                 m_CurQuest = quest;
+        }
+    }
+
+    // Sub Quest State Update
+    public void UpdateNpcState()
+    {
+        for (int i = 0; i < m_Npc.Length; i++)
+        {
+            m_Npc[i].UpdateQuestState();
         }
     }
 }

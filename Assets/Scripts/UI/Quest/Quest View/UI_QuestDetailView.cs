@@ -9,7 +9,7 @@ public class UI_QuestDetailView : MonoBehaviour
     [SerializeField]
     private GameObject m_DisplayGroup;
     [SerializeField]
-    private Button m_CancelButton;
+    protected Button m_CancelButton;
 
     [Header("Äù½ºÆ® Á¤º¸")]
     [SerializeField]

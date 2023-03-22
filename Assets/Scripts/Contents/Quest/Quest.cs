@@ -109,6 +109,7 @@ public class Quest : ScriptableObject
         }
 
         m_State = QuestState.Running;
+        Debug.Log($"{p_DisPlayName} {m_State}");
         p_CurrentTaskGroup.Start();
     }
 
@@ -166,6 +167,9 @@ public class Quest : ScriptableObject
         // Main 퀘스트 진도를 나아가야 할때 사용
         if (p_Category == GameScene.Instance.m_CurQuest.p_Category)
             GameScene.Instance.StartQuest();
+
+        // Sub 퀘스트 수행 가능 체크
+        GameScene.Instance.UpdateNpcState();
     }
 
     // 퀘스트를 취소하는 함수

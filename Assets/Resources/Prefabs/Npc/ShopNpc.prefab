@@ -1259,12 +1259,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf6b337b57d908468d405d3233fc36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_QuestMarker: {fileID: 0}
   m_NpcInfo:
     m_NpcType: 2
     isNearPlayer: 0
     AnimTrigger: 0
     curTalkIndex: 0
     TalkEventData: []
+  isQuestComplete: 0
+  m_CompleteableMarkerPrefab: {fileID: 0}
+  isSubQuest: 0
+  m_SubQuest: []
+  onTalkStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onTalkEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  m_TalkCamera: {fileID: 0}
 --- !u!114 &416518473
 MonoBehaviour:
   m_ObjectHideFlags: 0

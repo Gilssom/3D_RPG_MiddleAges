@@ -12,19 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d897cdee8eea4bbeb89efb6c4a35e, type: 3}
   m_Name: Quest_Kill The Any Monster 5
   m_EditorClassIdentifier: 
-  m_Category: {fileID: 11400000, guid: eacf58795d253194eb542f4de8cf1ee2, type: 2}
+  m_Category: {fileID: 11400000, guid: 2adc9e57758dc2d4fab5fab883b87c6b, type: 2}
   m_Icon: {fileID: 0}
   m_CodeName: KILL_THE_ANY_MONSTER 5
-  m_DisPlayName: "\uC8FC\uBCC0 \uBAAC\uC2A4\uD130 \uCC98\uCE58\uD558\uAE30 (2)"
-  m_Description: "\uC8FC\uBCC0\uC5D0 \uC788\uB294 \uBAAC\uC2A4\uD130 5\uB9C8\uB9AC
-    \uCC98\uCE58\uD558\uAE30"
+  m_DisPlayName: "\uB9C8\uB9AC\uB514\uC758 \uC81C\uC548"
+  m_Description: "\uB9C8\uB9AC\uB514\uAC00 \uBD80\uD0C1\uC744 \uB4E4\uC5B4\uC918\uC11C
+    \uACE0\uB9D9\uB2E4\uACE0 \uD55C\uB2E4. \uD558\uC9C0\uB9CC \uC5EC\uC804\uD788
+    \uB9C8\uC744 \uC678\uACFD\uC758 \uC548\uC804\uC774 \uBCF4\uC7A5\uB418\uC9C0 \uC54A\uACE0
+    \uC788\uB2E4. \uB9C8\uC744\uC758 \uC548\uC804\uC744 \uB354\uC6B1 \uB354 \uC9C0\uCF1C\uC900\uB2E4\uBA74
+    \uC18C\uC815\uC758 \uC7AC\uD654\uB97C \uC900\uB2E4\uACE0 \uD55C\uB2E4."
   m_TaskGroup:
   - m_Tasks:
     - {fileID: 11400000, guid: 65ba85dc55a80664385b9e370fdde4a5, type: 2}
   m_Rewards:
   - {fileID: 11400000, guid: e13a23c51ea7351458cadf93102c64b2, type: 2}
   m_UseAutoComplete: 1
-  m_IsCancelable: 0
+  m_IsCancelable: 1
   m_IsSavable: 0
   m_AcceptionConditions:
   - {fileID: 11400000, guid: 966d6c8746e14ef40ac5c9bdbd2be416, type: 2}

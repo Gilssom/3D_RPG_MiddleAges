@@ -16,6 +16,8 @@ public class NpcInteraction : MonoBehaviour
 {
     private Animator m_Anim;
     private Dialogue m_TalkData;
+    [SerializeField]
+    private QuestTargetMarker m_QuestMarker;
     public NpcInfo m_NpcInfo;
 
     [Header("퀘스트 진행 관련 Event")]
@@ -47,6 +49,27 @@ public class NpcInteraction : MonoBehaviour
         SetOutLine();
     }
 
+    public void UpdateQuestState()
+    {
+        foreach (var quest in m_SubQuest)
+        {
+            if (m_SubQuest == null)
+                break;
+
+            if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest) && !isSubQuest)
+            {
+                if(m_QuestMarker.gameObject.activeSelf == false)
+                    m_QuestMarker.gameObject.SetActive(true);
+
+                isSubQuest = true;            
+                SubQuestMarker(quest);
+            }
+        }
+    }
+
+    public void SubQuestMarker(Quest quest) =>
+        GetComponentInChildren<QuestTargetMarker>().SubQuestTargetQuest(quest, quest.p_IsRegistered);
+
     public void InteractionNpc()
     {
         if (isSubQuest)
@@ -55,7 +78,6 @@ public class NpcInteraction : MonoBehaviour
             {
                 if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
                     InventoryManager.Instance.TryOpenSubQuestSystem(quest);
-                    //QuestSystem.Instance.Register(quest);
             }
 
             return;
@@ -82,12 +104,11 @@ public class NpcInteraction : MonoBehaviour
 
     void SetTalkData()
     {
-        // isQuestComplete 가 활성화 되면 대화를 한번 더 걸어서 완료 시킨다.
-        var targetMarker = GetComponentInChildren<QuestTargetMarker>();
+        var questMarker = GetComponentInChildren<QuestTargetMarker>();
 
-        if (targetMarker)
+        if (questMarker)
         {
-            bool tryTalk = targetMarker.isQuestTarget;
+            bool tryTalk = questMarker.isQuestTarget;
 
             if (tryTalk)
                 TalkEvent();

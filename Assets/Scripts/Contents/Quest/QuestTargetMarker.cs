@@ -27,6 +27,11 @@ public class QuestTargetMarker : MonoBehaviour
     private void Start()
     {
         QuestSystem.Instance.onQuestRegistered += TryAddTargetQuest;
+
+        // Main 퀘스트와 관련 없이 특정 Taks Target 이 없는 경우 Sub Quest Npc 로 지정함
+        if (!m_Target)
+            return;
+
         foreach (var quest in QuestSystem.Instance.p_ActiveQuests)
             TryAddTargetQuest(quest);
 
@@ -97,6 +102,28 @@ public class QuestTargetMarker : MonoBehaviour
         else
             m_CurrentRunningTargetTaskCount--;
 
+        gameObject.SetActive(m_CurrentRunningTargetTaskCount != 0);
+        isQuestTarget = (m_CurrentRunningTargetTaskCount != 0);
+    }
+
+    List<GameObject> subMarker = new List<GameObject>();
+    // Sub Quest Marker Controller
+    public void SubQuestTargetQuest(Quest quest, bool isRegister)
+    {
+        if (!isRegister)
+        {
+            //m_Renderer.material = m_MarkerMaterialDatas.First(x => x.m_Category == task.p_Category).m_MarkerMaterial;
+            GameObject marker = Instantiate(m_MarkerMaterialDatas.First(x => x.m_Category == quest.p_Category).m_MarkerPrefab, transform);
+            subMarker.Add(marker);
+            m_CurrentRunningTargetTaskCount++;
+        }
+        else
+        {
+            m_CurrentRunningTargetTaskCount--;
+            Destroy(subMarker[0]);
+            subMarker.Clear();
+        }
+        
         gameObject.SetActive(m_CurrentRunningTargetTaskCount != 0);
         isQuestTarget = (m_CurrentRunningTargetTaskCount != 0);
     }
