@@ -46,6 +46,9 @@ public class Player : Base
     [Header("Npc와 상호작용 가능한 거리")]
     public float m_NpcCheckDis;
 
+    [Header("현재 플레이어 위치")]
+    public string m_CurrentAreaName;
+
     public override void Init()
     {
         WorldObjectType = Defines.WorldObject.Player;
@@ -65,6 +68,9 @@ public class Player : Base
         // Test
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // 마을 위치 임시
+        m_CurrentAreaName = "디오리카 평원";
 
         InvokeRepeating("AutoIncreaseHp", 0, 5);
         InvokeRepeating("FindNpc", 0, 0.5f);
@@ -498,13 +504,44 @@ public class Player : Base
     #region #플레이어 트리거 이벤트
     private void OnTriggerEnter(Collider other)
     {
+        #region #몬스터 피격
         if (other.tag == "EnemyHitBox")
-            OnHitEvent(other.transform.parent.gameObject.GetComponent<EnemyInfo>());
+            OnHitEvent(other.transform.parent.gameObject.GetComponent<EnemyInfo>().Attack);
+        #endregion
 
-        if(other.tag == "Item")
+        #region #보스 피격
+        // 일반 공격 = 기본 공격력
+        if (other.tag == "BossAttack")
+            OnHitEvent(other.transform.parent.gameObject.GetComponent<BossInfo>().Attack);
+        // 에픽 공격 = 기본 공격력 150%
+        if (other.tag == "BossEpicAttack")
+            OnHitEvent((int)(other.transform.parent.gameObject.GetComponent<BossInfo>().Attack * 1.5f));
+        // 스페셜 공격 = 기본 공격력 200%
+        if (other.tag == "BossSpecialAttack")
+            OnHitEvent((int)(other.transform.parent.gameObject.GetComponent<BossInfo>().Attack * 2));
+        #endregion
+
+        #region #아이템 획득
+        if (other.tag == "Item")
         {
             ItemPickUp(other.gameObject.GetOrAddComponet<ItemPickUp>());
         }
+        #endregion
+
+        #region #지역 이동
+        if (other.tag == "AreaTrigger")
+        {
+            foreach (string areaName in other.GetComponent<AreaInfo>().m_AreaName)
+            {
+                if (areaName != m_CurrentAreaName)
+                {
+                    m_CurrentAreaName = areaName;
+                    GameScene.Instance.UpdateAreaField();
+                    break;
+                }
+            }
+        }
+        #endregion
     }
     #endregion
 
@@ -559,19 +596,29 @@ public class Player : Base
     #endregion
 
     #region #플레이어 피격 이벤트
-    void OnHitEvent(EnemyInfo enemy)
+    void OnHitEvent(int hitdamage)
     {
         if (playerInfo.Hp > 0)
         {
-            int damage = UnityEngine.Random.Range(enemy.Attack - playerInfo.Defense, enemy.Attack + 1);
+            int damage = UnityEngine.Random.Range(hitdamage - playerInfo.Defense, hitdamage + 1);
             Debug.Log($"적에게 입은 피해량 : {damage} !!");
             playerInfo.Hp -= damage;
+            DamageText(damage, true);
+            GameScene.Instance.m_BloodScreenUI.StartFadeIn(0.15f);
 
             // 플레이어 사망
             if (playerInfo.Hp <= 0)
                 GameManager.Instance.Despawn(gameObject);
                 //playerInfo.stateMachine.ChangeState(StateName.DIE);
         }
+    }
+
+    void DamageText(int damage, bool player, bool critical = false)
+    {
+        UI_Damage damageObj = UIManager.Instance.MakeWorldSpaceUI<UI_Damage>(transform);
+        damageObj.m_Damage = damage;
+        damageObj.m_Critical = critical;
+        damageObj.m_PlayerHit = player;
     }
     #endregion
 
@@ -680,6 +727,13 @@ public class Player : Base
         playerInfo.m_EffectList[8].Play();
         yield return new WaitForSeconds(1);
         playerInfo.m_EffectList[8].Stop();
+    }
+    #endregion
+
+    #region #플레이어 레벨업 UI
+    public void LevelUpUI()
+    {
+        GameScene.Instance.m_LevelUpUI.LevelUpSetText();
     }
     #endregion
 }

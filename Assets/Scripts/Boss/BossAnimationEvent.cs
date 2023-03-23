@@ -8,6 +8,10 @@ namespace CharacterController
     {
         public BossInfo bossInfo { get; private set; }
 
+        [Header("보스 전용 히트 박스")]
+        [SerializeField, Tooltip("히트 박스 콜라이더")]
+        private Collider[] m_BossAttackArea;
+
         protected override void Init()
         {
             m_CheckTime = new WaitForSeconds(m_HitCheckTime);
@@ -29,11 +33,11 @@ namespace CharacterController
             bossInfo.m_Rigid.velocity = Vector3.zero;
         }
 
-        protected override IEnumerator AttackArea()
+        protected override IEnumerator AttackArea(int attackNumber)
         {
-            m_AttackArea.enabled = true;
+            m_BossAttackArea[attackNumber].enabled = true;
             yield return m_CheckTime;
-            m_AttackArea.enabled = false;
+            m_BossAttackArea[attackNumber].enabled = false;
         }
 
         protected override void TestAttackEffect(int AttackNumber)

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Category: {fileID: 11400000, guid: 4cd5775a689be6b4cb07b3099d30201f, type: 2}
   m_CodeName: TALK_CHIEF_3
-  m_Description: "\uC678\uACFD \uC21C\uCC30 \uB0B4\uC6A9 \uBCF4\uACE0\uD558\uAE30"
+  m_Description: "\uB9C8\uC744 \uC774\uC7A5\uC5D0\uAC8C \uCC3E\uC544\uAC00\uAE30"
   m_Action: {fileID: 11400000, guid: dd267cc195f4e2a42869b0e7938f6f5f, type: 2}
   m_Targets:
   - {fileID: 11400000, guid: 52276f4d59e00294bac4e4c08ab1169a, type: 2}

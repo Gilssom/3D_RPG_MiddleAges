@@ -28,7 +28,7 @@ namespace CharacterController
         protected abstract void OnFinishedAttack();
         protected abstract void OnForwardAttack(float Power);
         protected abstract void OffForwardAttack();
-        protected abstract IEnumerator AttackArea();
+        protected abstract IEnumerator AttackArea(int attackNumber);
         protected abstract void TestAttackEffect(int AttackNumber);
     }
 }

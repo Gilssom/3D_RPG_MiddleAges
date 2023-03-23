@@ -20,6 +20,12 @@ public class GameScene : SingletomManager<GameScene>
     [Header("Npc °ü¸®")]
     public NpcInteraction[] m_Npc;
 
+    public UI_Player_GUI m_PlayerGUI { get; private set; }
+    public UI_LevelUp m_LevelUpUI { get; private set; }
+    public UI_VillageName m_VillageNameUI { get; private set; }
+    public UI_Minimap m_MinimapUI { get; private set; }
+    public FadeInOutManager m_BloodScreenUI { get; private set; }
+
     void Awake()
     {
         GameObject player = GameManager.Instance.Spwan(Defines.WorldObject.Player, "Player/Player");
@@ -36,7 +42,11 @@ public class GameScene : SingletomManager<GameScene>
         Mawpool.SetKeepMonsterCount(2);
         Mawpool.SetPosition(m_MawSpawnPoint.position);
 
-        UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
+        m_PlayerGUI = UIManager.Instance.ShowSceneUI<UI_Player_GUI>();
+        m_LevelUpUI = UIManager.Instance.ShowSceneUI<UI_LevelUp>();
+        m_VillageNameUI = UIManager.Instance.ShowSceneUI<UI_VillageName>();
+        m_MinimapUI = UIManager.Instance.ShowSceneUI<UI_Minimap>();
+        m_BloodScreenUI = ResourcesManager.Instance.Instantiate($"UI/Scene/UI_BloodScreen").GetComponent<FadeInOutManager>();
 
         StartQuest();
         UpdateCheckCurrentQuest();
@@ -74,5 +84,11 @@ public class GameScene : SingletomManager<GameScene>
         {
             m_Npc[i].UpdateQuestState();
         }
+    }
+
+    public void UpdateAreaField()
+    {
+        m_VillageNameUI.VillageNameSetText();
+        m_MinimapUI.MinimapNameSetText();
     }
 }

@@ -9,6 +9,11 @@ TagManager:
   - Item
   - Npc
   - OutOfArea
+  - Enemy
+  - AreaTrigger
+  - BossEpicAttack
+  - BossSpecialAttack
+  - BossAttack
   layers:
   - Default
   - TransparentFX

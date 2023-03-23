@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: d0327b379d164174993454ca13a05861
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3835420961910096610
+    second: "\u2014Pngtree\u2014elegant name border_6976495_0"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -125,7 +128,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014elegant name border_6976495_0"
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 590
+        width: 1997
+        height: 823
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1df241c4f8d5cac0800000000000000
+      internalID: -3835420961910096610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

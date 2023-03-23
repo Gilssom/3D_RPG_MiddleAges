@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Rewards:
   - {fileID: 11400000, guid: a259dc154f7f13342b1b70ef898a07dd, type: 2}
   - {fileID: 11400000, guid: e13a23c51ea7351458cadf93102c64b2, type: 2}
-  m_UseAutoComplete: 1
+  m_UseAutoComplete: 0
   m_IsCancelable: 0
   m_IsSavable: 0
   m_AcceptionConditions:

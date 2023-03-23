@@ -29,7 +29,7 @@ namespace CharacterController
             enemyInfo.m_Rigid.velocity = Vector3.zero;
         }
 
-        protected override IEnumerator AttackArea()
+        protected override IEnumerator AttackArea(int attackNumber)
         {
             m_AttackArea.enabled = true;
             yield return m_CheckTime;

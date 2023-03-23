@@ -18,6 +18,7 @@ public class UI_Damage : UI_Base
 
     public int m_Damage;
     public bool m_Critical;
+    public bool m_PlayerHit;
 
     public override void Init()
     {
@@ -39,7 +40,7 @@ public class UI_Damage : UI_Base
 
     void Update()
     {
-        GetDamage(m_Damage, m_Critical);
+        GetDamage(m_Damage, m_Critical, m_PlayerHit);
 
         transform.rotation = Camera.main.transform.rotation;
 
@@ -50,9 +51,14 @@ public class UI_Damage : UI_Base
         text.color = alpha;
     }
 
-    void GetDamage(int damage, bool critical)
+    void GetDamage(int damage, bool critical, bool m_PlayerHit = false)
     {
-        if(critical)
+        if (m_PlayerHit)
+        {
+            text.fontSize = 20;
+            alpha = new Color(198 / 255f, 0f, 0f);
+        }
+        else if(critical)
         {
             text.fontSize = 50;
             // new Color 또한 가비지가 안생김. new Vector 와 동일하다.
