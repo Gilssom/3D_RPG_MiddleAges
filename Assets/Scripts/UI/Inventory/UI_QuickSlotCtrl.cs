@@ -68,7 +68,7 @@ public class UI_QuickSlotCtrl : UI_Scene
 
     public void EatItem(int selectNum)
     {
-        if (m_QuickSlots[selectNum] != null && !isCoolTime)
+        if (m_QuickSlots[selectNum].m_Item != null && !isCoolTime)
         {
             if (m_QuickSlots[selectNum].m_Item.m_UsedType == Item.UsedType.Potion && (ItemEffectDataBase.Instance.m_Player.playerInfo.Hp == ItemEffectDataBase.Instance.m_Player.playerInfo.MaxHp))
             {

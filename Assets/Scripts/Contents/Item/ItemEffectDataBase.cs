@@ -69,6 +69,8 @@ public class ItemEffectDataBase : SingletomManager<ItemEffectDataBase>
                         switch (m_ItemEffects[i].m_Part[j])
                         {
                             case HP:
+                                SoundManager.Instance.Play(GameScene.Instance.m_Clip[0]);
+                                SoundManager.Instance.Play("Effect/Potion Sound");
                                 m_Player.IncreaseHp(m_ItemEffects[i].m_Shame[j]);
                                 break;
                             case DP:

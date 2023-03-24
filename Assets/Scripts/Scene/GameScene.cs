@@ -20,6 +20,9 @@ public class GameScene : SingletomManager<GameScene>
     [Header("Npc 包府")]
     public NpcInteraction[] m_Npc;
 
+    [Header("Sound 包府")]
+    public AudioClip[] m_Clip;
+
     public UI_Player_GUI m_PlayerGUI { get; private set; }
     public UI_LevelUp m_LevelUpUI { get; private set; }
     public UI_VillageName m_VillageNameUI { get; private set; }
@@ -51,6 +54,8 @@ public class GameScene : SingletomManager<GameScene>
         StartQuest();
         UpdateCheckCurrentQuest();
         UpdateNpcState();
+
+        SoundManager.Instance.Play("Bgm/Village", Defines.Sound.Bgm);
     }
 
     // Main Quest State Update
@@ -90,5 +95,12 @@ public class GameScene : SingletomManager<GameScene>
     {
         m_VillageNameUI.VillageNameSetText();
         m_MinimapUI.MinimapNameSetText();
+
+        //i++;
+
+        //if(i % 2 == 0)
+        //    SoundManager.Instance.Play("Bgm/Village", Defines.Sound.NewBgm);
+        //else
+        //    SoundManager.Instance.Play("Bgm/FirstField", Defines.Sound.NewBgm);
     }
 }

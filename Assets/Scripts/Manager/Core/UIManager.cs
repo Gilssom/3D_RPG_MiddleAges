@@ -150,4 +150,10 @@ public class UIManager : SingletomManager<UIManager>
             ClosePopupUI();
     }
     #endregion
+
+    public void Clear()
+    {
+        CloseAllPopupUI();
+        m_SceneUI = null;
+    }
 }

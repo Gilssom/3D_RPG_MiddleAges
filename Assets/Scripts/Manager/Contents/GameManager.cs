@@ -145,4 +145,11 @@ public class GameManager : SingletomManager<GameManager>
 
         ResourcesManager.Instance.Destroy(go);
     }
+
+    // Scene 이동 시 Clear 할 수 있는 것들은 모두 Clera
+    public static void Clear()
+    {
+        SoundManager.Instance.Clear();
+        UIManager.Instance.Clear();
+    }
 }

@@ -11,6 +11,16 @@ public class Defines
         Monster,
         Boss
     }
+    
+    public enum Sound
+    {
+        Bgm,
+        Bgm01,
+        Bgm02,
+        Effect,
+        MaxCount,
+    }
+
     public enum MonsterType
     {
         Mutant = 1000,
