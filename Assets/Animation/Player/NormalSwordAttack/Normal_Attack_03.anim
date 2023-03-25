@@ -96502,6 +96502,13 @@ AnimationClip:
     floatParameter: 1.5
     intParameter: 0
     messageOptions: 0
+  - time: 0.76666665
+    functionName: SoundEffect
+    data: Final Attack
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.3333334
     functionName: OffForwardAttack
     data: 

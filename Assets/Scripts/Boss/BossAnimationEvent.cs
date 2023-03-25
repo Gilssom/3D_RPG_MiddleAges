@@ -18,6 +18,11 @@ namespace CharacterController
             bossInfo = GetComponent<BossInfo>();
         }
 
+        protected override void SoundEffect(string soundName)
+        {
+            SoundManager.Instance.Play($"Effect/{soundName}");
+        }
+
         protected override void OnFinishedAttack()
         {
             bossInfo.stateMachine.ChangeState(StateName.IDLE);

@@ -19,6 +19,11 @@ namespace CharacterController
             playerInfo = GetComponent<PlayerInfo>();
         }
 
+        protected override void SoundEffect(string soundName)
+        {
+            SoundManager.Instance.Play($"Effect/{soundName}");
+        }
+
         protected override void OnFinishedAttack()
         {
             AttackState.isAttack = false;
@@ -57,7 +62,6 @@ namespace CharacterController
             while (AttackBlade < 4)
             {
                 m_BladeHitArea.enabled = true;
-                Debug.LogWarning("Blade Test");
                 yield return m_BladeCheckTime;
                 m_BladeHitArea.enabled = false;
                 AttackBlade++;

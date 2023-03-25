@@ -14,6 +14,11 @@ namespace CharacterController
             enemyInfo = GetComponent<EnemyInfo>();
         }
 
+        protected override void SoundEffect(string soundName)
+        {
+            SoundManager.Instance.Play($"Effect/{soundName}");
+        }
+
         protected override void OnFinishedAttack()
         {
             enemyInfo.stateMachine.ChangeState(StateName.IDLE);

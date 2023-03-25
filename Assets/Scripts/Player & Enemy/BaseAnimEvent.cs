@@ -25,6 +25,7 @@ namespace CharacterController
         }
 
         protected abstract void Init();
+        protected abstract void SoundEffect(string soundName);
         protected abstract void OnFinishedAttack();
         protected abstract void OnForwardAttack(float Power);
         protected abstract void OffForwardAttack();
