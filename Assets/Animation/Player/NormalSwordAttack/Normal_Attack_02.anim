@@ -57455,7 +57455,7 @@ AnimationClip:
   m_Events:
   - time: 0.3
     functionName: SoundEffect
-    data: One Two Attack
+    data: Two Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

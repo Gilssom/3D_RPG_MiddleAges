@@ -18,6 +18,7 @@ namespace CharacterController
             Debug.Log($"{m_EnemyController.enemyInfo.Name}의 현재 상태는 Die !");
             m_EnemyController.enemyInfo.m_Anim.Play(IsDieAnimation);
             m_EnemyController.enemyInfo.m_CapsuleCollider.enabled = false;
+            SoundManager.Instance.Play("Effect/Monster Death");
         }
 
         public override void OnUpdateState()

@@ -50,6 +50,7 @@ public class SwordInfo : BaseWeapon
     public override void UltimateSkill(BaseState state)
     {
         Debug.Log("Ultimate Skill On");
+        SoundManager.Instance.Play("Effect/Ultimate Skill Voice");
         BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
         BaseInfo.playerInfo.m_Anim.SetTrigger(IsUltiSkillAnimation);
         ResourcesManager.Instance.Instantiate("Player/Effect/Skill/Ultimate_Effect");
@@ -78,12 +79,14 @@ public class SwordInfo : BaseWeapon
         BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 0.5f);
         BaseInfo.playerInfo.m_Anim.SetTrigger(IsUltiSkillAnimation);
         GameObject go = ResourcesManager.Instance.Instantiate("Player/Effect/Skill/LightReferee" , BaseInfo.playerInfo.transform);
+        StartCoroutine(SkillSound(15 ,"Arrow Skill", 0.1f));
         StartCoroutine(BaseInfo.playerInfo.m_Player.DesSkill(go, 10));
     }
 
     public override void AngelSkill(BaseState state)
     {
         Debug.Log("Angel Skill On");
+        SoundManager.Instance.Play("Effect/Angel Skill");
         BaseInfo.playerInfo.m_Anim.SetFloat(AttackSpeedAnimation, 2f);
         BaseInfo.playerInfo.m_Anim.SetTrigger(IsBuffSkillAnimation);
         StartCoroutine(BaseInfo.playerInfo.m_Player.SetEffect(1, 5));
@@ -111,5 +114,14 @@ public class SwordInfo : BaseWeapon
 
         m_ComboCount = 0;
         BaseInfo.playerInfo.m_Anim.SetInteger(AttackComboAnimation, 0);
+    }
+
+    private IEnumerator SkillSound(int count, string path, float retime)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            SoundManager.Instance.Play($"Effect/{path}");
+            yield return new WaitForSeconds(retime);
+        }
     }
 }

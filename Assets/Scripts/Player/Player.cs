@@ -449,6 +449,7 @@ public class Player : Base
         }
 
         Debug.Log("Whispers Skill On");
+        SoundManager.Instance.Play("Effect/Whisper Skill");
         StartCoroutine(SetEffect(2, 9));
     }
     #endregion
@@ -486,6 +487,7 @@ public class Player : Base
 
                 playerInfo.m_WeaponManager.SetWeapon(null);
                 playerInfo.m_Anim.SetTrigger("isChange");
+                SoundManager.Instance.Play("Effect/Weapon Swap");
             }
         }
     }
@@ -605,6 +607,7 @@ public class Player : Base
             playerInfo.Hp -= damage;
             DamageText(damage, true);
             GameScene.Instance.m_BloodScreenUI.StartFadeIn(0.15f);
+            SoundManager.Instance.Play("Effect/Player Hit");
 
             // 플레이어 사망
             if (playerInfo.Hp <= 0)

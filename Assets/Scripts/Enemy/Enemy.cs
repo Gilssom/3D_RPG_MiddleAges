@@ -203,6 +203,7 @@ public class Enemy : Base
             }
 
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
+            SoundManager.Instance.Play("Effect/Monster Hit");
             DamageText(damage, isCritical);
             enemyInfo.Hp -= damage;
             StartCoroutine(OnDamageEvent());

@@ -168,6 +168,7 @@ public class Boss : Base
         if (UIManager.Instance.isBossHPOpen || !m_Target)
             return;
 
+        SoundManager.Instance.Play("Effect/Boss Start Fight");
         UIManager.Instance.isBossHPOpen = true;
         m_HpBarUI = UIManager.Instance.ShowPopupUI<UI_Boss_HPBar>();
         m_HpBarUI.m_BossInfo = bossInfo;     

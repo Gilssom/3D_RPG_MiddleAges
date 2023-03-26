@@ -18,6 +18,7 @@ namespace CharacterController
             Debug.Log($"{m_BossController.bossInfo.Name}의 현재 상태는 Die !");
             m_BossController.bossInfo.m_Anim.Play(IsDieAnimation);
             m_BossController.bossInfo.m_CapsuleCollider.enabled = false;
+            SoundManager.Instance.Play("Effect/Boss Death");
         }
 
         public override void OnUpdateState()

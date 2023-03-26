@@ -60,6 +60,7 @@ public class UltimateEvnet : MonoBehaviour
         yield return ATTACK_TIME;
         for (int i = 0; i < m_ChildrenSword.Count - 1; i++)
         {
+            SoundManager.Instance.Play("Effect/Throw Sword");
             m_ChildrenSword[i].gameObject.GetOrAddComponet<BoxCollider>().enabled = true;
             m_ChildrenSword[i].DOMove(m_ChildrenSword.Last().position, 0.15f);
             yield return ATTACK_DELAY;

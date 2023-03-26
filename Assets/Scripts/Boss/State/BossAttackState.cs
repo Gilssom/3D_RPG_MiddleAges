@@ -28,6 +28,7 @@ namespace CharacterController
                 {
                     m_BossController.bossInfo.m_Anim.SetBool(IsCoverAnimation, true);
                     m_BossController.bossInfo.Cover = true;
+                    SoundManager.Instance.Play("Effect/Boss Shield");
                 }
                 else if(RandomAttack < 5)
                 {
