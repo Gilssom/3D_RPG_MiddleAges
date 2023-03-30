@@ -24,7 +24,7 @@ public class UI_VillageName : UI_Scene
     public void VillageNameSetText()
     {
         // ¸¶À» UI FadeTime = 2.5f Seconds
-        m_FadeInOut.StartFadeIn(3f);
+        m_FadeInOut.StartFadeIn(3f, true);
         GetText((int)Texts.VillageText).text = BaseInfo.playerInfo.m_Player.m_CurrentAreaName;
     }
 }

@@ -5,7 +5,11 @@ using UnityEngine;
 public class GameScene : SingletomManager<GameScene>
 {
     [SerializeField]
-    [Header("각각 몬스터 스폰 위치 ( 테스트 )")]
+    [Header("플레이어 스폰 위치")]
+    Transform m_PlayerSpawnPoint;
+
+    [SerializeField]
+    [Header("각각 몬스터 스폰 위치")]
     Transform m_MutantSpawnPoint, m_WarrockSpawnPoint, m_MawSpawnPoint;
 
     [Header("현재 진행 퀘스트")]
@@ -28,10 +32,13 @@ public class GameScene : SingletomManager<GameScene>
     public UI_VillageName m_VillageNameUI { get; private set; }
     public UI_Minimap m_MinimapUI { get; private set; }
     public FadeInOutManager m_BloodScreenUI { get; private set; }
+    public FadeInOutManager m_BlackScreenUI { get; private set; }
 
     void Awake()
     {
-        GameObject player = GameManager.Instance.Spwan(Defines.WorldObject.Player, "Player/Player");
+        SceneManagerEx.Instance.m_BlackScreenUI.StartFadeOut(3f);
+
+        GameObject player = GameManager.Instance.Spwan(Defines.WorldObject.Player, "Player/Player", m_PlayerSpawnPoint);
         Camera.main.gameObject.GetOrAddComponet<CameraManager>().SetPlayer(player);
 
         GameObject go = new GameObject { name = "SpawningPool" };
@@ -95,12 +102,5 @@ public class GameScene : SingletomManager<GameScene>
     {
         m_VillageNameUI.VillageNameSetText();
         m_MinimapUI.MinimapNameSetText();
-
-        //i++;
-
-        //if(i % 2 == 0)
-        //    SoundManager.Instance.Play("Bgm/Village", Defines.Sound.NewBgm);
-        //else
-        //    SoundManager.Instance.Play("Bgm/FirstField", Defines.Sound.NewBgm);
     }
 }

@@ -29,7 +29,7 @@ public class SpawningPool : MonoBehaviour
     protected Vector3 m_SpawnPos;
 
     [SerializeField]
-    protected float m_SpawnRadius = 6.5f;
+    protected float m_SpawnRadius = 4.5f;
     [SerializeField]
     protected float m_SpawnTime = 5.0f;
     [SerializeField]

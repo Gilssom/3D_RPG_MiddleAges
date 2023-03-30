@@ -46984,6 +46984,13 @@ AnimationClip:
     floatParameter: 0.4
     intParameter: 0
     messageOptions: 0
+  - time: 0.6333333
+    functionName: SoundEffect
+    data: Great One Attack
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.73333335
     functionName: TestAttackEffect
     data: 

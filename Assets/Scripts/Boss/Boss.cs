@@ -263,6 +263,7 @@ public class Boss : Base
             }
 
             Debug.Log($"적에게 가한 피해량 : {damage} !!");
+            SoundManager.Instance.Play("Effect/Monster Hit");
             DamageText(damage, isCritical);
             bossInfo.Hp -= damage;
             StartCoroutine(OnDamageEvent());

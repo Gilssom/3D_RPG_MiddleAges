@@ -23,7 +23,7 @@ public class UI_LevelUp : UI_Scene
     public void LevelUpSetText()
     {
         // 레벨업 UI FadeTime = 2.5f Seconds
-        m_FadeInOut.StartFadeIn(2.5f);
+        m_FadeInOut.StartFadeIn(2.5f, true);
         GetText((int)Texts.LevelUpText).text = "LEVEL UP";
         GetText((int)Texts.LeveIUpDesc).text = $"<color=#F8F052>{BaseInfo.playerInfo.Level}</color> 레벨로 올랐습니다.";
     }

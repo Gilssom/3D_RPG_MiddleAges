@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Defines
 {
+    public enum Scene
+    {
+        Unknown,
+        Login,
+        Lobby,
+        Loading,
+        Game01,
+    }
+
     public enum WorldObject
     {
         Unknown,

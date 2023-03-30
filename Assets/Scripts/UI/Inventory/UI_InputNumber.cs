@@ -107,6 +107,7 @@ public class UI_InputNumber : UI_Base
         }
 
         UI_DragSlot.Instance.m_DragSlot.SetSlotCount(-num);
+        SoundManager.Instance.Play("UI/Destroy Item");
 
         UI_DragSlot.Instance.m_DragSlot = null;
         GetObject((int)GameObjects.UI_InputBase).SetActive(false);

@@ -31,6 +31,8 @@ public class PlayerInfo : BaseInfo
     [SerializeField]
     int m_Exp;
     [SerializeField]
+    int m_MaxExp;
+    [SerializeField]
     int m_Gold;
     [SerializeField]
     int m_Fragments;
@@ -61,12 +63,14 @@ public class PlayerInfo : BaseInfo
             if(level != Level)
             {
                 Debug.Log("Level Up!");
+                SoundManager.Instance.Play("UI/LevelUp");
                 Level = level;
                 onLevelUp.Invoke();
                 SetStat(level);
             }
-        } 
+        }
     }
+    public int MaxExp { get { return m_MaxExp; } set { m_MaxExp = value; } }
     public int Gold { get { return m_Gold; } set { m_Gold = value; } }
     public int Fragments { get { return m_Fragments; } set { m_Fragments = value; } }
 
@@ -155,6 +159,7 @@ public class PlayerInfo : BaseInfo
     {
         Dictionary<int, Data.Stat> dict = m_DataManager.StatDict;
         Data.Stat stat = dict[level];
+        Data.Stat expStat = dict[level + 1];
 
         m_Hp += stat.maxHp;
         m_MaxHp += stat.maxHp;
@@ -162,6 +167,9 @@ public class PlayerInfo : BaseInfo
         m_CriticalChance += stat.criticalchance;
         m_CriticalDamage += stat.criticaldamage;
         m_Defense += stat.defense;
+
+        m_Exp -= stat.totalExp;
+        m_MaxExp += expStat.totalExp;
 
         foreach (NMPassiveSkill skill in SkillManager.Instance.NMPassiveSkills)
         {

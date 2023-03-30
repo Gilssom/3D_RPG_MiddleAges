@@ -83,6 +83,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenInventory()
     {
         m_InventoryActivated = !m_InventoryActivated;
+        SoundManager.Instance.Play("UI/Inventory Skill Viewer");
 
         if (m_InventoryActivated)
         {
@@ -102,6 +103,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenPlayerInfo()
     {
         m_PlayerInfoActivated = !m_PlayerInfoActivated;
+        SoundManager.Instance.Play("UI/Player Info Viewer");
 
         if (m_PlayerInfoActivated)
         {
@@ -121,6 +123,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenPotionShop()
     {
         m_ShopActivated = !m_ShopActivated;
+        SoundManager.Instance.Play("UI/Player Info Viewer");
 
         if (m_ShopActivated)
         {
@@ -142,6 +145,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenEnforceShop()
     {
         m_ShopActivated = !m_ShopActivated;
+        SoundManager.Instance.Play("UI/Player Info Viewer");
 
         if (m_ShopActivated)
         {
@@ -163,6 +167,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenEnforceSystem()
     {
         m_EnforceActivated = !m_EnforceActivated;
+        SoundManager.Instance.Play("UI/Player Info Viewer");
 
         if (m_EnforceActivated)
         {
@@ -182,6 +187,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenSkillSystem()
     {
         m_SkillActivated = !m_SkillActivated;
+        SoundManager.Instance.Play("UI/Inventory Skill Viewer");
 
         if (m_SkillActivated)
         {
@@ -201,6 +207,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenQuestSystem()
     {
         m_QuestActivated = !m_QuestActivated;
+        SoundManager.Instance.Play("UI/Quest Achieve Viewer");
 
         if (m_QuestActivated)
         {
@@ -220,6 +227,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenSubQuestSystem(Quest quest = null)
     {
         m_SubQuestActivated = !m_SubQuestActivated;
+        SoundManager.Instance.Play("UI/Quest Achieve Viewer");
 
         if (m_SubQuestActivated)
         {
@@ -239,6 +247,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void TryOpenAchievementSystem()
     {
         m_AchievementActivated = !m_AchievementActivated;
+        SoundManager.Instance.Play("UI/Quest Achieve Viewer");
 
         if (m_AchievementActivated)
         {
@@ -271,6 +280,7 @@ public class InventoryManager : SingletomManager<InventoryManager>
     public void ShowToolTip(Item item, RectTransform pos, int itemLevel)
     {
         m_ToopTip.ShowToolTip(item, pos, itemLevel);
+        SoundManager.Instance.Play("UI/Mouse");
     }
 
     public void HideToolTip()

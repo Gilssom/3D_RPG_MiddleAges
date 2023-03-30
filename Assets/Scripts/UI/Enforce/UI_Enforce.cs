@@ -191,13 +191,20 @@ public class UI_Enforce : UI_Popup
             if (Chance < m_Success)
             {
                 GetText((int)Texts.UI_SuccessText).text = "강화 성공!";
+                SoundManager.Instance.Play("UI/Enforce Success");
                 EnforceSuccess();
             }
             else
+            {
                 GetText((int)Texts.UI_SuccessText).text = "강화 실패!";
+                SoundManager.Instance.Play("UI/Enforce Fail");
+            }
         }
         else
+        {
             GetText((int)Texts.UI_SuccessText).text = "재료가 부족합니다.";
+            SoundManager.Instance.Play("UI/Fail");
+        }
     }
 
     private bool CheckItemCount()
@@ -345,6 +352,8 @@ public class UI_Enforce : UI_Popup
 
     void TestEnforceSuccess(PointerEventData data)
     {
+        SoundManager.Instance.Play("UI/Enforce Success");
+
         switch (m_Item.m_ItemPart)
         {
             case Item.ItemParts.Helmat:

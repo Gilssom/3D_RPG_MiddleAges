@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class UI_Player_GUI : UI_Scene
 {
-    enum GameObjects
+    public enum GameObjects
     {
         HPBar,
+        ExpBar,
     }
 
     enum Texts
@@ -33,16 +34,18 @@ public class UI_Player_GUI : UI_Scene
     {
         // 각각의 오브젝트에서 가지고 있는 Stat 에 의해 HP Bar 변경
         float ratio = BaseInfo.playerInfo.Hp / (float)BaseInfo.playerInfo.MaxHp;
-        SetHpRatio(ratio);
+        float expRatio = BaseInfo.playerInfo.Exp / (float)BaseInfo.playerInfo.MaxExp;
+        SetRatio(GameObjects.HPBar, ratio);
+        SetRatio(GameObjects.ExpBar, expRatio);
         SetText();
     }
 
-    public void SetHpRatio(float ratio)
+    public void SetRatio(GameObjects objects, float ratio)
     {
-        if (ratio <= 0)
+        if (ratio < 0)
             ResourcesManager.Instance.Destroy(this.gameObject);
 
-        GetObject((int)GameObjects.HPBar).GetComponent<Slider>().value = ratio;
+        GetObject((int)objects).GetComponent<Slider>().value = ratio;
     }
 
     void UpdateTime()

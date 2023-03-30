@@ -20,14 +20,14 @@ public class FadeInOutManager : MonoBehaviour
     //    StartFadeIn();
     //}
 
-    public void StartFadeIn(float customFadeTime)
+    public void StartFadeIn(float customFadeTime, bool isAuto, Defines.Scene type = Defines.Scene.Unknown)
     {
         if (m_FadeCor != null)
         {
             StopAllCoroutines();
             m_FadeCor = null;
         }
-        m_FadeCor = StartCoroutine(FadeIn(customFadeTime));
+        m_FadeCor = StartCoroutine(FadeIn(customFadeTime, isAuto, type));
 
     }
 
@@ -42,7 +42,7 @@ public class FadeInOutManager : MonoBehaviour
 
     }
 
-    private IEnumerator FadeIn(float customFadeTime)
+    private IEnumerator FadeIn(float customFadeTime , bool isAuto, Defines.Scene type = Defines.Scene.Unknown)
     {
         m_AccumTime = 0f;
         while (m_AccumTime < customFadeTime)
@@ -52,7 +52,12 @@ public class FadeInOutManager : MonoBehaviour
             m_AccumTime += Time.deltaTime;
         }
         m_CanvasGroup.alpha = 1f;
-        StartFadeOut(customFadeTime);
+
+        if(isAuto)
+            StartFadeOut(customFadeTime);
+
+        if(type != Defines.Scene.Unknown)
+            SceneManagerEx.Instance.LoadScene(type);
     }
 
 

@@ -606,7 +606,7 @@ public class Player : Base
             Debug.Log($"적에게 입은 피해량 : {damage} !!");
             playerInfo.Hp -= damage;
             DamageText(damage, true);
-            GameScene.Instance.m_BloodScreenUI.StartFadeIn(0.15f);
+            GameScene.Instance.m_BloodScreenUI.StartFadeIn(0.15f, true);
             SoundManager.Instance.Play("Effect/Player Hit");
 
             // 플레이어 사망

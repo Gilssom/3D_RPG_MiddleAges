@@ -72,10 +72,12 @@ public class UI_Shop_Slot : UI_Base
             if (BaseInfo.playerInfo.Gold < m_ItemPrice)
             {
                 Debug.Log("돈이 부족합니다.");
+                SoundManager.Instance.Play("UI/Fail");
                 return;
             }
 
             BaseInfo.playerInfo.Gold -= m_ItemPrice;
+            SoundManager.Instance.Play("UI/Success");
             InventoryManager.Instance.AcquireItem(m_Item);
         }
     }
