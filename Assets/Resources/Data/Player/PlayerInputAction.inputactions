@@ -140,6 +140,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SoundSetting",
+                    "type": "Button",
+                    "id": "2898999f-cfed-4718-a2c3-c9e5906694bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -448,6 +456,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Achievement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5647489c-d210-4bbe-b4b7-32fcee180152",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "SoundSetting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

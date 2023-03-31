@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : SingletomManager<SoundManager>
 {
@@ -13,6 +14,11 @@ public class SoundManager : SingletomManager<SoundManager>
 
     bool isPlayingTrack01;
 
+    public float m_BGMSound { get; private set; }
+    public float m_SFXSound { get; private set; }
+
+    public AudioMixerGroup[] m_AudioMixer = new AudioMixerGroup[2];
+
     private void Awake()
     {
         Init();
@@ -20,6 +26,16 @@ public class SoundManager : SingletomManager<SoundManager>
 
     public void Init()
     {
+        //Load AudioMixer
+        AudioMixer audioMixer = ResourcesManager.Instance.Load<AudioMixer>("Sounds/MyMixer");
+
+        //Find AudioMixerGroup you want to load
+        AudioMixerGroup[] audioMixGroupBGM = audioMixer.FindMatchingGroups("BGM");
+        m_AudioMixer[0] = audioMixGroupBGM[0];
+        //Find AudioMixerGroup you want to load
+        AudioMixerGroup[] audioMixGroupSFX = audioMixer.FindMatchingGroups("SFX");
+        m_AudioMixer[1] = audioMixGroupSFX[0];
+
         GameObject root = GameObject.Find("@Sound");
 
         if (root == null)
@@ -35,6 +51,17 @@ public class SoundManager : SingletomManager<SoundManager>
                 GameObject go = new GameObject { name = soundNames[i] };
                 m_AudioSources[i] = go.AddComponent<AudioSource>();
                 go.transform.parent = root.transform;
+
+                if (i == soundNames.Length - 2)
+                {
+                    //Find AudioMixerGroup you want to load
+                    m_AudioSources[i].outputAudioMixerGroup = m_AudioMixer[1];
+                }
+                else
+                {
+                    //Find AudioMixerGroup you want to load
+                    m_AudioSources[i].outputAudioMixerGroup = m_AudioMixer[0];
+                }
             }
 
             m_AudioSources[(int)Defines.Sound.Bgm01].loop = true; // BGM Àº Loop »óÅÂ
@@ -149,5 +176,17 @@ public class SoundManager : SingletomManager<SoundManager>
 
             m_AudioSources[(int)Defines.Sound.Bgm02].Stop();
         }
+    }
+
+    public void SetBGMSoundVolume(float sound)
+    {
+        m_BGMSound = sound;
+        m_AudioMixer[0].audioMixer.SetFloat("BGM", m_BGMSound);
+    }
+
+    public void SetSFXSoundVolume(float sound)
+    {
+        m_SFXSound = sound;
+        m_AudioMixer[1].audioMixer.SetFloat("SFX", m_SFXSound);
     }
 }

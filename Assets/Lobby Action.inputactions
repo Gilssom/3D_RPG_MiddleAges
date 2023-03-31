@@ -1,0 +1,45 @@
+{
+    "name": "Lobby Action",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "47c323b7-378d-403b-a260-2c5d8347a9e5",
+            "actions": [
+                {
+                    "name": "Close",
+                    "type": "Button",
+                    "id": "0d1e7c07-3bb6-4990-9db6-8b8867f3ac84",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "184448ac-b0a1-4545-a803-17bc06d23ab0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Lobby UI",
+                    "action": "Close",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Lobby UI",
+            "bindingGroup": "Lobby UI",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

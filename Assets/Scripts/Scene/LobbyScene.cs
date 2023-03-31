@@ -16,9 +16,22 @@ public class LobbyScene : BaseScene
 
     public void SceneChangeTest()
     {
-        //SceneManagerEx.Instance.LoadScene(Defines.Scene.Game01);
-        //m_BlackScreenUI.StartFadeIn(3f, false, Defines.Scene.Game01);
         SceneManagerEx.Instance.m_BlackScreenUI.StartFadeIn(3f, false, Defines.Scene.Game01);
+    }
+
+    public void LobbySetting()
+    {
+        UIManager.Instance.ShowPopupUI<UI_Setting>();
+    }
+
+    public void LobbyHelper()
+    {
+        UIManager.Instance.ShowPopupUI<UI_Helper>();
+    }
+
+    public void CloseLobbyUI()
+    {
+        UIManager.Instance.ClosePopupUI();
     }
 
     public override void Clear()

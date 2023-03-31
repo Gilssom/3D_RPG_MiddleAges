@@ -116,7 +116,8 @@ public class Player : Base
     }
     #endregion
 
-    #region #UI 테스트
+    #region #UI Input System
+    // 인벤토리
     public void InventoryUIOpen(InputAction.CallbackContext context)
     {
         if(context.performed)
@@ -125,6 +126,7 @@ public class Player : Base
         }
     }
 
+    // 플레이어 정보창
     public void PlayerInfoUIOpen(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -133,6 +135,7 @@ public class Player : Base
         }
     }
 
+    // 테스트 F
     public void TestButtonClick(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -141,6 +144,7 @@ public class Player : Base
         }
     }
 
+    // Enter 확인
     public void OnEnter(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -149,6 +153,7 @@ public class Player : Base
         }
     }
 
+    // Enter 취소
     public void OnEscape(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -157,6 +162,7 @@ public class Player : Base
         }
     }
 
+    // 퀵슬롯 사용
     public void QuickSlot(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -170,6 +176,7 @@ public class Player : Base
         }
     }
 
+    // 스킬창
     public void SkillBook(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -178,6 +185,7 @@ public class Player : Base
         }
     }
 
+    // 퀘스트창
     public void QuestUI(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -186,11 +194,23 @@ public class Player : Base
         }
     }
 
+    // 업적창
     public void AchievementUI(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             InventoryManager.Instance.TryOpenAchievementSystem();
+        }
+    }
+
+    // 사운드세팅창
+    public void SoundSetting(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameScene.Instance.SoundSetting();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
     #endregion

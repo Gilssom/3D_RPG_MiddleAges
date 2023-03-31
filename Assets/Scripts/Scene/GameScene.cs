@@ -34,6 +34,8 @@ public class GameScene : SingletomManager<GameScene>
     public FadeInOutManager m_BloodScreenUI { get; private set; }
     public FadeInOutManager m_BlackScreenUI { get; private set; }
 
+    bool isOpenSetting = false;
+
     void Awake()
     {
         SceneManagerEx.Instance.m_BlackScreenUI.StartFadeOut(3f);
@@ -102,5 +104,18 @@ public class GameScene : SingletomManager<GameScene>
     {
         m_VillageNameUI.VillageNameSetText();
         m_MinimapUI.MinimapNameSetText();
+    }
+
+    public void SoundSetting()
+    {
+        if (!isOpenSetting)
+        {
+            UIManager.Instance.ShowPopupUI<UI_Setting>();
+            isOpenSetting = true;
+            return;
+        }
+
+        UIManager.Instance.ClosePopupUI();
+        isOpenSetting = false;
     }
 }
