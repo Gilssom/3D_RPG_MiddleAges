@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60d897cdee8eea4bbeb89efb6c4a35e, type: 3}
+  m_Name: Quest_LevelUp 8
+  m_EditorClassIdentifier: 
+  m_Category: {fileID: 11400000, guid: e4daa25f93d61ec4b9be07aa60ae85cf, type: 2}
+  m_Icon: {fileID: 0}
+  m_CodeName: PLAYER_LEVEL_UP_8
+  m_DisPlayName: "\uC2A4\uD0AC \uBC30\uC6B0\uAE30 (3)"
+  m_Description: "\uB808\uBCA8 8 \uB97C \uB2EC\uC131\uD558\uC5EC \uC2A4\uD0AC\uC744
+    \uBC30\uC6CC\uBCF4\uC790!\n\n\uACF5\uACA9\uC2A4\uD0AC - \uB370\uBE4C \uC2AC\uB798\uC26C
+    \uC2B5\uB4DD\uD558\uAE30"
+  m_TaskGroup:
+  - m_Tasks:
+    - {fileID: 11400000, guid: 1e8d21663c94a0e4e98a38115648ef4e, type: 2}
+  m_Rewards:
+  - {fileID: 11400000, guid: e13a23c51ea7351458cadf93102c64b2, type: 2}
+  - {fileID: 11400000, guid: e35e31830f96f944ba41919edb81f6c2, type: 2}
+  - {fileID: 11400000, guid: f0dc60fb6aee8e04799044e1d207626a, type: 2}
+  m_UseAutoComplete: 1
+  m_IsCancelable: 0
+  m_IsSavable: 0
+  m_AcceptionConditions:
+  - {fileID: 11400000, guid: ffbab3a9131b5644ba9fab9b58955ebf, type: 2}
+  m_CancelConditions: []

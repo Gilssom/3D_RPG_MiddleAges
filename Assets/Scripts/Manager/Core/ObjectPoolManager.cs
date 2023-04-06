@@ -30,7 +30,6 @@ public class ObjectPoolManager : SingletomManager<ObjectPoolManager>
         }
     }
 
-    // Object List Save
     [SerializeField]
     ObjectsInfo[] m_ObjectInfos = null;
 
@@ -60,7 +59,7 @@ public class ObjectPoolManager : SingletomManager<ObjectPoolManager>
 
             int index = objectClone.name.IndexOf("(Clone)");
             if (index > 0)
-                objectClone.name = objectClone.name.Substring(0, index); // => 0번째 부터 index번째 까지 짜르기
+                objectClone.name = objectClone.name.Substring(0, index);
 
             m_Queue.Enqueue(objectClone);
         }

@@ -7,7 +7,7 @@ namespace CharacterController
 {
     public class StateMachine
     {
-        public BaseState CurState { get; private set; } // 현재 상태
+        public BaseState CurState { get; private set; }
         private Dictionary<StateName, BaseState> states = new Dictionary<StateName, BaseState>();
 
         public StateMachine(StateName stateName, BaseState state)
@@ -16,7 +16,7 @@ namespace CharacterController
             CurState = GetState(stateName);
         }
 
-        public void AddState(StateName stateName, BaseState state) // 상태 등록
+        public void AddState(StateName stateName, BaseState state)
         {
             if(!states.ContainsKey(stateName))
             {
@@ -24,7 +24,7 @@ namespace CharacterController
             }
         }
 
-        public BaseState GetState(StateName stateName) // 상태 꺼내오기
+        public BaseState GetState(StateName stateName)
         {
             if (states.TryGetValue(stateName, out BaseState state))
                 return state;
@@ -32,7 +32,7 @@ namespace CharacterController
             return null;
         }
 
-        public void DeleteState(StateName removeStateName) // 상태 삭제
+        public void DeleteState(StateName removeStateName)
         {
             if(states.ContainsKey(removeStateName))
             {
@@ -40,16 +40,16 @@ namespace CharacterController
             }
         }
 
-        public void ChangeState(StateName nextStateName) // 상태 전환
+        public void ChangeState(StateName nextStateName)
         {
-            CurState?.OnExitState(); // 현재 상태를 종료함
+            CurState?.OnExitState();
 
-            if(states.TryGetValue(nextStateName, out BaseState newState)) // 상태 전환
+            if(states.TryGetValue(nextStateName, out BaseState newState))
             {
                 CurState = newState;
             }
 
-            CurState?.OnEnterState(); // 다음 상태 진입 실행
+            CurState?.OnEnterState();
         }
 
         public void UpdateState()

@@ -79,14 +79,16 @@ namespace TinyScript {
 
             for (int i = 0; i < guaranteed.Count; i++)
             {
-                GameObject go = Instantiate(guaranteed[i], new Vector3(_position.position.x + Random.Range(-_range, _range), _position.position.y, _position.position.z + Random.Range(-_range, _range)), Quaternion.identity);
+                GameObject go = Instantiate(guaranteed[i], new Vector3(_position.position.x + Random.Range(-_range, _range), _position.position.y, 
+                    _position.position.z + Random.Range(-_range, _range)), Quaternion.identity);
 
                 ResourcesManager.Instance.CloneDelete(go);
             }
 
             for (int i = 0; i < randomLoot.Count; i++)
             {
-                GameObject go = Instantiate(randomLoot[i], new Vector3(_position.position.x + Random.Range(-_range, _range), _position.position.y, _position.position.z + Random.Range(-_range, _range)), Quaternion.identity);
+                GameObject go = Instantiate(randomLoot[i], new Vector3(_position.position.x + Random.Range(-_range, _range), _position.position.y, 
+                    _position.position.z + Random.Range(-_range, _range)), Quaternion.identity);
 
                 ResourcesManager.Instance.CloneDelete(go);
             }

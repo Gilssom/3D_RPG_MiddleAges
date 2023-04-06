@@ -65778,7 +65778,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.93333334
     functionName: SoundEffect
-    data: Final Attack
+    data: Great Final Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -21,6 +21,9 @@ public class GameScene : SingletomManager<GameScene>
     public Quest[] m_MainQuest;
     public int m_MainQuestIndex;
 
+    [Header("자동 등록 서브 퀘스트 진행")]
+    public Quest[] m_LevelQuest;
+
     [Header("Npc 관리")]
     public NpcInteraction[] m_Npc;
 
@@ -63,6 +66,7 @@ public class GameScene : SingletomManager<GameScene>
         StartQuest();
         UpdateCheckCurrentQuest();
         UpdateNpcState();
+        UpdateLevelQuestState();
 
         SoundManager.Instance.Play("Bgm/Village", Defines.Sound.Bgm);
     }
@@ -72,7 +76,6 @@ public class GameScene : SingletomManager<GameScene>
     {
         foreach (var quest in m_MainQuest)
         {
-            Debug.Log($"{quest} / {quest.p_IsAcceptable} / {!QuestSystem.Instance.ContainsInCompleteQuests(quest)}");
             if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
             {
                 QuestSystem.Instance.Register(quest);
@@ -97,6 +100,20 @@ public class GameScene : SingletomManager<GameScene>
         for (int i = 0; i < m_Npc.Length; i++)
         {
             m_Npc[i].UpdateQuestState();
+        }
+    }
+
+    // Level Quest State Update
+    public void UpdateLevelQuestState()
+    {
+        foreach (var quest in m_LevelQuest)
+        {
+            Debug.Log($"{quest} / {quest.p_IsAcceptable} / {!QuestSystem.Instance.ContainsInCompleteQuests(quest)}");
+            if (quest.p_IsAcceptable && !QuestSystem.Instance.ContainsInCompleteQuests(quest))
+            {
+                QuestSystem.Instance.Register(quest);
+                Debug.Log("Check");
+            }
         }
     }
 

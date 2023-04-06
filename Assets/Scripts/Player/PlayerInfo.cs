@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class PlayerInfo : BaseInfo
 {
+    #region #초기 세팅
     public DataManager m_DataManager         { get; private set; }
     public WeaponManager m_WeaponManager     { get; private set; }
     public StateMachine stateMachine         { get; private set; }
@@ -19,6 +20,7 @@ public class PlayerInfo : BaseInfo
 
     [SerializeField]
     private Transform m_RightHand;
+    #endregion
 
     #region #캐릭터 부가 스탯
     [Header("캐릭터 부가 스탯")]
@@ -169,7 +171,7 @@ public class PlayerInfo : BaseInfo
         m_Defense += stat.defense;
 
         m_Exp -= stat.totalExp;
-        m_MaxExp += expStat.totalExp;
+        m_MaxExp = expStat.totalExp;
 
         foreach (NMPassiveSkill skill in SkillManager.Instance.NMPassiveSkills)
         {

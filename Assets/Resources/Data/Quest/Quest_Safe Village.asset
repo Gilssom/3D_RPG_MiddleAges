@@ -23,6 +23,7 @@ MonoBehaviour:
   - m_Tasks:
     - {fileID: 11400000, guid: e303e3f934197474d872f9c87f3ad14d, type: 2}
   m_Rewards:
+  - {fileID: 11400000, guid: 018b18658429f2b40964f342fad6217e, type: 2}
   - {fileID: 11400000, guid: 14ef9a9061586b94085ddcc9bfa4804d, type: 2}
   - {fileID: 11400000, guid: 8e3ba9a70e62a0146859d20fabfa44a2, type: 2}
   - {fileID: 11400000, guid: 3a68edcf3a05d114385cb23181e8f67c, type: 2}

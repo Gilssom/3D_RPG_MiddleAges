@@ -24,33 +24,30 @@ public class DialogueParser : MonoBehaviour
     }
 
     public static Dictionary<string, TalkData[]> DialogueDictionary = new Dictionary<string, TalkData[]>();
+
     [SerializeField]
     List<DebugTalkData> DebugTalkDataList = new List<DebugTalkData>();
 
     public void SetTalkDictionary()
     {
-        // 엑셀 파일 1번째 줄은 편의를 위한 분류이므로 i = 1부터 시작
         for (int i = 1; i < rows.Length; i++)
         {
-            // A, B, C열을 쪼개서 배열에 담음
             string[] rowValues = rows[i].Split(new char[] { ',' });
 
-            // 유효한 이벤트 이름이 나올때까지 반복
             if (rowValues[0].Trim() == "" || rowValues[0].Trim() == "end") 
                 continue;
 
             List<TalkData> talkDataList = new List<TalkData>();
             string eventName = rowValues[0];
 
-            while (rowValues[0].Trim() != "end") // talkDataList 하나를 만드는 반복문
+            while (rowValues[0].Trim() != "end")
             {
-                // 캐릭터가 한번에 치는 대사의 길이를 모르므로 리스트로 선언
                 List<string> contextList = new List<string>();
 
                 TalkData talkData = new TalkData();
-                talkData.m_Name = rowValues[1]; // 캐릭터 이름이 있는 B열
+                talkData.m_Name = rowValues[1];
 
-                do // talkData 하나를 만드는 반복문
+                do
                 {
                     contextList.Add(rowValues[2].ToString());
                     if (++i < rows.Length)
@@ -97,44 +94,4 @@ public class DialogueParser : MonoBehaviour
             DebugTalkDataList.Add(debugTalk);
         }
     }
-
-    /*public Dialogue[] Parse(string csvFileName)
-    {
-        List<Dialogue> dialoguesList = new List<Dialogue>(); // 대사 리스트 생성
-        TextAsset csvData = ResourcesManager.Instance.Load<TextAsset>(csvFileName);
-
-        string[] data = csvData.text.Split(new char[] { '\n' });
-
-        for (int i = 1; i < data.Length;)
-        {
-            string[] row = data[i].Split(new char[] { ',' }); // , 를 기준으로 나뉨
-
-            Dialogue dialogue = new Dialogue(); // 대사 리스트 생성
-
-            dialogue.m_Name = row[1];
-
-            List<string> contextList = new List<string>();
-
-            do
-            {
-                contextList.Add(row[2]);
-
-                if (++i < data.Length)
-                {
-                    row = data[i].Split(new char[] { ',' });
-                }
-                else
-                {
-                    break;
-                }
-
-            } while (row[0].ToString() == "");
-
-            dialogue.m_Contexts = contextList.ToArray();
-
-            dialoguesList.Add(dialogue);
-        }
-
-        return dialoguesList.ToArray();
-    }*/
 }

@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Category: {fileID: 11400000, guid: e4daa25f93d61ec4b9be07aa60ae85cf, type: 2}
   m_CodeName: PLAYER_LEVEL_UP_2
-  m_Description: "\uB808\uBCA8 2 \uB2EC\uC131\uD558\uAE30"
+  m_Description: "\uB808\uBCA8\uC5C5 \uD558\uAE30"
   m_Action: {fileID: 11400000, guid: dd267cc195f4e2a42869b0e7938f6f5f, type: 2}
   m_Targets:
   - {fileID: 11400000, guid: 49abb6716a99d314f85aed6efc3d618d, type: 2}
   m_InitialSuccessValue: {fileID: 0}
   m_NeedSuccessToComplete: 1
   m_CanReceiveReportsDuringComplete: 0
-  m_CurrentSuccess: 0

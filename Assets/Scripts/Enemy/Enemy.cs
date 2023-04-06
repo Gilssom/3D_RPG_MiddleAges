@@ -232,7 +232,6 @@ public class Enemy : Base
     void HitEffect()
     {
         GameObject HitEffect = ObjectPoolManager.Instance.m_ObjectPoolList[enemyInfo.ID - 1000].Dequeue();
-        // new Vector3 는 struct type 이고 스택에 생성되기 때문에 반복된 메모리릭 , 할당/해제 문제는 발생 X
         HitEffect.transform.position = new Vector3(m_Pos.x, enemyInfo.m_CapsuleCollider.bounds.size.y / 2, m_Pos.z);
         HitEffect.transform.rotation = transform.rotation;
         HitEffect.SetActive(true);

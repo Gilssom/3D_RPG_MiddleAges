@@ -57,28 +57,6 @@
     },
     {
       "itemId": "2001",
-      "itemName": "생명의 돌파석",
-      "itemPart_0": "Enforce",
-      "itemPart_1": null,
-      "itemPart_2": null,
-      "itemShame": "0",
-      "itemAddPrice": "25",
-      "itemSalePrice": "1",
-      "itemAddLevel": "6"
-    },
-    {
-      "itemId": "2002",
-      "itemName": "명예의 돌파석",
-      "itemPart_0": "Enforce",
-      "itemPart_1": null,
-      "itemPart_2": null,
-      "itemShame": "0",
-      "itemAddPrice": "45",
-      "itemSalePrice": "1",
-      "itemAddLevel": "10"
-    },
-    {
-      "itemId": "2003",
       "itemName": "하급 융화 재료",
       "itemPart_0": "SubEnforce",
       "itemPart_1": null,
@@ -89,7 +67,18 @@
       "itemAddLevel": "3"
     },
     {
-      "itemId": "2004",
+      "itemId": "2002",
+      "itemName": "생명의 돌파석",
+      "itemPart_0": "Enforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "25",
+      "itemSalePrice": "1",
+      "itemAddLevel": "6"
+    },
+    {
+      "itemId": "2003",
       "itemName": "칼다르 융화 재료",
       "itemPart_0": "SubEnforce",
       "itemPart_1": null,
@@ -98,6 +87,17 @@
       "itemAddPrice": "20",
       "itemSalePrice": "1",
       "itemAddLevel": "6"
+    },
+    {
+      "itemId": "2004",
+      "itemName": "명예의 돌파석",
+      "itemPart_0": "Enforce",
+      "itemPart_1": null,
+      "itemPart_2": null,
+      "itemShame": "0",
+      "itemAddPrice": "45",
+      "itemSalePrice": "1",
+      "itemAddLevel": "10"
     },
     {
       "itemId": "2005",

@@ -126,7 +126,7 @@ public class UI_Skill : UI_Popup
                 go.GetComponent<Image>().sprite = skill.m_SkillIcon;
                 go.GetComponentInChildren<Text>().text = skill.m_Name;
                 go.GetComponent<Button>().onClick.AddListener(() => SkillButtonPress(go.GetComponentInChildren<Button>()));
-                go.GetOrAddComponet<UI_Skill_Slot>().m_Item = ResourcesManager.Instance.Load<Item>($"Data/ItemData/SkillDesc/{skill.m_Description}");
+                go.GetOrAddComponet<UI_Skill_Slot>().m_Item = ResourcesManager.Instance.Load<Item>($"Data/SkillDesc/{skill.m_Description}");
             }
         }
     }
@@ -202,7 +202,7 @@ public class UI_Skill : UI_Popup
                 go.GetComponent<Image>().sprite = skill.m_SkillIcon;
                 go.GetComponentInChildren<Text>().text = skill.m_Name;
                 go.GetComponent<Button>().onClick.AddListener(() => ResetCurSkill());
-                go.GetOrAddComponet<UI_Skill_Slot>().m_Item = ResourcesManager.Instance.Load<Item>($"Data/ItemData/SkillDesc/{skill.m_Description}");
+                go.GetOrAddComponet<UI_Skill_Slot>().m_Item = ResourcesManager.Instance.Load<Item>($"Data/SkillDesc/{skill.m_Description}");
             }
         }
     }

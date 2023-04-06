@@ -27,6 +27,7 @@ MonoBehaviour:
   - m_Tasks:
     - {fileID: 11400000, guid: f4287db71d90d3348a5618c8c3890af2, type: 2}
   m_Rewards:
+  - {fileID: 11400000, guid: 90e1837c8fc0ece4886b20e73e53e92b, type: 2}
   - {fileID: 11400000, guid: cd6aea77e2560c145b9207a8037f9f17, type: 2}
   - {fileID: 11400000, guid: a259dc154f7f13342b1b70ef898a07dd, type: 2}
   m_UseAutoComplete: 1

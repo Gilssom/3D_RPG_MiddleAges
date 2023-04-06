@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0791e7f3b9c3847884f36e10428c11, type: 3}
+  m_Name: ExpReward_30
+  m_EditorClassIdentifier: 
+  m_Icon: {fileID: 21300000, guid: f70da912f6ff1ba498c217e582dd9de2, type: 3}
+  m_Item: {fileID: 0}
+  m_Description: "\uACBD\uD5D8\uCE58 \uBCF4\uC0C1"
+  m_Quantity: 30

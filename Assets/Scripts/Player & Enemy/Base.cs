@@ -10,7 +10,6 @@ public abstract class Base : MonoBehaviour
 
     protected Vector3 dir;
 
-    //------- Slope (경사로) 이동 구현 --------
     #region #경사 체크 변수
     [Header("경사 지형 검사")]
     [SerializeField, Tooltip("캐릭터가 등반 가능한 최대 각도")]

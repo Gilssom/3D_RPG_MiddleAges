@@ -10,10 +10,10 @@ public interface ILoader<Key, Value>
 
 public class DataManager
 {
-    public Dictionary<int, Data.Stat> StatDict { get; private set; } = new Dictionary<int, Data.Stat>();
-    public Dictionary<int, Data.MonsterStat> MonsterStatDict { get; private set; } = new Dictionary<int, Data.MonsterStat>();
-    public Dictionary<int, Data.ItemStat> ItemDict { get; private set; } = new Dictionary<int, Data.ItemStat>();
-    public Dictionary<int, Data.EnforceData> EnforceDict { get; private set; } = new Dictionary<int, Data.EnforceData>();
+    public Dictionary<int, Data.Stat>            StatDict        { get; private set; } = new Dictionary<int, Data.Stat>();
+    public Dictionary<int, Data.MonsterStat>     MonsterStatDict { get; private set; } = new Dictionary<int, Data.MonsterStat>();
+    public Dictionary<int, Data.ItemStat>        ItemDict        { get; private set; } = new Dictionary<int, Data.ItemStat>();
+    public Dictionary<int, Data.EnforceData>     EnforceDict     { get; private set; } = new Dictionary<int, Data.EnforceData>();
     public Dictionary<int, Data.EnforceStatData> EnforceStatDict { get; private set; } = new Dictionary<int, Data.EnforceStatData>();
 
     public void Init(string DataName)

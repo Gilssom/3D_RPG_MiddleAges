@@ -99,7 +99,6 @@ public class Boss : Base
     {
         if (bossInfo.RunAway == false)
         {
-            // 플레이어 체크
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player == null || isReturn)
             {
@@ -110,13 +109,10 @@ public class Boss : Base
             m_Pos = transform.position;
             float distance = (player.transform.position - transform.position).magnitude;
 
-            // 1번 공격 전환
             if (distance <= bossInfo.AttackRange)
             {
-                //EnemyAttackState.isAttack == false && 
                 if (bossInfo.CheckPlayer && bossInfo.ReadyAttack)
                 {
-                    // Attack 로 변경
                     bossInfo.stateMachine.ChangeState(StateName.ATTACK);
                     return;
                 }
@@ -128,21 +124,17 @@ public class Boss : Base
                 m_Target = player;
                 bossInfo.stateMachine.ChangeState(StateName.MOVE);
             }
-            // 2번 추적 전환
             else if (distance <= bossInfo.ScanRange)
             {
                 m_Target = player;
-                // Move 로 변경
                 bossInfo.stateMachine.ChangeState(StateName.RUN);
                 return;
             }
-            // 3번 기본 자세 전환
             else
             {
                 bossInfo.CheckPlayer = false;
                 bossInfo.ReadyAttack = false;
                 m_Target = null;
-                // Idle 로 변경
                 bossInfo.stateMachine.ChangeState(StateName.IDLE);
                 return;
             }
@@ -280,6 +272,7 @@ public class Boss : Base
                 player.Gold += bossInfo.DropGold;
                 player.Fragments += Random.Range(bossInfo.MinFargCount, bossInfo.MaxFragCount + 1);
                 bossInfo.stateMachine.ChangeState(StateName.DIE);
+                onDead.Invoke();
             }
         }
     }

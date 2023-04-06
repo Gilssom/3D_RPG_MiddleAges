@@ -50,9 +50,6 @@ public class QuestSystem : SingletomManager<QuestSystem>
         m_QuestDataBase = ResourcesManager.Instance.Load<QuestDataBase>("Quest Data Base");
         m_AchievementDataBase = ResourcesManager.Instance.Load<QuestDataBase>("Achievement Data Base");
 
-        //foreach (var achievement in m_AchievementDataBase.p_Quests)
-            //Register(achievement);
-
         if (!Load())
         {
             foreach (var achievement in m_AchievementDataBase.p_Quests)
@@ -67,12 +64,12 @@ public class QuestSystem : SingletomManager<QuestSystem>
         // 어느 시점에 저장을 할 것인지 설계를 하고 적용을 해야함.
         isApplicationQuitting = true;
 
-        // questReporter.Report() : 마지막 구간 End Check
         CompleteWaitingQuests();
         Save();
     }
 
     // Quest 등록 함수
+
     public Quest Register(Quest quest)
     {
         var newQuest = quest.Clone();

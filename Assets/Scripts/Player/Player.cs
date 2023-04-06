@@ -8,10 +8,10 @@ using CharacterController;
 using DG.Tweening;
 using System.Linq;
 
-// 특정 컴포넌트를 자동적으로 추가해줌. 추후 스탯 관리 스크립트 추가 예정
 [RequireComponent(typeof(PlayerInfo))]
 public class Player : Base
 {
+    #region #Setting
     public PlayerInfo playerInfo         { get; private set; }
 
     protected DashState m_DashState;
@@ -20,10 +20,8 @@ public class Player : Base
     [SerializeField]
     private Transform m_Camera;
 
-    //------- New Input System --------
     public Vector3 m_LookForward    { get; private set; }
-
-    //------- Player Dash 구현 -------
+    #endregion
 
     #region #대쉬기 변수
     private WaitForSeconds Dash_Roll_Time;
@@ -33,13 +31,15 @@ public class Player : Base
     private Coroutine m_DashCoolTimeCoroutine;
     #endregion
 
+    #region #변수
     public float HAxis { get; private set; }
     public float VAxis { get; private set; }
     public bool LSDown { get; private set; }
     public bool isNormalAttack { get; private set; }
     public bool isChargeAttack { get; private set; }
+    #endregion
 
-    //------- Npc Interaction ---------
+    #region #Interaction
     [Header("상호작용 가능한 Npc")]
     public NpcInteraction m_NearNpc;
 
@@ -48,6 +48,7 @@ public class Player : Base
 
     [Header("현재 플레이어 위치")]
     public string m_CurrentAreaName;
+    #endregion
 
     public override void Init()
     {
@@ -247,10 +248,7 @@ public class Player : Base
 
             if (isabledash)
             {
-                if(AttackState.isAttack 
-                    || InventoryManager.m_InventoryActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_ShopActivated)
+                if(AttackState.isAttack || ActiviatedCheck())
                 {
                     return;
                 }
@@ -309,15 +307,8 @@ public class Player : Base
         {
             if(context.interaction is HoldInteraction)       // 차지 공격
             {
-                if (DashState.m_IsDash || InventoryManager.m_InventoryActivated 
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-                {
+                if (DashState.m_IsDash || ActiviatedCheck())
                     return;
-                }
 
                 AttackState.m_AttackName = AttackState.AttackName.CHARGE;
                 playerInfo.stateMachine.ChangeState(StateName.ATTACK);
@@ -327,16 +318,8 @@ public class Player : Base
             {
                 AttackState.m_AttackName = AttackState.AttackName.ATTACK;
 
-                if (DashState.m_IsDash 
-                    || InventoryManager.m_InventoryActivated 
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-                {
+                if (DashState.m_IsDash || ActiviatedCheck()) 
                     return;
-                }
 
                 bool isAbleAttack = !AttackState.isAttack && (playerInfo.m_WeaponManager.m_Weapon.m_ComboCount < 3);
 
@@ -354,16 +337,8 @@ public class Player : Base
         {
             if (context.interaction is PressInteraction)       // 발차기 공격
             {
-                if (DashState.m_IsDash && AttackState.isAttack 
-                    || InventoryManager.m_InventoryActivated 
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-                {
+                if (DashState.m_IsDash && AttackState.isAttack || ActiviatedCheck())
                     return;
-                }
 
                 AttackState.m_AttackName = AttackState.AttackName.KICK;
                 playerInfo.stateMachine.ChangeState(StateName.ATTACK);
@@ -373,16 +348,8 @@ public class Player : Base
 
     public void UltimateSkill()
     {
-        if (DashState.m_IsDash && AttackState.isAttack
-                    || InventoryManager.m_InventoryActivated
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-        {
+        if (DashState.m_IsDash && AttackState.isAttack || ActiviatedCheck())
             return;
-        }
 
         AttackState.m_AttackName = AttackState.AttackName.ULTIMATE;
         playerInfo.stateMachine.ChangeState(StateName.ATTACK);
@@ -390,16 +357,8 @@ public class Player : Base
 
     public void BladeSkill()
     {
-        if (DashState.m_IsDash && AttackState.isAttack
-                    || InventoryManager.m_InventoryActivated
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-        {
+        if (DashState.m_IsDash && AttackState.isAttack || ActiviatedCheck())
             return;
-        }
 
         AttackState.m_AttackName = AttackState.AttackName.Blade;
         playerInfo.stateMachine.ChangeState(StateName.ATTACK);
@@ -407,16 +366,8 @@ public class Player : Base
 
     public void LigthRefereeSkill()
     {
-        if (DashState.m_IsDash && AttackState.isAttack
-                    || InventoryManager.m_InventoryActivated
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-        {
+        if (DashState.m_IsDash && AttackState.isAttack || ActiviatedCheck())
             return;
-        }
 
         AttackState.m_AttackName = AttackState.AttackName.Referee;
         playerInfo.stateMachine.ChangeState(StateName.ATTACK);
@@ -424,16 +375,8 @@ public class Player : Base
 
     public void DevilSlashSkill()
     {
-        if (DashState.m_IsDash && AttackState.isAttack
-                    || InventoryManager.m_InventoryActivated
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-        {
+        if (DashState.m_IsDash && AttackState.isAttack || ActiviatedCheck())
             return;
-        }
 
         AttackState.m_AttackName = AttackState.AttackName.Slash;
         playerInfo.stateMachine.ChangeState(StateName.ATTACK);
@@ -441,16 +384,8 @@ public class Player : Base
 
     public void AngelSkill()
     {
-        if (DashState.m_IsDash && AttackState.isAttack
-                    || InventoryManager.m_InventoryActivated
-                    || InventoryManager.m_ShopActivated
-                    || InventoryManager.m_EnforceActivated
-                    || InventoryManager.m_SkillActivated
-                    || InventoryManager.m_QuestActivated
-                    || InventoryManager.m_AchievementActivated)
-        {
+        if (DashState.m_IsDash && AttackState.isAttack || ActiviatedCheck())
             return;
-        }
 
         AttackState.m_AttackName = AttackState.AttackName.Angel;
         playerInfo.stateMachine.ChangeState(StateName.ATTACK);
@@ -458,19 +393,25 @@ public class Player : Base
 
     public void WhispersSkill()
     {
-        if (InventoryManager.m_InventoryActivated
-                || InventoryManager.m_ShopActivated
-                || InventoryManager.m_EnforceActivated
-                || InventoryManager.m_SkillActivated
-                || InventoryManager.m_QuestActivated
-                || InventoryManager.m_AchievementActivated)
-        {
+        if (DashState.m_IsDash && AttackState.isAttack || ActiviatedCheck())
             return;
-        }
 
         Debug.Log("Whispers Skill On");
         SoundManager.Instance.Play("Effect/Whisper Skill");
         StartCoroutine(SetEffect(2, 9));
+    }
+
+    private bool ActiviatedCheck()
+    {
+        if ((InventoryManager.m_InventoryActivated
+                || InventoryManager.m_ShopActivated
+                || InventoryManager.m_EnforceActivated
+                || InventoryManager.m_SkillActivated
+                || InventoryManager.m_QuestActivated
+                || InventoryManager.m_AchievementActivated))
+            return true;
+        else
+            return false;
     }
     #endregion
 

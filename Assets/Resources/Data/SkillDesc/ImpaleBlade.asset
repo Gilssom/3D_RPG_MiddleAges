@@ -16,7 +16,7 @@ MonoBehaviour:
   m_ItemName: "\uC784\uD398\uC77C \uBE14\uB808\uC774\uB4DC"
   m_ItemInfo: "\uC9C8\uC11C\uB97C \uD63C\uB3C8\uC73C\uB85C \uC774\uB044\uB294 \uC790\uB4E4,\n\uC2E0\uC758
     \uC774\uB984\uC73C\uB85C \uCC98\uB2E8\uD55C\uB2E4."
-  m_ItemTypeInfo: "\uC81C\uD55C \uB808\uBCA8 7\n\uC2A4\uD0AC \uCFED\uD0C0\uC784 5\uCD08"
+  m_ItemTypeInfo: "\uC81C\uD55C \uB808\uBCA8 5\n\uC2A4\uD0AC \uCFE8\uD0C0\uC784 4\uCD08"
   m_ItemClassInfo: "\uACF5\uC6A9 \uACF5\uACA9 \uC2A4\uD0AC"
   m_ItemType: 3
   m_ItemClass: 0
@@ -24,4 +24,4 @@ MonoBehaviour:
   m_ItemPrefabs: {fileID: 0}
   m_UsedType: 0
   m_ItemPart: 6
-  m_UsedLevel: 7
+  m_UsedLevel: 5

@@ -25,7 +25,7 @@
       "criticalchance": "0",
       "criticaldamage": "0",
       "defense": "0",
-      "totalExp": "30"
+      "totalExp": "50"
     },
     {
       "level": "4",
@@ -34,7 +34,7 @@
       "criticalchance": "0",
       "criticaldamage": "0",
       "defense": "1",
-      "totalExp": "40"
+      "totalExp": "90"
     },
     {
       "level": "5",
@@ -43,7 +43,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "0",
-      "totalExp": "50"
+      "totalExp": "140"
     },
     {
       "level": "6",
@@ -52,7 +52,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "1",
-      "totalExp": "60"
+      "totalExp": "200"
     },
     {
       "level": "7",
@@ -61,7 +61,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "0",
-      "totalExp": "70"
+      "totalExp": "270"
     },
     {
       "level": "8",
@@ -70,7 +70,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "1",
-      "totalExp": "80"
+      "totalExp": "350"
     },
     {
       "level": "9",
@@ -79,7 +79,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "0",
-      "totalExp": "90"
+      "totalExp": "440"
     },
     {
       "level": "10",
@@ -88,7 +88,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "2",
-      "totalExp": "100"
+      "totalExp": "540"
     },
     {
       "level": "11",
@@ -97,7 +97,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "0",
-      "totalExp": "110"
+      "totalExp": "650"
     },
     {
       "level": "12",
@@ -106,7 +106,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "2",
-      "totalExp": "120"
+      "totalExp": "770"
     },
     {
       "level": "13",
@@ -115,7 +115,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "1",
-      "totalExp": "130"
+      "totalExp": "900"
     },
     {
       "level": "14",
@@ -124,7 +124,7 @@
       "criticalchance": "3",
       "criticaldamage": "0",
       "defense": "2",
-      "totalExp": "140"
+      "totalExp": "1040"
     },
     {
       "level": "15",
@@ -133,7 +133,7 @@
       "criticalchance": "5",
       "criticaldamage": "0",
       "defense": "3",
-      "totalExp": "200"
+      "totalExp": "1240"
     }
   ]
 }

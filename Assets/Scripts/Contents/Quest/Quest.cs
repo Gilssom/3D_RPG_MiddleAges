@@ -93,19 +93,15 @@ public class Quest : ScriptableObject
     public event CanceldHandler onCanceled;
     public event NewTaskGroupHandler onNewTaskGroup;
 
-    // Awake 역활의 함수 > Quest 가 System 에 등록되었을 때 실행
     public void OnRegister()
     {
-        // Assert :: 인자로 들어온 값이 false면 뒤의 문장을 Error 로 띄워준다.
-        // 절대 일어나서는 안되는 조건이 일어났을 때 검출하기 위한 코드
-        // Debugging 코드로써 게임을 Build 해서 뽑아내면 Assert Code 는 무시가 된다. > 성능에 영향 X > 방어적 프로그래밍
         Debug.Assert(!p_IsRegistered, "이 퀘스트는 이미 등록된 퀘스트입니다.");
 
         foreach (var taskGroup in m_TaskGroup)
         {
             taskGroup.Setup(this);
             foreach (var task in taskGroup.p_Tasks)
-                task.onSuccessChanged += OnSuccessChanged; // CallBack
+                task.onSuccessChanged += OnSuccessChanged;
         }
 
         m_State = QuestState.Running;
@@ -113,7 +109,6 @@ public class Quest : ScriptableObject
         p_CurrentTaskGroup.Start();
     }
 
-    // 보고를 받는 함수
     public void ReceiveReport(string category, object target, int successCount)
     {
         Debug.Assert(p_IsRegistered, "이 퀘스트는 이미 등록된 퀘스트입니다.");
@@ -170,6 +165,9 @@ public class Quest : ScriptableObject
 
         // Sub 퀘스트 수행 가능 체크
         GameScene.Instance.UpdateNpcState();
+        // Level 퀘스트 수행 가능 체크
+        if (p_Category == GameScene.Instance.m_LevelQuest[0].p_Category)
+            GameScene.Instance.UpdateLevelQuestState();
     }
 
     // 퀘스트를 취소하는 함수

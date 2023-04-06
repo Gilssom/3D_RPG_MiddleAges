@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UIManager : SingletomManager<UIManager>
 {
-    protected UIManager() { }
-
     int m_Order = 10; // 최근에 사용된 Sorting Order
 
     [Header("Popup UI Open / Close")]

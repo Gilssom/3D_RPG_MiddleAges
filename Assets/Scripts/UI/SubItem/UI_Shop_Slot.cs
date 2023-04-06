@@ -44,22 +44,17 @@ public class UI_Shop_Slot : UI_Base
         }
     }
 
-    // UI EventHandler 등록
     void SetEvent()
     {
-        // 아이템 Enter 이벤트
         gameObject.BindEvent((PointerEventData) =>
         {
-            //Debug.Log($"{m_Item.m_ItemName} 정보!"); 
             if (m_Item != null)
                 InventoryManager.Instance.ShowToolTip(m_Item, GetComponent<RectTransform>(), 0);
         }
         , Defines.UIEvent.Enter);
 
-        // 아이템 Exit 이벤트
         gameObject.BindEvent((PointerEventData) =>
         {
-            //Debug.Log($"{m_Item.m_ItemName} 정보 안보기"); 
             InventoryManager.Instance.HideToolTip();
         }
         , Defines.UIEvent.Exit);
